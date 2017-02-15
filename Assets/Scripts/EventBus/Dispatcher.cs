@@ -29,11 +29,12 @@ namespace EventBus
 
         public static void SendEvent(Event e)
         {
-            Dictionary<int, GameObject> typeSubscribers = subscribers[e.type];
-            if (typeSubscribers == null)
+            if (!subscribers.ContainsKey(e.type))
             {
                 return;
             }
+
+            Dictionary<int, GameObject> typeSubscribers = subscribers[e.type];
             if (e.address == Defines.BROADCAST_ADDRESS)
             {
                 foreach (var entry in typeSubscribers)
@@ -43,11 +44,12 @@ namespace EventBus
             }
             else
             {
-                GameObject target = typeSubscribers[e.address];
-                if (target != null)
+                if (!typeSubscribers.ContainsKey(e.address))
                 {
-                    ExecuteEvents.Execute<IEventSubscriber>(target, null, (handler, data) => handler.OnReceived(e));
+                    return;
                 }
+
+                ExecuteEvents.Execute<IEventSubscriber>(typeSubscribers[e.address], null, (handler, data) => handler.OnReceived(e));
             }
         }
 
