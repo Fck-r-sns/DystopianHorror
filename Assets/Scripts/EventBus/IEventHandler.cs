@@ -7,6 +7,6 @@ namespace EventBus
 {
     public interface IEventSubscriber : IEventSystemHandler
     {
-        void OnReceived(Event e);
+        void OnReceived(EBEvent e);
     }
 }

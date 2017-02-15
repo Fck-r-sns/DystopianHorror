@@ -16,10 +16,10 @@ public class TestPublisher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EventBus.Dispatcher.SendEvent(
-            new EventBus.Event
+        Dispatcher.SendEvent(
+            new EBEvent
             {
-                type = EventBus.EventType.TestEvent,
+                type = EBEventType.TestEvent,
                 address = Defines.BROADCAST_ADDRESS
             }
             );

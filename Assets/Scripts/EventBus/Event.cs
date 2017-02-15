@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace EventBus
 {
-    public enum EventType
+    public enum EBEventType
     {
         TestEvent
     }
 
-    public class Event
+    public class EBEvent
     {
-        public EventType type;
+        public EBEventType type;
         public int address;
 
         public override string ToString()

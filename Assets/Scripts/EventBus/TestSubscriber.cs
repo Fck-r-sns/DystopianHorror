@@ -1,12 +1,13 @@
-﻿using EventBus;
-using UnityEngine;
+﻿using UnityEngine;
+
+using EventBus;
 
 public class TestSubscriber : MonoBehaviour, IEventSubscriber
 {
 
     private int address = AddressProvider.GetFreeAddress();
 
-    public void OnReceived(EventBus.Event e)
+    public void OnReceived(EBEvent e)
     {
         Debug.Log("Event received: " + e);
     }
@@ -14,7 +15,7 @@ public class TestSubscriber : MonoBehaviour, IEventSubscriber
     // Use this for initialization
     void Start()
     {
-        Dispatcher.Subscribe(EventBus.EventType.TestEvent, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.TestEvent, address, gameObject);
     }
 
     // Update is called once per frame

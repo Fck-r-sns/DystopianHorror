@@ -8,9 +8,9 @@ namespace EventBus
 
     public class Dispatcher : MonoBehaviour
     {
-        private static Dictionary<EventType, Dictionary<int, GameObject>> subscribers = new Dictionary<EventType, Dictionary<int, GameObject>>();
+        private static Dictionary<EBEventType, Dictionary<int, GameObject>> subscribers = new Dictionary<EBEventType, Dictionary<int, GameObject>>();
 
-        public static void Subscribe(EventType eventType, int address, GameObject subscriber)
+        public static void Subscribe(EBEventType eventType, int address, GameObject subscriber)
         {
             if (!subscribers.ContainsKey(eventType))
             {
@@ -19,7 +19,7 @@ namespace EventBus
             subscribers[eventType].Add(address, subscriber);
         }
 
-        public static void Unsubscribe(EventType eventType, int address)
+        public static void Unsubscribe(EBEventType eventType, int address)
         {
             if (subscribers.ContainsKey(eventType))
             {
@@ -27,7 +27,7 @@ namespace EventBus
             }
         }
 
-        public static void SendEvent(Event e)
+        public static void SendEvent(EBEvent e)
         {
             if (!subscribers.ContainsKey(e.type))
             {
