@@ -6,13 +6,15 @@ namespace EventBus
 {
     public enum EBEventType
     {
-        TestEvent
+        TestEvent,
+        TestDoorTriggerEntered,
+        TestDoorTriggerExited,
     }
 
     public class EBEvent
     {
         public EBEventType type;
-        public int address;
+        public int address = Defines.BROADCAST_ADDRESS;
 
         public override string ToString()
         {
