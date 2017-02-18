@@ -70,6 +70,11 @@ namespace Immersive
                 currentControllable.OnRelease();
                 objectAcquired = false;
             }
+
+            if (objectAcquired)
+            {
+                currentControllable.OnForceApplied(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), transform.position);
+            }
         }
 
         // for raycast debug

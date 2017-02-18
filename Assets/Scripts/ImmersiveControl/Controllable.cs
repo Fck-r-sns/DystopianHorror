@@ -11,7 +11,7 @@ namespace Immersive
         void OnHoverOut();
         void OnAcquire();
         void OnRelease();
-        void OnForceApplied(float xAxis, float yAxis);
+        void OnForceApplied(float xAxis, float yAxis, Vector3 from);
     }
 
 }
