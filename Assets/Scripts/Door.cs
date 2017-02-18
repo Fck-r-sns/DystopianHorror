@@ -13,11 +13,23 @@ public class Door : MonoBehaviour {
     [SerializeField]
     private float rotationSpeed = 10;
 
+    private float zeroShift;
     private float angle;
 
     public void setAngle(float angle)
     {
-        this.angle = Mathf.Clamp(angle, minAngle, maxAngle);
+        this.angle = Mathf.Clamp(angle, minAngle, maxAngle) + zeroShift;
+        applyAngle(this.angle);
+    }
+
+    public float getAngle()
+    {
+        return angle - zeroShift;
+    }
+
+    public void addAngle(float angle)
+    {
+        setAngle(getAngle() + angle);
     }
 
     public void open()
@@ -31,10 +43,12 @@ public class Door : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
-        angle = initialAngle;
-	}
+        zeroShift = transform.eulerAngles.y;
+        setAngle(initialAngle);
+    }
 
     private void applyAngle(float angle)
     {
@@ -47,8 +61,7 @@ public class Door : MonoBehaviour {
     {
         while (angle * directionMultiplier < targetAngle * directionMultiplier)
         {
-            angle += Time.deltaTime * rotationSpeed * directionMultiplier;
-            applyAngle(angle);
+            addAngle(Time.deltaTime * rotationSpeed * directionMultiplier);
             yield return null;
         }
     }
