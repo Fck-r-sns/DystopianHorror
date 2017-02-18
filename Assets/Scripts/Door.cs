@@ -22,29 +22,18 @@ public class Door : MonoBehaviour {
 
     public void open()
     {
-        StartCoroutine(animateRotation(maxAngle));
+        StartCoroutine(animateRotation(maxAngle, 1.0f));
     }
 
     public void close()
     {
-        StartCoroutine(animateRotation(minAngle));
+        StartCoroutine(animateRotation(minAngle, -1.0f));
     }
 
     // Use this for initialization
     void Start () {
         initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
         angle = initialAngle;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //float deltaT = Time.deltaTime;
-        //angle += deltaT * 10;
-        //if (angle > maxAngle)
-        //{
-        //    angle = minAngle;
-        //}
-        //applyAngle(angle);
 	}
 
     private void applyAngle(float angle)
@@ -54,11 +43,11 @@ public class Door : MonoBehaviour {
         transform.eulerAngles = rotation;
     }
 
-    private IEnumerator animateRotation(float targetAngle)
+    private IEnumerator animateRotation(float targetAngle, float directionMultiplier)
     {
-        while (angle < targetAngle)
+        while (angle * directionMultiplier < targetAngle * directionMultiplier)
         {
-            angle += Time.deltaTime * rotationSpeed;
+            angle += Time.deltaTime * rotationSpeed * directionMultiplier;
             applyAngle(angle);
             yield return null;
         }
