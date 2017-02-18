@@ -9,6 +9,9 @@ namespace EventBus
     public class Dispatcher : MonoBehaviour
     {
         private static Dictionary<EBEventType, Dictionary<int, GameObject>> subscribers = new Dictionary<EBEventType, Dictionary<int, GameObject>>();
+        private static int activeQueueIndex = 0;
+        private static Queue<EBEvent>[] queues = { new Queue<EBEvent>(), new Queue<EBEvent>() };
+        private static Queue<EBEvent> activeQueue = queues[activeQueueIndex]; // double buffer, protection from infinite event loops
 
         public static void Subscribe(EBEventType eventType, int address, GameObject subscriber)
         {
@@ -28,6 +31,11 @@ namespace EventBus
         }
 
         public static void SendEvent(EBEvent e)
+        {
+            activeQueue.Enqueue(e);
+        }
+
+        public static void dispatchEvent(EBEvent e)
         {
             if (!subscribers.ContainsKey(e.type))
             {
@@ -62,7 +70,19 @@ namespace EventBus
         // Update is called once per frame
         void Update()
         {
+            Queue<EBEvent> queue = activeQueue;
+            swapQueues();
+            foreach(EBEvent e in queue)
+            {
+                dispatchEvent(e);
+            }
+            queue.Clear();
+        }
 
+        private void swapQueues()
+        {
+            activeQueueIndex = 1 - activeQueueIndex;
+            activeQueue = queues[activeQueueIndex];
         }
     }
 }
