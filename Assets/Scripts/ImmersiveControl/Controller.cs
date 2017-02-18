@@ -12,7 +12,12 @@ namespace Immersive
         [SerializeField]
         private float interactionDistance = 1.0f; // in meters
 
+        [SerializeField]
+        private float hoverRadius = 0.25f; // in meters
+
         private Camera camera;
+        private Controllable currentControllable;
+        private bool objectAcquired = false;
 
         // Use this for initialization
         void Start()
@@ -23,16 +28,47 @@ namespace Immersive
         // Update is called once per frame
         void Update()
         {
-            Ray ray = camera.ScreenPointToRay(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 0));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.distance < interactionDistance)
+            if (!objectAcquired)
             {
-                StartCoroutine(SphereIndicator(hit.point));
-                Renderer renderer = hit.transform.gameObject.GetComponent<Renderer>();
-                if (renderer != null)
+                Ray ray = camera.ScreenPointToRay(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 0));
+                RaycastHit hit;
+                if (Physics.SphereCast(ray, hoverRadius, out hit) && hit.distance < interactionDistance)
                 {
-                    renderer.material.color = Color.red;
+                    Controllable controllable = hit.transform.gameObject.GetComponent<Controllable>();
+                    if (controllable != currentControllable)
+                    {
+                        if (currentControllable != null)
+                        {
+                            currentControllable.OnHoverOut();
+                            objectAcquired = false;
+                        }
+                        if (controllable != null)
+                        {
+                            controllable.OnHoverOn();
+                        }
+                        currentControllable = controllable;
+                    }
                 }
+                else
+                {
+                    if (currentControllable != null)
+                    {
+                        currentControllable.OnHoverOut();
+                        currentControllable = null;
+                    }
+                }
+            }
+
+            if (currentControllable != null && Input.GetMouseButtonDown(0))
+            {
+                currentControllable.OnAcquire();
+                objectAcquired = true;
+            }
+
+            if (currentControllable != null && Input.GetMouseButtonUp(0) && objectAcquired)
+            {
+                currentControllable.OnRelease();
+                objectAcquired = false;
             }
         }
 
