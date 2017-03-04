@@ -327,6 +327,10 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 1142075441}
+--- !u!4 &1672583191 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 1142075441}
 --- !u!114 &1672583192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +355,7 @@ GameObject:
   - component: {fileID: 1888220781}
   - component: {fileID: 1888220780}
   - component: {fileID: 1888220779}
+  - component: {fileID: 1888220784}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -370,6 +375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePeriod_s: 0.2
+  ignoreStanding: 1
+  standingDistance: 0.2
 --- !u!23 &1888220780
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -433,3 +440,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1888220784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1888220778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c1103f74619784e8d03e5c283a86b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1672583191}
