@@ -7,8 +7,13 @@ using System;
 
 public class Hunter : MonoBehaviour, IEventSubscriber {
 
+    [SerializeField]
+    private float movePeriod_s = 2.0f;
+
     private int address = AddressProvider.GetFreeAddress();
     private Queue<Waypoint> waypointsQueue = new Queue<Waypoint>();
+
+    private float lastMoveTime = 0.0f;
 
     public void OnReceived(EBEvent e)
     {
@@ -20,6 +25,7 @@ public class Hunter : MonoBehaviour, IEventSubscriber {
 
     void Start () {
         Dispatcher.Subscribe(EBEventType.NewWaypointCreated, address, gameObject);
+        lastMoveTime = Time.time;
 	}
 
     void OnDestroy()
@@ -28,6 +34,18 @@ public class Hunter : MonoBehaviour, IEventSubscriber {
     }
 
     void Update () {
-		
+		if (Time.time - lastMoveTime > movePeriod_s)
+        {
+            MoveToNextWaypoint();
+            lastMoveTime += movePeriod_s;
+        }
 	}
+
+    private void MoveToNextWaypoint()
+    {
+        if (waypointsQueue.Count != 0)
+        {
+            transform.position = waypointsQueue.Dequeue().position;
+        }
+    }
 }
