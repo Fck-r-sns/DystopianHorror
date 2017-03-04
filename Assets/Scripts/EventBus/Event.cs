@@ -9,6 +9,7 @@ namespace EventBus
         TestEvent,
         TestDoorTriggerEntered,
         TestDoorTriggerExited,
+        NewWaypointCreated
     }
 
     public class EBEvent
