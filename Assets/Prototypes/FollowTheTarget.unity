@@ -91,6 +91,11 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &586820374 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1142075441}
 --- !u!1001 &1142075441
 Prefab:
   m_ObjectHideFlags: 0
@@ -357,6 +362,8 @@ GameObject:
   - component: {fileID: 1888220779}
   - component: {fileID: 1888220784}
   - component: {fileID: 1888220785}
+  - component: {fileID: 1888220787}
+  - component: {fileID: 1888220786}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -466,3 +473,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1672583191}
   speed: 1
+--- !u!114 &1888220786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1888220778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97deb5c2f689efc4fb7427bb433371e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1888220787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1888220778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb65b9d03baa895458cd8210eac87739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 586820374}
