@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using EventBus;
-using System;
 
-public class Hunter : MonoBehaviour, IEventSubscriber {
+public class Hunter : MonoBehaviour, IEventSubscriber
+{
 
     [SerializeField]
     private float movePeriod_s = 2.0f;
+
+    [SerializeField]
+    private bool ignoreStanding = true;
+
+    [SerializeField]
+    private float standingDistance = 0.2f;
 
     private int address = AddressProvider.GetFreeAddress();
     private Queue<Waypoint> waypointsQueue = new Queue<Waypoint>();
@@ -23,29 +29,50 @@ public class Hunter : MonoBehaviour, IEventSubscriber {
         }
     }
 
-    void Start () {
+    void Start()
+    {
         Dispatcher.Subscribe(EBEventType.NewWaypointCreated, address, gameObject);
         lastMoveTime = Time.time;
-	}
+    }
 
     void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.NewWaypointCreated, address);
     }
 
-    void Update () {
-		if (Time.time - lastMoveTime > movePeriod_s)
+    void Update()
+    {
+        if (Time.time - lastMoveTime > movePeriod_s)
         {
-            MoveToNextWaypoint();
+            Waypoint wp = GetNextWaypoint();
+            if (wp != null)
+            {
+                MoveToNextWaypoint(wp);
+            }
             lastMoveTime += movePeriod_s;
         }
-	}
+    }
 
-    private void MoveToNextWaypoint()
+    private void MoveToNextWaypoint(Waypoint waypoint)
     {
-        if (waypointsQueue.Count != 0)
+        transform.position = waypoint.position;
+    }
+
+    private Waypoint GetNextWaypoint()
+    {
+        Waypoint res = null;
+        while (res == null)
         {
-            transform.position = waypointsQueue.Dequeue().position;
+            if (waypointsQueue.Count == 0)
+            {
+                break;
+            }
+            Waypoint wp = waypointsQueue.Dequeue();
+            if (Vector3.Distance(transform.position, wp.position) > standingDistance)
+            {
+                res = wp;
+            }
         }
+        return res;
     }
 }
