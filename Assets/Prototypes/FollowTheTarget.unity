@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384e03b7df5fe774884e55130469cce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointSpawnPeriod_s: 0.1
+  waypointSpawnPeriod: 0.1
 --- !u!1 &1888220778
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,12 +377,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1888220778}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8b5ac20786dab84190abb82d3fed21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePeriod_s: 0.2
+  movePeriod: 0.2
   ignoreStanding: 1
   standingDistance: 0.2
 --- !u!23 &1888220780

@@ -8,7 +8,7 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]
-    private float movePeriod_s = 2.0f;
+    private float movePeriod = 2.0f;
 
     [SerializeField]
     private bool ignoreStanding = true;
@@ -56,14 +56,14 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
         {
             return;
         }
-        if (Time.time - lastMoveTime > movePeriod_s)
+        if (Time.time - lastMoveTime > movePeriod)
         {
             Waypoint wp = GetNextWaypoint();
             if (wp != null)
             {
                 MoveToNextWaypoint(wp);
             }
-            lastMoveTime += movePeriod_s;
+            lastMoveTime += movePeriod;
         }
     }
 

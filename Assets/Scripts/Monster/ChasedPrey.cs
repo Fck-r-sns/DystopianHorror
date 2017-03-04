@@ -7,7 +7,7 @@ using EventBus;
 public class ChasedPrey : MonoBehaviour {
 
     [SerializeField]
-    private float waypointSpawnPeriod_s = 1.0f;
+    private float waypointSpawnPeriod = 1.0f;
 
     private float lastSpawnTime = 0.0f;
 
@@ -16,10 +16,10 @@ public class ChasedPrey : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (Time.time - lastSpawnTime > waypointSpawnPeriod_s)
+		if (Time.time - lastSpawnTime > waypointSpawnPeriod)
         {
             CreateWaypoint();
-            lastSpawnTime += waypointSpawnPeriod_s;
+            lastSpawnTime += waypointSpawnPeriod;
         }
 	}
 
