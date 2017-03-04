@@ -4,7 +4,7 @@ using UnityEngine;
 
 using EventBus;
 
-public class Hunter : MonoBehaviour, IEventSubscriber
+public class ChasingHunter : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]

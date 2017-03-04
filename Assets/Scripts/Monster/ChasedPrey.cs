@@ -4,7 +4,7 @@ using UnityEngine;
 
 using EventBus;
 
-public class Prey : MonoBehaviour {
+public class ChasedPrey : MonoBehaviour {
 
     [SerializeField]
     private float waypointSpawnPeriod_s = 1.0f;
