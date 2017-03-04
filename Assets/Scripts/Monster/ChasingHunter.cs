@@ -18,8 +18,18 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
 
     private int address = AddressProvider.GetFreeAddress();
     private Queue<Waypoint> waypointsQueue = new Queue<Waypoint>();
-
     private float lastMoveTime = 0.0f;
+    private bool active = true;
+
+    public void setActive(bool active)
+    {
+        this.active = active;
+    }
+
+    public bool isActive()
+    {
+        return active;
+    }
 
     public void OnReceived(EBEvent e)
     {
@@ -42,6 +52,10 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
 
     void Update()
     {
+        if (!isActive())
+        {
+            return;
+        }
         if (Time.time - lastMoveTime > movePeriod_s)
         {
             Waypoint wp = GetNextWaypoint();
@@ -68,7 +82,7 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
                 break;
             }
             Waypoint wp = waypointsQueue.Dequeue();
-            if (Vector3.Distance(transform.position, wp.position) > standingDistance)
+            if (!ignoreStanding || Vector3.Distance(transform.position, wp.position) > standingDistance)
             {
                 res = wp;
             }
