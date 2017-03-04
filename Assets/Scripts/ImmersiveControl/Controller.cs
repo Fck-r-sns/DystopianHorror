@@ -32,7 +32,7 @@ namespace Immersive
             {
                 Ray ray = camera.ScreenPointToRay(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 0));
                 RaycastHit hit;
-                if (Physics.SphereCast(ray, hoverRadius, out hit) && hit.distance < interactionDistance)
+                if (Physics.SphereCast(ray, hoverRadius, out hit, interactionDistance))
                 {
                     Controllable controllable = hit.transform.gameObject.GetComponent<Controllable>();
                     if (controllable != currentControllable)
