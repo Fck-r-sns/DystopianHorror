@@ -6,14 +6,18 @@ using EventBus;
 
 public class NewWaypointEvent : EBEvent {
 
-    public readonly Vector3 position;
-    public readonly float time;
+    public readonly Waypoint waypoint;
     
     public NewWaypointEvent(Vector3 position, float time)
     {
         this.type = EBEventType.NewWaypointCreated;
-        this.position = position;
-        this.time = time;
+        this.waypoint = new Waypoint(position, time);
+    }
+
+    public NewWaypointEvent(Waypoint waypoint)
+    {
+        this.type = EBEventType.NewWaypointCreated;
+        this.waypoint = waypoint;
     }
 
 }

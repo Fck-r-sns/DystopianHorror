@@ -25,6 +25,6 @@ public class Prey : MonoBehaviour {
 
     private void CreateWaypoint()
     {
-        Dispatcher.SendEvent(new NewWaypointEvent(transform.position, Time.time));
+        Dispatcher.SendEvent(new NewWaypointEvent(new Waypoint(transform.position, Time.time)));
     }
 }
