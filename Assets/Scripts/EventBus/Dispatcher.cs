@@ -35,7 +35,7 @@ namespace EventBus
             activeQueue.Enqueue(e);
         }
 
-        public static void dispatchEvent(EBEvent e)
+        public static void DispatchEvent(EBEvent e)
         {
             if (!subscribers.ContainsKey(e.type))
             {
@@ -74,7 +74,7 @@ namespace EventBus
             swapQueues();
             foreach(EBEvent e in queue)
             {
-                dispatchEvent(e);
+                DispatchEvent(e);
             }
             queue.Clear();
         }
