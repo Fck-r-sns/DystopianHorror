@@ -11,7 +11,6 @@ public class MovePlayerWithRoom : MonoBehaviour, IEventSubscriber
 
     public void OnReceived(EBEvent e)
     {
-        Debug.Log("OnReceived: " + e);
         if (e.type == EBEventType.HallMovingTriggerEntered)
         {
             HallMovingTriggerEnteredEvent hmtee = (e as HallMovingTriggerEnteredEvent);
