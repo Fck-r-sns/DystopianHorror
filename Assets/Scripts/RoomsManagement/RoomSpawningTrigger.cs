@@ -21,13 +21,6 @@ public class RoomSpawningTrigger : MonoBehaviour
     private Scene lastScene;
     private RoomsManager roomsManager;
 
-    public void MoveScene(Scene scene)
-    {
-        GameObject root = roomsManager.GetRoot(scene);
-        root.transform.position = rootOffset;
-        root.transform.eulerAngles = rootRotation;
-        root.SetActive(true);
-    }
 
     public Vector3 GetPosition()
     {
@@ -39,21 +32,8 @@ public class RoomSpawningTrigger : MonoBehaviour
         return rootRotation;
     }
 
-    private void Start()
+    public void AttachRoom(Scene scene)
     {
-        roomsManager = RoomsManager.GetManager(roomsManagerId);
-        roomsManager.RegisterDoor(id, this);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        LoadRoom();
-        EventBus.Dispatcher.SendEvent(new RoomSpawningTriggerEnteredEvent(roomsManagerId, id));
-    }
-
-    private void LoadRoom()
-    {
-        Scene scene = roomsManager.GetRandomRoom();
         if (lastScene.IsValid())
         {
             if (lastScene.name.Equals(scene.name))
@@ -68,6 +48,27 @@ public class RoomSpawningTrigger : MonoBehaviour
         }
         MoveScene(scene);
         lastScene = scene;
+    }
+
+    private void Start()
+    {
+        roomsManager = RoomsManager.GetManager(roomsManagerId);
+        roomsManager.RegisterDoor(id, this);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Scene scene = roomsManager.GetRandomRoom();
+        AttachRoom(scene);
+        EventBus.Dispatcher.SendEvent(new RoomSpawningTriggerEnteredEvent(roomsManagerId, id));
+    }
+
+    private void MoveScene(Scene scene)
+    {
+        GameObject root = roomsManager.GetRoot(scene);
+        root.transform.position = rootOffset;
+        root.transform.eulerAngles = rootRotation;
+        root.SetActive(true);
     }
 
 }
