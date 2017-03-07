@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 28429479}
   - component: {fileID: 28429478}
   m_Layer: 0
-  m_Name: SpawningTrigger (4)
+  m_Name: SpawningTrigger6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ Transform:
   m_LocalScale: {x: 4, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 1227683275}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &28429478
 MonoBehaviour:
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: SchoolPrototype
+  id: 6
   rootOffset: {x: 9.8, y: 0, z: 0}
   rootRotation: {x: 0, y: -90, z: 0}
 --- !u!23 &28429479
@@ -542,7 +543,7 @@ GameObject:
   - component: {fileID: 301455738}
   - component: {fileID: 301455737}
   m_Layer: 0
-  m_Name: SpawningTrigger (1)
+  m_Name: SpawningTrigger2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,6 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: SchoolPrototype
+  id: 2
   rootOffset: {x: -8, y: 0, z: -16.2}
   rootRotation: {x: 0, y: 180, z: 0}
 --- !u!23 &301455738
@@ -925,7 +927,7 @@ GameObject:
   - component: {fileID: 795024406}
   - component: {fileID: 795024405}
   m_Layer: 0
-  m_Name: SpawningTrigger (3)
+  m_Name: SpawningTrigger4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,6 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: SchoolPrototype
+  id: 4
   rootOffset: {x: -8, y: 0, z: 16.2}
   rootRotation: {x: 0, y: 0, z: 0}
 --- !u!23 &795024406
@@ -1467,7 +1470,7 @@ GameObject:
   - component: {fileID: 1172818052}
   - component: {fileID: 1172818051}
   m_Layer: 0
-  m_Name: SpawningTrigger (2)
+  m_Name: SpawningTrigger5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,7 +1487,7 @@ Transform:
   m_LocalScale: {x: 4, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 1227683275}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1172818051
 MonoBehaviour:
@@ -1498,6 +1501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: SchoolPrototype
+  id: 5
   rootOffset: {x: 8, y: 0, z: 16.2}
   rootRotation: {x: 0, y: 0, z: 0}
 --- !u!23 &1172818052
@@ -1724,10 +1728,10 @@ Transform:
   - {fileID: 1101565496}
   - {fileID: 2137946993}
   - {fileID: 301455736}
-  - {fileID: 1172818050}
-  - {fileID: 795024404}
-  - {fileID: 28429477}
   - {fileID: 1791454850}
+  - {fileID: 795024404}
+  - {fileID: 1172818050}
+  - {fileID: 28429477}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1977,7 +1981,7 @@ GameObject:
   - component: {fileID: 1791454852}
   - component: {fileID: 1791454851}
   m_Layer: 0
-  m_Name: SpawningTrigger (5)
+  m_Name: SpawningTrigger3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1994,7 +1998,7 @@ Transform:
   m_LocalScale: {x: 4, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 1227683275}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1791454851
 MonoBehaviour:
@@ -2008,6 +2012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: SchoolPrototype
+  id: 3
   rootOffset: {x: -9.8, y: 0, z: 0}
   rootRotation: {x: 0, y: 90, z: 0}
 --- !u!23 &1791454852
@@ -2267,7 +2272,7 @@ GameObject:
   - component: {fileID: 2137946995}
   - component: {fileID: 2137946994}
   m_Layer: 0
-  m_Name: SpawningTrigger
+  m_Name: SpawningTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2298,6 +2303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: SchoolPrototype
+  id: 1
   rootOffset: {x: 8, y: 0, z: -16.2}
   rootRotation: {x: 0, y: 180, z: 0}
 --- !u!23 &2137946995

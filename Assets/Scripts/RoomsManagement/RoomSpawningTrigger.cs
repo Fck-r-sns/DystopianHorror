@@ -10,6 +10,9 @@ public class RoomSpawningTrigger : MonoBehaviour
     private string roomsManagerId = "default";
 
     [SerializeField]
+    private int id;
+
+    [SerializeField]
     private Vector3 rootOffset;
 
     [SerializeField]
@@ -26,6 +29,7 @@ public class RoomSpawningTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         StartCoroutine(LoadRoom());
+        EventBus.Dispatcher.SendEvent(new RoomSpawningTriggerEnteredEvent(roomsManagerId, id));
     }
 
     private IEnumerator LoadRoom()
