@@ -3,36 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RoomsManager
+public class RoomsManager : MonoBehaviour
 {
 
-    private static RoomsManager instance;
-    private List<string> rooms = new List<string>();
+    private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
 
-    private RoomsManager()
+    [SerializeField]
+    private string id;
+
+    [SerializeField]
+    private string[] rooms;
+
+    public static RoomsManager GetManager(string sceneName)
     {
-        RegisterRoom("Room1");
-        RegisterRoom("Room2");
-        RegisterRoom("Room3");
+        return managers[sceneName];
     }
 
-    public static RoomsManager GetInstance()
+    private void Awake()
     {
-        if (instance == null)
-        {
-            instance = new RoomsManager();
-        }
-        return instance;
-    }
-
-    public void RegisterRoom(string sceneName)
-    {
-        rooms.Add(sceneName);
+        managers.Add(id, this);
     }
 
     public Scene GetRandomRoom()
     {
-        int index = Random.Range(0, rooms.Count);
+        int index = Random.Range(0, rooms.Length);
         string sceneName = rooms[index];
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         return SceneManager.GetSceneByName(sceneName);

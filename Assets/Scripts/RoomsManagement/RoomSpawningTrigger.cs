@@ -6,11 +6,20 @@ using UnityEngine.SceneManagement;
 public class RoomSpawningTrigger : MonoBehaviour
 {
 
+    [SerializeField]
+    private string roomsManagerId = "default";
+
     private string lastSceneName;
+    private RoomsManager roomsManager;
+
+    private void Awake()
+    {
+        roomsManager = RoomsManager.GetManager(roomsManagerId);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Scene room = RoomsManager.GetInstance().GetRandomRoom();
+        Scene room = roomsManager.GetRandomRoom();
         StartCoroutine(MoveScene(room));
         lastSceneName = room.name;
     }
@@ -19,7 +28,7 @@ public class RoomSpawningTrigger : MonoBehaviour
     {
         if (lastSceneName != null)
         {
-            RoomsManager.GetInstance().UnloadRoom(lastSceneName);
+            roomsManager.UnloadRoom(lastSceneName);
             lastSceneName = null;
         }
     }
