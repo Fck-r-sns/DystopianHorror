@@ -13,6 +13,7 @@ public class RoomSpawningTriggerEnteredEvent : EBEvent
 
     public RoomSpawningTriggerEnteredEvent(string roomsManagerId, Vector3 rootOffset, Vector3 rootRotation)
     {
+        this.type = EBEventType.RoomSpawningTriggerEntered;
         this.roomsManagerId = roomsManagerId;
         this.rootOffset = rootOffset;
         this.rootRotation = rootRotation;
