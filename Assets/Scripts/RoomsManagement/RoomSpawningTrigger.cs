@@ -9,6 +9,9 @@ public class RoomSpawningTrigger : MonoBehaviour
     [SerializeField]
     private string roomsManagerId = "default";
 
+    [SerializeField]
+    private Vector3 rootOffset;
+
     private string lastSceneName;
     private RoomsManager roomsManager;
 
@@ -40,7 +43,7 @@ public class RoomSpawningTrigger : MonoBehaviour
             yield return null;
         }
         GameObject root = scene.GetRootGameObjects()[0];
-        root.transform.position = new Vector3(0, 0, 10);
+        root.transform.position = rootOffset;
         root.SetActive(true);
     }
 

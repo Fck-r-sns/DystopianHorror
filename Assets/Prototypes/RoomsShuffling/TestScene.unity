@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: testScene
+  rootOffset: {x: 0, y: 0, z: 10}
 --- !u!65 &1855371293
 BoxCollider:
   m_ObjectHideFlags: 0
