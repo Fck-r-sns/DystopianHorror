@@ -15,7 +15,8 @@ public class RoomSpawningTrigger : MonoBehaviour
     [SerializeField]
     private Vector3 rootRotation;
 
-    private string lastSceneName;
+    private Scene lastScene;
+    private bool loaded;
     private RoomsManager roomsManager;
 
     private void Start()
@@ -25,24 +26,40 @@ public class RoomSpawningTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Scene room = roomsManager.GetRandomRoom();
-        StartCoroutine(MoveScene(room));
-        lastSceneName = room.name;
+        StartCoroutine(LoadRoom());
     }
 
-    private void OnTriggerExit(Collider other)
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (lastSceneName != null)
+    //    {
+    //        roomsManager.UnloadRoom(lastSceneName);
+    //        lastSceneName = null;
+    //    }
+    //}
+
+    private IEnumerator LoadRoom()
     {
-        if (lastSceneName != null)
+        Scene scene = roomsManager.GetRandomRoom();
+        if (lastScene.IsValid())
         {
-            roomsManager.UnloadRoom(lastSceneName);
-            lastSceneName = null;
+            if (lastScene.name.Equals(scene.name))
+            {
+                MoveScene(scene);
+                yield break;
+            }
+            else
+            {
+                roomsManager.DisableRoom(lastScene);
+            }
         }
+        MoveScene(scene);
+        lastScene = scene;
     }
 
-    private IEnumerator MoveScene(Scene scene)
+    private void MoveScene(Scene scene)
     {
-        yield return new WaitUntil(() => scene.isLoaded);
-        GameObject root = scene.GetRootGameObjects()[0];
+        GameObject root = roomsManager.GetRoot(scene);
         root.transform.position = rootOffset;
         root.transform.eulerAngles = rootRotation;
         root.SetActive(true);

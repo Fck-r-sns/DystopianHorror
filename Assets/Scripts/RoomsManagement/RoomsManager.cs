@@ -22,22 +22,45 @@ public class RoomsManager : MonoBehaviour
     private void Awake()
     {
         managers.Add(id, this);
+        foreach(string room in rooms) 
+        {
+            SceneManager.LoadSceneAsync(room, LoadSceneMode.Additive);
+            StartCoroutine(WaitForLoadingAndDisableScene(room));
+        }
     }
 
     public Scene GetRandomRoom()
     {
         int index = Random.Range(0, rooms.Length);
         string sceneName = rooms[index];
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         return SceneManager.GetSceneByName(sceneName);
     }
 
-    public void UnloadRoom(string sceneName)
+    public GameObject GetRoot(Scene scene)
     {
-        if (SceneManager.GetSceneByName(sceneName).isLoaded)
+        return scene.GetRootGameObjects()[0];
+    }
+
+    public void EnableRoom(Scene scene)
+    {
+        GetRoot(scene).SetActive(true);
+    }
+
+    public void DisableRoom(Scene scene)
+    {
+        GetRoot(scene).SetActive(false);
+    }
+
+    private IEnumerator WaitForLoadingAndDisableScene(string sceneName)
+    {
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+        if (!scene.IsValid())
         {
-            SceneManager.UnloadSceneAsync(sceneName);
+            yield break;
         }
+        yield return new WaitUntil(() => scene.isLoaded);
+        GameObject root = scene.GetRootGameObjects()[0];
+        root.SetActive(false);
     }
 
 }
