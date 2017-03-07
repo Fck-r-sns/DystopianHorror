@@ -16,7 +16,6 @@ public class RoomSpawningTrigger : MonoBehaviour
     private Vector3 rootRotation;
 
     private Scene lastScene;
-    private bool loaded;
     private RoomsManager roomsManager;
 
     private void Start()
@@ -28,15 +27,6 @@ public class RoomSpawningTrigger : MonoBehaviour
     {
         StartCoroutine(LoadRoom());
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (lastSceneName != null)
-    //    {
-    //        roomsManager.UnloadRoom(lastSceneName);
-    //        lastSceneName = null;
-    //    }
-    //}
 
     private IEnumerator LoadRoom()
     {
