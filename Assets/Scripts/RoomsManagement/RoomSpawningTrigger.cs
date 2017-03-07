@@ -15,7 +15,7 @@ public class RoomSpawningTrigger : MonoBehaviour
     private string lastSceneName;
     private RoomsManager roomsManager;
 
-    private void Awake()
+    private void Start()
     {
         roomsManager = RoomsManager.GetManager(roomsManagerId);
     }
