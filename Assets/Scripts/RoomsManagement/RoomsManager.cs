@@ -6,20 +6,21 @@ using UnityEngine.SceneManagement;
 public class RoomsManager : MonoBehaviour
 {
 
-    private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
-
     [SerializeField]
     private string id;
 
     [SerializeField]
     private string[] rooms;
 
+    private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
+    private Dictionary<int, RoomSpawningTrigger> doors = new Dictionary<int, RoomSpawningTrigger>();
+
     public static RoomsManager GetManager(string sceneName)
     {
         return managers[sceneName];
     }
 
-    private void Awake()
+    void Awake()
     {
         managers.Add(id, this);
         foreach(string room in rooms) 
@@ -27,6 +28,25 @@ public class RoomsManager : MonoBehaviour
             SceneManager.LoadSceneAsync(room, LoadSceneMode.Additive);
             StartCoroutine(WaitForLoadingAndDisableScene(room));
         }
+    }
+
+    public void RegisterDoor(int id, RoomSpawningTrigger door)
+    {
+        doors.Add(id, door);
+    }
+
+    public RoomSpawningTrigger GetRandomDoor()
+    {
+        int index = Random.Range(0, doors.Count);
+        foreach (var door in doors.Values)
+        {
+            if (index == 0)
+            {
+                return door;
+            }
+            --index;
+        }
+        return null;
     }
 
     public Scene GetRandomRoom()
