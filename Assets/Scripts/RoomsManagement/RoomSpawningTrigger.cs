@@ -12,6 +12,9 @@ public class RoomSpawningTrigger : MonoBehaviour
     [SerializeField]
     private Vector3 rootOffset;
 
+    [SerializeField]
+    private Vector3 rootRotation;
+
     private string lastSceneName;
     private RoomsManager roomsManager;
 
@@ -41,6 +44,7 @@ public class RoomSpawningTrigger : MonoBehaviour
         yield return new WaitUntil(() => scene.isLoaded);
         GameObject root = scene.GetRootGameObjects()[0];
         root.transform.position = rootOffset;
+        root.transform.eulerAngles = rootRotation;
         root.SetActive(true);
     }
 
