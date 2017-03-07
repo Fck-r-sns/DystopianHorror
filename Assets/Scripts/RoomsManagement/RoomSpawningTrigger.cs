@@ -38,10 +38,7 @@ public class RoomSpawningTrigger : MonoBehaviour
 
     private IEnumerator MoveScene(Scene scene)
     {
-        while (!scene.isLoaded)
-        {
-            yield return null;
-        }
+        yield return new WaitUntil(() => scene.isLoaded);
         GameObject root = scene.GetRootGameObjects()[0];
         root.transform.position = rootOffset;
         root.SetActive(true);

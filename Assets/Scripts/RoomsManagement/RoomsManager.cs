@@ -28,7 +28,7 @@ public class RoomsManager : MonoBehaviour
     {
         int index = Random.Range(0, rooms.Length);
         string sceneName = rooms[index];
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         return SceneManager.GetSceneByName(sceneName);
     }
 
