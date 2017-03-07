@@ -380,6 +380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: testScene
   rooms:
-  - Room1
-  - Room2
-  - Room3
+  - TestRoom1
+  - TestRoom2
+  - TestRoom3
