@@ -46,15 +46,21 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     public void OnReceived(EBEvent e)
     {
-        if (e.type == EBEventType.RoomSpawningTriggerEntered)
+        switch (e.type)
         {
-            RoomSpawningTriggerEnteredEvent rstee = (e as RoomSpawningTriggerEnteredEvent);
-            if (rstee.roomsManagerId.Equals(roomsManagerId) && rstee.roomEntryId == id)
-            {
+            case EBEventType.RoomSpawningTriggerEntered:
+                RoomSpawningTriggerEnteredEvent rstee = (e as RoomSpawningTriggerEnteredEvent);
+                if (rstee.roomsManagerId.Equals(roomsManagerId) && rstee.roomEntryId == id)
+                {
+                    CloseDoor();
+                    Scene room = roomsManager.GetRandomRoom();
+                    AttachRoom(room);
+                }
+                break;
+
+            case EBEventType.HallMovingTriggerEntered:
                 CloseDoor();
-                Scene room = roomsManager.GetRandomRoom();
-                AttachRoom(room);
-            }
+                break;
         }
     }
 
@@ -64,6 +70,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         roomsManager.RegisterDoor(id, this);
         door = GetComponentInChildren<Door>();
         Dispatcher.Subscribe(EBEventType.RoomSpawningTriggerEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
     }
 
     private void OnDestroy()
