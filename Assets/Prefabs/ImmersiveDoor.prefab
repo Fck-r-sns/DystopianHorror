@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114990877282186576}
   - component: {fileID: 65900773342657614}
   - component: {fileID: 114860983525896580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ImmersiveDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

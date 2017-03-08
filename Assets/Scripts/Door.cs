@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
 
+    public enum Direction
+    {
+        Forward = +1,
+        Backward = -1
+    }
+
     [SerializeField]
     private float minAngle = 0;
     [SerializeField]    
@@ -42,7 +48,6 @@ public class Door : MonoBehaviour {
         StartCoroutine(animateRotation(minAngle, -1.0f));
     }
 
-    // Use this for initialization
     void Start()
     {
         initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
