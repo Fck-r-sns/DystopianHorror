@@ -32,7 +32,7 @@ public class HallMovingTrigger : MonoBehaviour, IEventSubscriber
     private void OnTriggerEnter(Collider other)
     {
         collider.enabled = false;
-        RoomSpawningTrigger door = roomsManager.GetRandomDoor();
+        RoomEntry door = roomsManager.GetRandomRoomEntry();
         GameObject root = roomsManager.GetRoot(gameObject.scene);
         Vector3 oldPosition = root.transform.position;
         Vector3 oldRotation = root.transform.eulerAngles;
@@ -40,8 +40,8 @@ public class HallMovingTrigger : MonoBehaviour, IEventSubscriber
         EventBus.Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
             oldPosition,
             oldRotation,
-            door.GetPosition(),
-            door.GetRotation()
+            door.GetRootOffset(),
+            door.GetRootRotation()
             ));
     }
 }

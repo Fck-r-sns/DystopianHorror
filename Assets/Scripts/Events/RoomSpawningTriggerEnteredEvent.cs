@@ -8,13 +8,13 @@ public class RoomSpawningTriggerEnteredEvent : EBEvent
 {
 
     public readonly string roomsManagerId;
-    public readonly int triggerId;
+    public readonly int roomEntryId;
 
-    public RoomSpawningTriggerEnteredEvent(string roomsManagerId, int triggerId)
+    public RoomSpawningTriggerEnteredEvent(string roomsManagerId, int roomEntryId)
     {
         this.type = EBEventType.RoomSpawningTriggerEntered;
         this.roomsManagerId = roomsManagerId;
-        this.triggerId = triggerId;
+        this.roomEntryId = roomEntryId;
     }
 
 }

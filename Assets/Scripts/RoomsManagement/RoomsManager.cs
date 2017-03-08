@@ -13,7 +13,7 @@ public class RoomsManager : MonoBehaviour
     private string[] rooms;
 
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
-    private Dictionary<int, RoomSpawningTrigger> doors = new Dictionary<int, RoomSpawningTrigger>();
+    private Dictionary<int, RoomEntry> doors = new Dictionary<int, RoomEntry>();
 
     public static RoomsManager GetManager(string sceneName)
     {
@@ -30,12 +30,12 @@ public class RoomsManager : MonoBehaviour
         }
     }
 
-    public void RegisterDoor(int id, RoomSpawningTrigger door)
+    public void RegisterDoor(int id, RoomEntry door)
     {
         doors.Add(id, door);
     }
 
-    public RoomSpawningTrigger GetRandomDoor()
+    public RoomEntry GetRandomRoomEntry()
     {
         int index = Random.Range(0, doors.Count);
         foreach (var door in doors.Values)
