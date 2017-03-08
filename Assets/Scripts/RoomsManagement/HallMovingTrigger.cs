@@ -36,6 +36,7 @@ public class HallMovingTrigger : MonoBehaviour, IEventSubscriber
         GameObject root = roomsManager.GetRoot(gameObject.scene);
         Vector3 oldPosition = root.transform.position;
         Vector3 oldRotation = root.transform.eulerAngles;
+        door.CloseDoor();
         door.AttachRoom(gameObject.scene);
         EventBus.Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
             oldPosition,

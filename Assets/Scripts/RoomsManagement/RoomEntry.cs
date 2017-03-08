@@ -22,6 +22,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private int address = AddressProvider.GetFreeAddress();
     private Scene lastScene;
     private RoomsManager roomsManager;
+    private Door door;
 
     public string GetRoomsManagerId()
     {
@@ -50,6 +51,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
             RoomSpawningTriggerEnteredEvent rstee = (e as RoomSpawningTriggerEnteredEvent);
             if (rstee.roomsManagerId.Equals(roomsManagerId) && rstee.roomEntryId == id)
             {
+                CloseDoor();
                 Scene room = roomsManager.GetRandomRoom();
                 AttachRoom(room);
             }
@@ -60,12 +62,18 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     {
         roomsManager = RoomsManager.GetManager(roomsManagerId);
         roomsManager.RegisterDoor(id, this);
+        door = GetComponentInChildren<Door>();
         Dispatcher.Subscribe(EBEventType.RoomSpawningTriggerEntered, address, gameObject);
     }
 
     private void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.RoomSpawningTriggerEntered, address);
+    }
+
+    public void CloseDoor()
+    {
+        door.setClosed();
     }
 
     public void AttachRoom(Scene scene)

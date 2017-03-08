@@ -43,9 +43,19 @@ public class Door : MonoBehaviour {
         StartCoroutine(animateRotation(maxAngle, 1.0f));
     }
 
+    public void setOpened()
+    {
+        setAngle(maxAngle);
+    }
+
     public void close()
     {
         StartCoroutine(animateRotation(minAngle, -1.0f));
+    }
+
+    public void setClosed()
+    {
+        setAngle(minAngle);
     }
 
     void Start()

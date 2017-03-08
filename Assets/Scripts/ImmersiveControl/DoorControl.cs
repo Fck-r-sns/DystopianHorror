@@ -30,7 +30,7 @@ namespace Immersive {
 
         public void OnAcquire(Vector3 from)
         {
-            float direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
+            direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
         }
 
         public void OnRelease(Vector3 from)
@@ -39,7 +39,7 @@ namespace Immersive {
 
         public void OnForceApplied(float xAxis, float yAxis, Vector3 from)
         {
-            Vector2 force = (new Vector2(xAxis, direction * yAxis)).normalized * forceMultiplier;
+            Vector2 force = (new Vector2(xAxis, yAxis) * direction).normalized * forceMultiplier;
             door.addAngle(force.y + force.x);
         }
 
