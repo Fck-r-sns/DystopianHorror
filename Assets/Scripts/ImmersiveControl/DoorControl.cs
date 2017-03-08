@@ -8,33 +8,39 @@ namespace Immersive {
     [RequireComponent(typeof(Door))]
     public class DoorControl : MonoBehaviour, Controllable
     {
-        Door door;
+
+        [SerializeField]
+        private float forceMultiplier = 3.5f;
+
+        private Door door;
+        private float direction = 1.0f;
 
         private void Start()
         {
             door = GetComponent<Door>();
         }
 
-        public void OnHoverOn()
+        public void OnHoverOn(Vector3 from)
         {
         }
 
-        public void OnHoverOut()
+        public void OnHoverOut(Vector3 from)
         {
         }
 
-        public void OnAcquire()
+        public void OnAcquire(Vector3 from)
         {
+            float direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
         }
 
-        public void OnRelease()
+        public void OnRelease(Vector3 from)
         {
         }
 
         public void OnForceApplied(float xAxis, float yAxis, Vector3 from)
         {
-            float direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
-            door.addAngle(direction * yAxis * 10);
+            Vector2 force = (new Vector2(xAxis, direction * yAxis)).normalized * forceMultiplier;
+            door.addAngle(force.y + force.x);
         }
 
     }
