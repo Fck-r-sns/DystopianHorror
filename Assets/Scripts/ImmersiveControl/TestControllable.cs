@@ -12,25 +12,25 @@ namespace Immersive {
         private Renderer renderer;
         private Color previousColor;
         
-        public void OnHoverOn()
+        public void OnHoverOn(Vector3 from)
         {
             Debug.Log("OnHoverOn");
             previousColor = renderer.material.color;
             renderer.material.color = HOVER_COLOR;
         }
 
-        public void OnHoverOut()
+        public void OnHoverOut(Vector3 from)
         {
             Debug.Log("OnHoverOut");
             renderer.material.color = previousColor;
         }
 
-        public void OnAcquire()
+        public void OnAcquire(Vector3 from)
         {
             Debug.Log("OnAcquire");
         }
 
-        public void OnRelease()
+        public void OnRelease(Vector3 from)
         {
             Debug.Log("OnRelease");
         }

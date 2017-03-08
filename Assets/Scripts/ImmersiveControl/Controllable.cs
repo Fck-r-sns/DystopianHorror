@@ -7,10 +7,10 @@ namespace Immersive
 
     public interface Controllable
     {
-        void OnHoverOn();
-        void OnHoverOut();
-        void OnAcquire();
-        void OnRelease();
+        void OnHoverOn(Vector3 from);
+        void OnHoverOut(Vector3 from);
+        void OnAcquire(Vector3 from);
+        void OnRelease(Vector3 from);
         void OnForceApplied(float xAxis, float yAxis, Vector3 from);
     }
 

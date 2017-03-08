@@ -41,12 +41,12 @@ namespace Immersive
                     {
                         if (currentControllable != null)
                         {
-                            currentControllable.OnHoverOut();
+                            currentControllable.OnHoverOut(transform.position);
                             objectAcquired = false;
                         }
                         if (controllable != null)
                         {
-                            controllable.OnHoverOn();
+                            controllable.OnHoverOn(transform.position);
                         }
                         currentControllable = controllable;
                     }
@@ -55,7 +55,7 @@ namespace Immersive
                 {
                     if (currentControllable != null)
                     {
-                        currentControllable.OnHoverOut();
+                        currentControllable.OnHoverOut(transform.position);
                         currentControllable = null;
                     }
                 }
@@ -63,13 +63,13 @@ namespace Immersive
 
             if (currentControllable != null && Input.GetMouseButtonDown(0))
             {
-                currentControllable.OnAcquire();
+                currentControllable.OnAcquire(transform.position);
                 objectAcquired = true;
             }
 
             if (currentControllable != null && Input.GetMouseButtonUp(0) && objectAcquired)
             {
-                currentControllable.OnRelease();
+                currentControllable.OnRelease(transform.position);
                 objectAcquired = false;
             }
 
