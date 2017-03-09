@@ -26,6 +26,12 @@ public class NavMeshMovement : MonoBehaviour
     private Transform mainTarget;
 
     [SerializeField]
+    private float patrolSpeed = 5;
+
+    [SerializeField]
+    private float attackSpeed = 7;
+
+    [SerializeField]
     private LayerMask layerMask = -1;
 
     private static float WAYPOINT_PASS_DISTANCE = 1.0f;
@@ -51,11 +57,13 @@ public class NavMeshMovement : MonoBehaviour
         {
             Attack();
             state = State.Attack;
+            navMeshAgent.speed = attackSpeed;
         }
         else
         {
             Patrol();
             state = State.Patrol;
+            navMeshAgent.speed = patrolSpeed;
         }
     }
 
