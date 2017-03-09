@@ -47,27 +47,31 @@ public class NavMeshMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Ray ray = new Ray(transform.position, mainTarget.position - transform.position);
-        //RaycastHit hit;
-        //if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && hit.transform.gameObject.tag.Equals("Player"))
-        //{
-        //    state = State.Attack;
-        //    currentTarget = mainTarget;
-        //}
-        //else
-        //{
-        //    state = State.Patrol;
+        Ray ray = new Ray(transform.position, mainTarget.position - transform.position);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && hit.transform.gameObject.tag.Equals("Player"))
+        {
+            Attack();
+            state = State.Attack;
+        }
+        else
+        {
+            Patrol();
+            state = State.Patrol;
+        }
+    }
 
-        //}
+    private void Attack()
+    {
+        currentTarget = mainTarget;
+        currentWaypointIndex = -1;
+        navMeshAgent.SetDestination(currentTarget.position);
+    }
 
-        //if (target != null)
-        //{
-        //    target.y = transform.position.y;
-        //    navMeshAgent.SetDestination(target);
-        //}
-
+    private void Patrol()
+    {
         float dst = float.MaxValue;
-        if (currentTarget != null)
+        if ((currentTarget != null) && (currentTarget != mainTarget))
         {
             Vector3 v1 = transform.position;
             v1.y = 0;
@@ -76,7 +80,7 @@ public class NavMeshMovement : MonoBehaviour
             dst = Vector3.Distance(v1, v2);
         }
 
-        if ((dst < WAYPOINT_PASS_DISTANCE))
+        if ((state == State.Attack) || (dst < WAYPOINT_PASS_DISTANCE))
         {
             currentWaypointIndex = GetNextWaypoint();
             currentTarget = waypoints[currentWaypointIndex];
