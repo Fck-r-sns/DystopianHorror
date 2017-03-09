@@ -40,8 +40,6 @@ public class NavMeshMovement : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        currentTarget = waypoints[3];
-        currentWaypointIndex = 3;
     }
 
     // Update is called once per frame
@@ -80,7 +78,7 @@ public class NavMeshMovement : MonoBehaviour
             dst = Vector3.Distance(v1, v2);
         }
 
-        if ((state == State.Attack) || (dst < WAYPOINT_PASS_DISTANCE))
+        if ((currentTarget == null) || (state == State.Attack) || (dst < WAYPOINT_PASS_DISTANCE))
         {
             currentWaypointIndex = GetNextWaypoint();
             currentTarget = waypoints[currentWaypointIndex];
