@@ -95,6 +95,7 @@ public class NavMeshMovement : MonoBehaviour
         {
             return (currentWaypointIndex + (int)direction + waypoints.Length) % waypoints.Length;
         }
+        direction = ((Random.Range(0, 100) & 1) == 1) ? Direction.Forward : Direction.Backward;
         return GetNearestWaypoint();
     }
 
