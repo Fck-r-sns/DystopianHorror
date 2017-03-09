@@ -226,7 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89748551}
   m_Layer: 0
-  m_Name: Wp1
+  m_Name: Wp0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1098,8 +1098,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 524343143}
   m_Enabled: 1
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 10
+  m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1127,6 +1127,9 @@ MonoBehaviour:
   - {fileID: 1870065772}
   - {fileID: 1080579475}
   mainTarget: {fileID: 1321744584}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1536
 --- !u!114 &524343150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2039,7 +2042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080579475}
   m_Layer: 0
-  m_Name: Wp4
+  m_Name: Wp3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2480,7 +2483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275802764}
   m_Layer: 0
-  m_Name: Wp2
+  m_Name: Wp1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2896,7 +2899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870065772}
   m_Layer: 0
-  m_Name: Wp3
+  m_Name: Wp2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
