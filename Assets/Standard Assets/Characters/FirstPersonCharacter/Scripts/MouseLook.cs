@@ -17,11 +17,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public bool lockCursor = true;
 
 
+        private Quaternion m_CharacterTargetRot;
+        private Quaternion m_CameraTargetRot;
         private bool m_cursorIsLocked = true;
 
         public void Init(Transform character, Transform camera)
         {
-            
+            m_CharacterTargetRot = character.localRotation;
+            m_CameraTargetRot = camera.localRotation;
         }
 
 
@@ -30,25 +33,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
             float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
 
-            Quaternion characterTargetRot = character.localRotation;
-            Quaternion cameraTargetRot = camera.localRotation;
-            characterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
-            cameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
+            m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
+            m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 
             if(clampVerticalRotation)
-                cameraTargetRot = ClampRotationAroundXAxis (cameraTargetRot);
+                m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
 
             if(smooth)
             {
-                character.localRotation = Quaternion.Slerp (character.localRotation, characterTargetRot,
+                character.localRotation = Quaternion.Slerp (character.localRotation, m_CharacterTargetRot,
                     smoothTime * Time.deltaTime);
-                camera.localRotation = Quaternion.Slerp (camera.localRotation, cameraTargetRot,
+                camera.localRotation = Quaternion.Slerp (camera.localRotation, m_CameraTargetRot,
                     smoothTime * Time.deltaTime);
             }
             else
             {
-                character.localRotation = characterTargetRot;
-                camera.localRotation = cameraTargetRot;
+                character.localRotation = m_CharacterTargetRot;
+                camera.localRotation = m_CameraTargetRot;
             }
 
             UpdateCursorLock();
