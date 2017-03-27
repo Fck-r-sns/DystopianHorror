@@ -21,3 +21,5 @@ EditorBuildSettings:
     path: Assets/Prototypes/SchoolHall/RoomWithSphere.unity
   - enabled: 1
     path: Assets/Scenes/GenericClassRoom.unity
+  - enabled: 1
+    path: Assets/Scenes/ChemistryRoom.unity

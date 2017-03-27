@@ -1991,6 +1991,7 @@ MonoBehaviour:
   id: School
   rooms:
   - GenericClassRoom
+  - ChemistryRoom
 --- !u!1001 &907310701
 Prefab:
   m_ObjectHideFlags: 0
