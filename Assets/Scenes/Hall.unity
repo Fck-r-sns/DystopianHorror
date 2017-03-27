@@ -1990,8 +1990,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   rooms:
-  - GenericClassRoom
+  - PhysicsClass
   - ChemistryRoom
+  - NormalClass1
 --- !u!1001 &907310701
 Prefab:
   m_ObjectHideFlags: 0
@@ -2564,6 +2565,11 @@ Prefab:
     - target: {fileID: 4613875927102236, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143111675096927804, guid: 06474a8f900eb974ba50beb50555c9c4,
+        type: 2}
+      propertyPath: m_Height
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
