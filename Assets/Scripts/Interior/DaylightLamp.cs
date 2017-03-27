@@ -44,9 +44,17 @@ public class DaylightLamp : MonoBehaviour
 
     private void ApplyState(State newState)
     {
-        objects[state].SetActive(false);
+        if (objects.ContainsKey(state))
+        {
+            objects[state].SetActive(false);
+        }
+
         state = newState;
-        objects[state].SetActive(true);
+
+        if (objects.ContainsKey(state))
+        {
+            objects[state].SetActive(true);
+        }
     }
 
 }

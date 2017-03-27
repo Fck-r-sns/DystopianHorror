@@ -842,7 +842,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: -16.1
+      value: -16.01
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -947,7 +947,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 16.1
+      value: 16.01
       objectReference: {fileID: 0}
     - target: {fileID: 4449657172239572, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_LocalScale.x
@@ -1990,7 +1990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   rooms:
-  - RoomWithCube
+  - GenericClassRoom
 --- !u!1001 &907310701
 Prefab:
   m_ObjectHideFlags: 0
@@ -2119,7 +2119,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: -9.9
+      value: -9.99
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -2353,7 +2353,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: 9.9
+      value: 9.99
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -2567,6 +2567,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1119482749 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1159277654456014, guid: 06474a8f900eb974ba50beb50555c9c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1119482748}
+--- !u!114 &1119482750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119482749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfc0eb1a85fbdd4085883afca4798d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1152986348 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4323486319117076, guid: ae3082d75ff208f42a5076c91333249a,
@@ -3250,7 +3266,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 16.1
+      value: 16.01
       objectReference: {fileID: 0}
     - target: {fileID: 4449657172239572, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_LocalScale.x
@@ -3456,6 +3472,11 @@ Prefab:
     - target: {fileID: 1802284198967442, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_Name
       value: RoomEntry1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: rootOffset.z
+      value: -16.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}

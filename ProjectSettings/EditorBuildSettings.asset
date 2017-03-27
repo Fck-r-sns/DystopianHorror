@@ -19,3 +19,5 @@ EditorBuildSettings:
     path: Assets/Prototypes/SchoolHall/RoomWithCylinder.unity
   - enabled: 1
     path: Assets/Prototypes/SchoolHall/RoomWithSphere.unity
+  - enabled: 1
+    path: Assets/Scenes/GenericClassRoom.unity
