@@ -40,7 +40,7 @@ public class Door : MonoBehaviour {
 
     public void open()
     {
-        StartCoroutine(animateRotation(maxAngle, 1.0f));
+        StartCoroutine(animateRotation(maxAngle + zeroShift, 1.0f));
     }
 
     public void setOpened()
@@ -50,12 +50,26 @@ public class Door : MonoBehaviour {
 
     public void close()
     {
-        StartCoroutine(animateRotation(minAngle, -1.0f));
+        StartCoroutine(animateRotation(minAngle + zeroShift, -1.0f));
     }
 
     public void setClosed()
     {
         setAngle(minAngle);
+    }
+
+    public void toggle()
+    {
+        float median = (maxAngle + minAngle) / 2.0f;
+        float a = getAngle();
+        if (a < median)
+        {
+            open();
+        }
+        else
+        {
+            close();
+        }
     }
 
     void Start()

@@ -39,7 +39,7 @@ namespace Immersive {
 
         public void OnPress(Vector3 from)
         {
-            door.open();
+            door.toggle();
         }
 
         public void OnForceApplied(float xAxis, float yAxis, Vector3 from)
