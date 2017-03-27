@@ -35,6 +35,11 @@ namespace Immersive {
             Debug.Log("OnRelease");
         }
 
+        public void OnPress(Vector3 from)
+        {
+            Debug.Log("OnPress");
+        }
+
         public void OnForceApplied(float xAxis, float yAxis, Vector3 from)
         {
             Debug.Log("OnForceApplied(" + xAxis + "," + yAxis + ")");

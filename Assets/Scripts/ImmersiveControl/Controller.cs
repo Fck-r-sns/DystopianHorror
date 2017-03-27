@@ -21,6 +21,7 @@ namespace Immersive
         private Camera camera;
         private Controllable currentControllable;
         private bool objectAcquired = false;
+        private bool movedWhileAcquired = false;
 
         // Use this for initialization
         void Start()
@@ -44,6 +45,7 @@ namespace Immersive
                         {
                             currentControllable.OnHoverOut(transform.position);
                             objectAcquired = false;
+                            movedWhileAcquired = false;
                         }
                         if (controllable != null)
                         {
@@ -66,17 +68,29 @@ namespace Immersive
             {
                 currentControllable.OnAcquire(transform.position);
                 objectAcquired = true;
+                movedWhileAcquired = false;
             }
 
             if (currentControllable != null && Input.GetMouseButtonUp(0) && objectAcquired)
             {
+                if (!movedWhileAcquired)
+                {
+                    currentControllable.OnPress(transform.position);
+                }
                 currentControllable.OnRelease(transform.position);
                 objectAcquired = false;
+                movedWhileAcquired = false;
             }
 
             if (objectAcquired)
             {
-                currentControllable.OnForceApplied(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), transform.position);
+                float x = Input.GetAxis("Mouse X");
+                float y = Input.GetAxis("Mouse Y");
+                if (x != 0.0f && y != 0.0f)
+                {
+                    currentControllable.OnForceApplied(x, y, transform.position);
+                    movedWhileAcquired = true;
+                }
             }
         }
 

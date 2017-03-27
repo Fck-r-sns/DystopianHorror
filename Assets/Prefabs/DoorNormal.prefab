@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 64391070875577666}
   - component: {fileID: 65691524012537164}
   - component: {fileID: 114904129912596382}
+  - component: {fileID: 114322443104693514}
   m_Layer: 0
   m_Name: DoorNormal
   m_TagString: Untagged
@@ -109,6 +110,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8407073, y: 1.9433589, z: 0.04729221}
   m_Center: {x: 0.41420966, y: 0.9716778, z: -0.028556079}
+--- !u!114 &114322443104693514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217560415064024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f5a240539921048925f92f8d027e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 3.5
 --- !u!114 &114904129912596382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,4 +136,4 @@ MonoBehaviour:
   minAngle: 0
   maxAngle: 90
   initialAngle: 0
-  rotationSpeed: 10
+  rotationSpeed: 360

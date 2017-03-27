@@ -37,12 +37,16 @@ namespace Immersive {
         {
         }
 
+        public void OnPress(Vector3 from)
+        {
+            door.open();
+        }
+
         public void OnForceApplied(float xAxis, float yAxis, Vector3 from)
         {
             Vector2 force = (new Vector2(xAxis, yAxis) * direction).normalized * forceMultiplier;
             door.addAngle(force.y + force.x);
         }
-
     }
 
 }
