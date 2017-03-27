@@ -15,16 +15,17 @@ namespace Immersive
         [SerializeField]
         private float hoverRadius = 0.25f; // in meters
 
+        [SerializeField]
+        private LayerMask layerMask = -1;
+
         private Camera camera;
         private Controllable currentControllable;
         private bool objectAcquired = false;
-        private int layerMask;
 
         // Use this for initialization
         void Start()
         {
             camera = GetComponent<Camera>();
-            layerMask = LayerMask.GetMask("Immersive");
         }
 
         // Update is called once per frame
