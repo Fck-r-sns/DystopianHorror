@@ -21,6 +21,7 @@ public class Door : MonoBehaviour {
 
     private float zeroShift;
     private float angle;
+    private Coroutine lastCoroutine = null;
 
     public void setAngle(float angle)
     {
@@ -40,7 +41,11 @@ public class Door : MonoBehaviour {
 
     public void open()
     {
-        StartCoroutine(animateRotation(maxAngle + zeroShift, 1.0f));
+        if (lastCoroutine != null)
+        {
+            StopCoroutine(lastCoroutine);
+        }
+        lastCoroutine = StartCoroutine(animateRotation(maxAngle + zeroShift, 1.0f));
     }
 
     public void setOpened()
@@ -50,7 +55,11 @@ public class Door : MonoBehaviour {
 
     public void close()
     {
-        StartCoroutine(animateRotation(minAngle + zeroShift, -1.0f));
+        if (lastCoroutine != null)
+        {
+            StopCoroutine(lastCoroutine);
+        }
+        lastCoroutine = StartCoroutine(animateRotation(minAngle + zeroShift, -1.0f));
     }
 
     public void setClosed()
