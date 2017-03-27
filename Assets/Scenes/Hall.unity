@@ -1990,8 +1990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   rooms:
-  - PhysicsClass
-  - ChemistryRoom
+  - PhysicsClassNormal
+  - ChemistryRoomNormal
   - NormalClass1
   - StrangeRoom1
   - StrangeRoom2
@@ -2569,30 +2569,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 143111675096927804, guid: 06474a8f900eb974ba50beb50555c9c4,
-        type: 2}
-      propertyPath: m_Height
-      value: 1.1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1119482749 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1159277654456014, guid: 06474a8f900eb974ba50beb50555c9c4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1119482748}
---- !u!114 &1119482750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1119482749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dfc0eb1a85fbdd4085883afca4798d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1152986348 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4323486319117076, guid: ae3082d75ff208f42a5076c91333249a,
