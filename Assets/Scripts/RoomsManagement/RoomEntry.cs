@@ -52,6 +52,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                 RoomSpawningTriggerEnteredEvent rstee = (e as RoomSpawningTriggerEnteredEvent);
                 if (rstee.roomsManagerId.Equals(roomsManagerId) && rstee.roomEntryId == id)
                 {
+
                     CloseDoor();
                     Scene room = roomsManager.GetRandomRoom();
                     AttachRoom(room);

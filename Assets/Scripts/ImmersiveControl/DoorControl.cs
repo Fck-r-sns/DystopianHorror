@@ -9,6 +9,15 @@ namespace Immersive {
     public class DoorControl : MonoBehaviour, Controllable
     {
 
+        public enum Mode
+        {
+            Normal,
+            Immersive
+        }
+
+        [SerializeField]
+        private Mode mode = Mode.Normal;
+
         [SerializeField]
         private float forceMultiplier = 3.5f;
 
@@ -30,7 +39,14 @@ namespace Immersive {
 
         public void OnAcquire(Vector3 from)
         {
-            direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
+            if (mode == Mode.Immersive)
+            {
+                direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
+            }
+            else
+            {
+                door.toggle();
+            }
         }
 
         public void OnRelease(Vector3 from)
@@ -39,13 +55,19 @@ namespace Immersive {
 
         public void OnPress(Vector3 from)
         {
-            door.toggle();
+            if (mode == Mode.Immersive)
+            {
+                door.toggle();
+            }
         }
 
         public void OnForceApplied(float xAxis, float yAxis, Vector3 from)
         {
-            Vector2 force = (new Vector2(xAxis, yAxis) * direction).normalized * forceMultiplier;
-            door.addAngle(force.y + force.x);
+            if (mode == Mode.Immersive)
+            {
+                Vector2 force = (new Vector2(xAxis, yAxis) * direction).normalized * forceMultiplier;
+                door.addAngle(force.y + force.x);
+            }
         }
     }
 
