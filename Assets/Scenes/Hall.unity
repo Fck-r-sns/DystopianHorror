@@ -1993,6 +1993,9 @@ MonoBehaviour:
   - PhysicsClass
   - ChemistryRoom
   - NormalClass1
+  - StrangeRoom1
+  - StrangeRoom2
+  - StrangeRoom3
 --- !u!1001 &907310701
 Prefab:
   m_ObjectHideFlags: 0

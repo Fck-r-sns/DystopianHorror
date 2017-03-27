@@ -20,8 +20,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Prototypes/SchoolHall/RoomWithSphere.unity
   - enabled: 1
-    path: Assets/Scenes/Rooms/ChemistryRoom.unity
+    path: Assets/Scenes/Rooms/ChemistryRoomNormal.unity
   - enabled: 1
     path: Assets/Scenes/Rooms/NormalClass1.unity
   - enabled: 1
-    path: Assets/Scenes/Rooms/PhysicsClass.unity
+    path: Assets/Scenes/Rooms/PhysicsClassNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StrangeRoom1.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StrangeRoom2.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StrangeRoom3.unity
