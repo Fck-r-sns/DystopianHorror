@@ -18,6 +18,9 @@ namespace Immersive
         [SerializeField]
         private LayerMask layerMask = -1;
 
+        [SerializeField]
+        private bool debug = false;
+
         private Camera camera;
         private Controllable currentControllable;
         private bool objectAcquired = false;
@@ -38,6 +41,10 @@ namespace Immersive
                 RaycastHit hit;
                 if (Physics.SphereCast(ray, hoverRadius, out hit, interactionDistance, layerMask))
                 {
+                    if (debug)
+                    {
+                        StartCoroutine(SphereIndicator(hit.point));
+                    }
                     Controllable controllable = hit.transform.gameObject.GetComponent<Controllable>();
                     if (controllable != currentControllable)
                     {

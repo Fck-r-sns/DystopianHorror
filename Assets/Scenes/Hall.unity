@@ -673,6 +673,24 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1531695892473688, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 64095359290095702, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65719302053441438, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531695892473688, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
   m_IsPrefabParent: 0
@@ -2117,7 +2135,8 @@ MonoBehaviour:
   hoverRadius: 0.25
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
+  debug: 0
 --- !u!1001 &1255264270
 Prefab:
   m_ObjectHideFlags: 0
