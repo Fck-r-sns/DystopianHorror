@@ -16,7 +16,7 @@ public class HallMovingTrigger : MonoBehaviour, IEventSubscriber
 
     public void OnReceived(EBEvent e)
     {
-        if (e.type == EBEventType.RoomSpawningTriggerEntered)
+        if (e.type == EBEventType.RoomSpawningTrigger)
         {
             collider.enabled = true; // reset trigger
         }
@@ -26,7 +26,7 @@ public class HallMovingTrigger : MonoBehaviour, IEventSubscriber
     {
         collider = GetComponent<Collider>();
         roomsManager = RoomsManager.GetManager(roomsManagerId);
-        Dispatcher.Subscribe(EBEventType.RoomSpawningTriggerEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

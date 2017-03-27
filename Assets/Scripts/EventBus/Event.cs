@@ -10,7 +10,7 @@ namespace EventBus
         TestDoorTriggerEntered,
         TestDoorTriggerExited,
         NewWaypointCreated,
-        RoomSpawningTriggerEntered,
+        RoomSpawningTrigger,
         HallMovingTriggerEntered
     }
 

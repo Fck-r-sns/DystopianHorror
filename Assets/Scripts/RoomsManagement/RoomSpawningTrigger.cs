@@ -18,7 +18,12 @@ public class RoomSpawningTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        EventBus.Dispatcher.SendEvent(new RoomSpawningTriggerEnteredEvent(roomsManagerId, id));
+        EventBus.Dispatcher.SendEvent(new RoomSpawningTriggerEvent(roomsManagerId, id, RoomSpawningTriggerEvent.Action.Enter));
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        EventBus.Dispatcher.SendEvent(new RoomSpawningTriggerEvent(roomsManagerId, id, RoomSpawningTriggerEvent.Action.Exit));
     }
 
 }

@@ -983,7 +983,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 16.2
+      value: 16.1
       objectReference: {fileID: 0}
     - target: {fileID: 4449657172239572, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_LocalScale.x
@@ -2278,7 +2278,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: 10
+      value: 9.9
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -3197,7 +3197,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 16.2
+      value: 16.1
       objectReference: {fileID: 0}
     - target: {fileID: 4449657172239572, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_LocalScale.x

@@ -456,8 +456,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.901472, y: 1, z: 25.109194}
-  m_Center: {x: 0.0064810035, y: 0, z: -6.5828476}
+  m_Size: {x: 16, y: 1, z: 16}
+  m_Center: {x: 0, y: 0, z: -2}
 --- !u!114 &114183111051639942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,5 +510,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomsManagerId: School
   id: 3
-  rootOffset: {x: -10, y: 0, z: 0}
+  rootOffset: {x: -9.9, y: 0, z: 0}
   rootRotation: {x: 0, y: 90, z: 0}
