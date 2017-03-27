@@ -11,7 +11,14 @@ namespace EventBus
         TestDoorTriggerExited,
         NewWaypointCreated,
         RoomSpawningTrigger,
-        HallMovingTriggerEntered
+        HallMovingTriggerEntered,
+        DoorClosingTrigger
+    }
+
+    public enum TriggerAction
+    {
+        Enter,
+        Exit
     }
 
     public class EBEvent

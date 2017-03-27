@@ -50,18 +50,18 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         {
             case EBEventType.RoomSpawningTrigger:
                 RoomSpawningTriggerEvent rstee = (e as RoomSpawningTriggerEvent);
-                if (rstee.roomsManagerId.Equals(roomsManagerId) && rstee.roomEntryId == id)
+                if (rstee.roomsManagerId.Equals(roomsManagerId) && (rstee.roomEntryId == id) && (rstee.action == TriggerAction.Enter))
                 {
-                    switch (rstee.action)
-                    {
-                        case RoomSpawningTriggerEvent.Action.Enter:
-                            Scene room = roomsManager.GetRandomRoom();
-                            AttachRoom(room);
-                            break;
-                        case RoomSpawningTriggerEvent.Action.Exit:
-                            CloseDoor();
-                            break;
-                    }
+                    Scene room = roomsManager.GetRandomRoom();
+                    AttachRoom(room);
+                }
+                break;
+
+            case EBEventType.DoorClosingTrigger:
+                DoorClosingTriggerEvent dcte = (e as DoorClosingTriggerEvent);
+                if (dcte.roomsManagerId.Equals(roomsManagerId) && (dcte.roomEntryId == id) && (dcte.action == TriggerAction.Exit))
+                {
+                    CloseDoor();
                 }
                 break;
 
@@ -77,17 +77,21 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         roomsManager.RegisterDoor(id, this);
         door = GetComponentInChildren<Door>();
         Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.DoorClosingTrigger, address, gameObject);
         Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
     }
 
     private void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
+        Dispatcher.Unsubscribe(EBEventType.DoorClosingTrigger, address);
+        Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
     }
 
     public void CloseDoor()
     {
-        door.setClosed();
+        //door.setClosed();
+        door.close();
     }
 
     public void AttachRoom(Scene scene)

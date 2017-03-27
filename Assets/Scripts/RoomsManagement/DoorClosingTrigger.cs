@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using EventBus;
 
-public class RoomSpawningTrigger : MonoBehaviour
+public class DoorClosingTrigger : MonoBehaviour
 {
 
     private string roomsManagerId = "default";
@@ -16,12 +16,12 @@ public class RoomSpawningTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Dispatcher.SendEvent(new RoomSpawningTriggerEvent(roomsManagerId, id, TriggerAction.Enter));
+        Dispatcher.SendEvent(new DoorClosingTriggerEvent(roomsManagerId, id, TriggerAction.Enter));
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Dispatcher.SendEvent(new RoomSpawningTriggerEvent(roomsManagerId, id, TriggerAction.Exit));
+        Dispatcher.SendEvent(new DoorClosingTriggerEvent(roomsManagerId, id, TriggerAction.Exit));
     }
 
 }
