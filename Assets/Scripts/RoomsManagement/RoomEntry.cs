@@ -23,6 +23,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private Scene lastScene;
     private RoomsManager roomsManager;
     private Door door;
+    private bool spawningEnabled = true;
 
     public string GetRoomsManagerId()
     {
@@ -44,16 +45,34 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         return rootRotation;
     }
 
+    public bool IsSpawningEnabled()
+    {
+        return spawningEnabled;
+    }
+
+    public void SetSpawningEnabled(bool enabled)
+    {
+        spawningEnabled = enabled;
+    }
+
     public void OnReceived(EBEvent e)
     {
         switch (e.type)
         {
             case EBEventType.RoomSpawningTrigger:
                 RoomSpawningTriggerEvent rstee = (e as RoomSpawningTriggerEvent);
-                if (rstee.roomsManagerId.Equals(roomsManagerId) && (rstee.roomEntryId == id) && (rstee.action == TriggerAction.Enter))
+                if (rstee.roomsManagerId.Equals(roomsManagerId) && (rstee.action == TriggerAction.Enter))
                 {
-                    Scene room = roomsManager.GetRandomRoom();
-                    AttachRoom(room);
+                    if ((rstee.roomEntryId == id) && spawningEnabled)
+                    {
+                        Scene room = roomsManager.GetRandomRoom();
+                        AttachRoom(room);
+                    }
+
+                    if (rstee.roomEntryId != id)
+                    {
+                        SetSpawningEnabled(true);
+                    }
                 }
                 break;
 

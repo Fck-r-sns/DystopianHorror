@@ -4,44 +4,18 @@ using UnityEngine;
 
 using EventBus;
 
-public class HallMovingTrigger : MonoBehaviour, IEventSubscriber
+public class HallMovingTrigger : MonoBehaviour
 {
 
-    [SerializeField]
-    private string roomsManagerId = "default";
-
-    private Collider collider;
-    private RoomsManager roomsManager;
-    private int address = AddressProvider.GetFreeAddress();
-
-    public void OnReceived(EBEvent e)
-    {
-        if (e.type == EBEventType.RoomSpawningTrigger)
-        {
-            collider.enabled = true; // reset trigger
-        }
-    }
+    private RoomTranslator roomTranslator;
 
     private void Start()
     {
-        collider = GetComponent<Collider>();
-        roomsManager = RoomsManager.GetManager(roomsManagerId);
-        Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
+        roomTranslator = transform.parent.GetComponent<RoomTranslator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        collider.enabled = false;
-        RoomEntry door = roomsManager.GetRandomRoomEntry();
-        GameObject root = roomsManager.GetRoot(gameObject.scene);
-        Vector3 oldPosition = root.transform.position;
-        Vector3 oldRotation = root.transform.eulerAngles;
-        door.AttachRoom(gameObject.scene);
-        Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
-            oldPosition,
-            oldRotation,
-            door.GetRootOffset(),
-            door.GetRootRotation()
-            ));
+        roomTranslator.OnTranslationTriggerEnter();
     }
 }
