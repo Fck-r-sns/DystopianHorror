@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CameraVisibilityChecker))]
 public class MonsterBehaviour : MonoBehaviour
 {
 
@@ -16,6 +17,7 @@ public class MonsterBehaviour : MonoBehaviour
     private enum State
     {
         Patrol,
+        Chase,
         Attack
     }
 
@@ -29,7 +31,10 @@ public class MonsterBehaviour : MonoBehaviour
     private float patrolSpeed = 5;
 
     [SerializeField]
-    private float attackSpeed = 7;
+    private float chaseSpeed = 7;
+
+    [SerializeField]
+    private float attackSpeed = 10;
 
     [SerializeField]
     private LayerMask layerMask = -1;
@@ -37,6 +42,7 @@ public class MonsterBehaviour : MonoBehaviour
     private static float WAYPOINT_PASS_DISTANCE = 1.0f;
 
     private NavMeshAgent navMeshAgent;
+    private CameraVisibilityChecker visibilityChecker;
     private Direction direction = Direction.Forward;
     private State state = State.Patrol;
     private Transform currentTarget;
@@ -46,6 +52,7 @@ public class MonsterBehaviour : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        visibilityChecker = GetComponent<CameraVisibilityChecker>();
     }
 
     // Update is called once per frame
@@ -55,15 +62,21 @@ public class MonsterBehaviour : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && (hit.transform == mainTarget))
         {
-            Attack();
-            state = State.Attack;
-            navMeshAgent.speed = attackSpeed;
+            if (visibilityChecker.isVisible())
+            {
+                Attack();
+                state = State.Attack;
+            }
+            else
+            {
+                Chase();
+                state = State.Chase;
+            }
         }
         else
         {
             Patrol();
             state = State.Patrol;
-            navMeshAgent.speed = patrolSpeed;
         }
     }
 
@@ -72,6 +85,15 @@ public class MonsterBehaviour : MonoBehaviour
         currentTarget = mainTarget;
         currentWaypointIndex = -1;
         navMeshAgent.SetDestination(currentTarget.position);
+        navMeshAgent.speed = attackSpeed;
+    }
+
+    private void Chase()
+    {
+        currentTarget = mainTarget;
+        currentWaypointIndex = -1;
+        navMeshAgent.SetDestination(currentTarget.position);
+        navMeshAgent.speed = chaseSpeed;
     }
 
     private void Patrol()
@@ -86,13 +108,14 @@ public class MonsterBehaviour : MonoBehaviour
             dst = Vector3.Distance(v1, v2);
         }
 
-        if ((currentTarget == null) || (state == State.Attack) || (dst < WAYPOINT_PASS_DISTANCE))
+        if ((currentTarget == null) || (state != State.Patrol) || (dst < WAYPOINT_PASS_DISTANCE))
         {
             currentWaypointIndex = GetNextWaypoint();
             currentTarget = waypoints[currentWaypointIndex];
         }
 
         navMeshAgent.SetDestination(currentTarget.position);
+        navMeshAgent.speed = patrolSpeed;
     }
 
     private int GetNextWaypoint()
