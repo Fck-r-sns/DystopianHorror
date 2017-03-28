@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class NavMeshMovement : MonoBehaviour
+public class MonsterBehaviour : MonoBehaviour
 {
 
     private enum Direction
@@ -53,7 +53,7 @@ public class NavMeshMovement : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, mainTarget.position - transform.position);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && hit.transform.gameObject.tag.Equals("Player"))
+        if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && (hit.transform == mainTarget))
         {
             Attack();
             state = State.Attack;
