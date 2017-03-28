@@ -67,6 +67,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                     {
                         Scene room = roomsManager.GetRandomRoom();
                         AttachRoom(room);
+                        SetSpawningEnabled(false);
                     }
 
                     if (rstee.roomEntryId != id)
