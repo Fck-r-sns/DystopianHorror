@@ -30,6 +30,9 @@ public class MonsterBehaviour : MonoBehaviour
     private Transform mainTarget;
 
     [SerializeField]
+    private bool ignoreTarget = false;
+
+    [SerializeField]
     private float patrolSpeed = 5;
 
     [SerializeField]
@@ -64,7 +67,7 @@ public class MonsterBehaviour : MonoBehaviour
         Ray ray = new Ray(transform.position, mainTarget.position - transform.position);
         RaycastHit hit;
         bool newSightState = Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && (hit.transform == mainTarget);
-        if (newSightState)
+        if (!ignoreTarget && newSightState)
         {
             if (visibilityChecker.isVisible())
             {
