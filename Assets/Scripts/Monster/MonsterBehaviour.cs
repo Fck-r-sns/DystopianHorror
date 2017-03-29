@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+using EventBus;
+
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(CameraVisibilityChecker))]
 public class MonsterBehaviour : MonoBehaviour
@@ -47,6 +49,7 @@ public class MonsterBehaviour : MonoBehaviour
     private State state = State.Patrol;
     private Transform currentTarget;
     private int currentWaypointIndex = -1;
+    private bool inPlainSight = false;
 
     // Use this for initialization
     void Start()
@@ -60,7 +63,8 @@ public class MonsterBehaviour : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, mainTarget.position - transform.position);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && (hit.transform == mainTarget))
+        bool newSightState = Physics.Raycast(ray, out hit, float.MaxValue, layerMask) && (hit.transform == mainTarget);
+        if (newSightState)
         {
             if (visibilityChecker.isVisible())
             {
@@ -77,6 +81,11 @@ public class MonsterBehaviour : MonoBehaviour
         {
             Patrol();
             state = State.Patrol;
+        }
+        if (inPlainSight != newSightState)
+        {
+            inPlainSight = newSightState;
+            Dispatcher.SendEvent(new EBEvent() { type = inPlainSight ? EBEventType.MonsterInPlainSight : EBEventType.MonsterOutOfPlainSight });
         }
     }
 

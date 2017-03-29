@@ -12,7 +12,11 @@ namespace EventBus
         NewWaypointCreated,
         RoomSpawningTrigger,
         HallMovingTriggerEntered,
-        DoorClosingTrigger
+        DoorClosingTrigger,
+        MonsterInFrustum,
+        MonsterOutOfFrustum,
+        MonsterInPlainSight,
+        MonsterOutOfPlainSight
     }
 
     public enum TriggerAction

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using EventBus;
+
 public class CameraVisibilityChecker : MonoBehaviour {
 
     [SerializeField]
@@ -22,7 +24,12 @@ public class CameraVisibilityChecker : MonoBehaviour {
     }
 
     private void Update () {
-        visible = CheckVisibility();
+        bool newState = CheckVisibility();
+        if (visible != newState)
+        {
+            visible = newState;
+            Dispatcher.SendEvent(new EBEvent() { type = visible ? EBEventType.MonsterInFrustum : EBEventType.MonsterOutOfFrustum });
+        }
 	}
 
     private bool CheckVisibility()
