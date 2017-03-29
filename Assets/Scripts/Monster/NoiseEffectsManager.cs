@@ -12,6 +12,36 @@ using System;
 public class NoiseEffectsManager : MonoBehaviour, IEventSubscriber
 {
 
+    [SerializeField]
+    private Transform monster;
+
+    [SerializeField]
+    private bool enableShift = true;
+
+    [SerializeField]
+    private AnimationCurve shiftIntensityToDistance = new AnimationCurve(new Keyframe(70.0f, 0.25f), new Keyframe(0.0f, 1.0f));
+
+    [SerializeField]
+    private float shiftMaxIntensity = 0.1f;
+
+    [SerializeField]
+    private bool enableNoise = true;
+
+    [SerializeField]
+    private AnimationCurve noiseIntensityToDistance = new AnimationCurve(new Keyframe(70.0f, 0.25f), new Keyframe(0.0f, 1.0f));
+
+    [SerializeField]
+    private float noiseMaxIntensity = 0.1f;
+
+    [SerializeField]
+    private bool enableSpectrumOffset = true;
+
+    [SerializeField]
+    private AnimationCurve spectrumOffsetIntensityToDistance = new AnimationCurve(new Keyframe(70.0f, 0.25f), new Keyframe(0.0f, 1.0f));
+
+    [SerializeField]
+    private float spectrumOffsetMaxIntensity = 0.1f;
+
     private VideoGlitchShift shift;
     private VideoGlitchNoiseDigital noise;
     private VideoGlitchSpectrumOffset spectrumOffset;
@@ -45,12 +75,13 @@ public class NoiseEffectsManager : MonoBehaviour, IEventSubscriber
         }
     }
 
-    // Use this for initialization
     void Start()
     {
         shift = GetComponent<VideoGlitchShift>();
         noise = GetComponent<VideoGlitchNoiseDigital>();
         spectrumOffset = GetComponent<VideoGlitchSpectrumOffset>();
+
+        UpdateEffects();
 
         Dispatcher.Subscribe(EBEventType.MonsterInFrustum, address, gameObject);
         Dispatcher.Subscribe(EBEventType.MonsterOutOfFrustum, address, gameObject);
@@ -66,17 +97,19 @@ public class NoiseEffectsManager : MonoBehaviour, IEventSubscriber
         Dispatcher.Unsubscribe(EBEventType.MonsterOutOfPlainSight, address);
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        float dst = Mathf.Abs(transform.position.x - monster.position.x) + Mathf.Abs(transform.position.z - monster.position.z); // manhattan distance
+        shift.amplitude = shiftIntensityToDistance.Evaluate(dst) * shiftMaxIntensity;
+        noise.threshold = noiseIntensityToDistance.Evaluate(dst) * noiseMaxIntensity;
+        spectrumOffset.strength = spectrumOffsetIntensityToDistance.Evaluate(dst) * spectrumOffsetMaxIntensity;
     }
 
     private void UpdateEffects()
     {
-        shift.enabled = monsterInFrustum;
-        noise.enabled = monsterInPlainSight;
-        spectrumOffset.enabled = monsterInFrustum && monsterInPlainSight;
+        shift.enabled = enableShift && monsterInFrustum;
+        noise.enabled = enableNoise && monsterInPlainSight;
+        spectrumOffset.enabled = enableSpectrumOffset && monsterInFrustum && monsterInPlainSight;
     }
 
 }
