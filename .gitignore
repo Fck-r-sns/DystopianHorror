@@ -33,3 +33,6 @@ Thumbs.db
 # paid assets
 Assets/TirGames/*
 Assets/VideoGlitches/*
+
+# sounds and music
+Assets/Audio/*
