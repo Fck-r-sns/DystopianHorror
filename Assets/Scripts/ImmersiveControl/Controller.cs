@@ -21,6 +21,8 @@ namespace Immersive
         [SerializeField]
         private bool debug = false;
 
+        private const float RAY_ORIGIN_SHIFT = 0.3f; // fix for raycasting with origin inside collider
+
         private Camera camera;
         private Controllable currentControllable;
         private bool objectAcquired = false;
@@ -38,8 +40,9 @@ namespace Immersive
             if (!objectAcquired)
             {
                 Ray ray = camera.ScreenPointToRay(new Vector3(camera.pixelWidth / 2.0f, camera.pixelHeight / 2.0f, 0));
+                ray.origin -= ray.direction.normalized * RAY_ORIGIN_SHIFT;
                 RaycastHit hit;
-                if (Physics.SphereCast(ray, hoverRadius, out hit, interactionDistance, layerMask))
+                if (Physics.SphereCast(ray, hoverRadius, out hit, interactionDistance + RAY_ORIGIN_SHIFT, layerMask))
                 {
                     if (debug)
                     {
