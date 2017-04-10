@@ -11,11 +11,17 @@ public class Door : MonoBehaviour {
     }
 
     [SerializeField]
+    private bool locked = false;
+
+    [SerializeField]
     private float minAngle = 0;
+
     [SerializeField]    
     private float maxAngle = 90;
+
     [SerializeField]
     private float initialAngle = 0;
+
     [SerializeField]
     private float rotationSpeed = 10;
 
@@ -41,6 +47,10 @@ public class Door : MonoBehaviour {
 
     public void open()
     {
+        if (locked)
+        {
+            return;
+        }
         if (lastCoroutine != null)
         {
             StopCoroutine(lastCoroutine);
