@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour
+{
 
     public enum Direction
     {
@@ -14,10 +15,10 @@ public class Door : MonoBehaviour {
     private bool locked = false;
 
     [SerializeField]
-    private float minAngle = 0;
+    private float closeAngle = 0;
 
-    [SerializeField]    
-    private float maxAngle = 90;
+    [SerializeField]
+    private float openAngle = 90;
 
     [SerializeField]
     private float initialAngle = 0;
@@ -25,6 +26,9 @@ public class Door : MonoBehaviour {
     [SerializeField]
     private float rotationSpeed = 10;
 
+    private float minAngle;
+    private float maxAngle;
+    private float openDirection;
     private float zeroShift;
     private float angle;
     private Coroutine lastCoroutine = null;
@@ -55,12 +59,12 @@ public class Door : MonoBehaviour {
         {
             StopCoroutine(lastCoroutine);
         }
-        lastCoroutine = StartCoroutine(animateRotation(maxAngle + zeroShift, 1.0f));
+        lastCoroutine = StartCoroutine(animateRotation(openAngle + zeroShift, openDirection));
     }
 
     public void setOpened()
     {
-        setAngle(maxAngle);
+        setAngle(openAngle);
     }
 
     public void close()
@@ -69,19 +73,19 @@ public class Door : MonoBehaviour {
         {
             StopCoroutine(lastCoroutine);
         }
-        lastCoroutine = StartCoroutine(animateRotation(minAngle + zeroShift, -1.0f));
+        lastCoroutine = StartCoroutine(animateRotation(closeAngle + zeroShift, -openDirection));
     }
 
     public void setClosed()
     {
-        setAngle(minAngle);
+        setAngle(closeAngle);
     }
 
     public void toggle()
     {
-        float median = (maxAngle + minAngle) / 2.0f;
+        float median = (openAngle + closeAngle) / 2.0f;
         float a = getAngle();
-        if (a < median)
+        if (a * openDirection < median * openDirection)
         {
             open();
         }
@@ -93,8 +97,11 @@ public class Door : MonoBehaviour {
 
     void Start()
     {
-        initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
         zeroShift = transform.eulerAngles.y;
+        minAngle = Mathf.Min(closeAngle, openAngle);
+        maxAngle = Mathf.Max(closeAngle, openAngle);
+        openDirection = Mathf.Sign(openAngle - closeAngle);
+        initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
         setAngle(initialAngle);
     }
 
