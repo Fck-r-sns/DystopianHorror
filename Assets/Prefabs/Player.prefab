@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4002609151014450}
   - component: {fileID: 143507423784675414}
-  - component: {fileID: 114294086790188464}
+  - component: {fileID: 114023129863629562}
   - component: {fileID: 54459326856573054}
   - component: {fileID: 82033088693135138}
   - component: {fileID: 114731648956556618}
@@ -61,14 +61,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565652022338276}
-  m_LocalRotation: {x: -0, y: -0.7056145, z: -0, w: 0.708596}
-  m_LocalPosition: {x: 13, y: 1.18, z: -13}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -6.484, y: 0.968, z: 6.103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4244226199101694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -89.758, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4244226199101694
 Transform:
   m_ObjectHideFlags: 1
@@ -149,7 +149,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.638
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -218,29 +218,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114124154025900106
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1645880556462104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89654dcf6db746d2a57aeaaa14f5e83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settings:
-    intensity: 0.5
-    radius: 3
-    sampleCount: 3
-    sampleCountValue: 24
-    downsampling: 0
-    ambientOnly: 0
-    occlusionSource: 0
-    debug: 0
-  _aoShader: {fileID: 4800000, guid: 65e203e5acda447acbf9dc1ef78c4a39, type: 3}
-  _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114294086790188464
+--- !u!114 &114023129863629562
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -248,15 +226,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1565652022338276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a83d2346fa291a409ebc6cca7730321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsWalking: 0
-  m_WalkSpeed: 3
+  m_WalkSpeed: 2
   m_RunSpeed: 5
   m_RunstepLenghten: 0.7
-  m_CanJump: 0
-  m_JumpSpeed: 10
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
@@ -268,31 +244,6 @@ MonoBehaviour:
     smooth: 0
     smoothTime: 5
     lockCursor: 1
-  m_UseFovKick: 0
-  m_FovKick:
-    Camera: {fileID: 0}
-    originalFov: 0
-    FOVIncrease: 3
-    TimeToIncrease: 1
-    TimeToDecrease: 1
-    IncreaseCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 2
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-      - serializedVersion: 2
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
   m_UseHeadBob: 1
   m_HeadBob:
     HorizontalBobRange: 0.1
@@ -334,15 +285,69 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     VerticaltoHorizontalRatio: 2
-  m_JumpBob:
-    BobDuration: 0.2
-    BobAmount: 0.1
-  m_StepInterval: 4
-  m_FootstepSounds:
-  - {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
-  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
-  m_JumpSound: {fileID: 0}
-  m_LandSound: {fileID: 0}
+  m_StepInterval: 3
+  m_FootstepWalkSounds:
+  - {fileID: 8300000, guid: 10d3cde3443ee5e4c8df9b76fc216e2c, type: 3}
+  - {fileID: 8300000, guid: a03a1cccea2e1764c97f0ee513ec7299, type: 3}
+  - {fileID: 8300000, guid: b4a0c418a7c49b64d8b98588ea8b8c07, type: 3}
+  - {fileID: 8300000, guid: f0247c8107e862649b5c2c45cc950117, type: 3}
+  - {fileID: 8300000, guid: cee0716b2b435784b96e14066e4f4667, type: 3}
+  - {fileID: 8300000, guid: bd5d8edd1abe0064abc6d58e8f61f7c5, type: 3}
+  - {fileID: 8300000, guid: 980f21d3e6e86bc44888ffa85eca51a7, type: 3}
+  - {fileID: 8300000, guid: 94cc690e3f591bf4fa19a9a4c793f261, type: 3}
+  - {fileID: 8300000, guid: 6430e1facdd640f4cb9886410c635cc9, type: 3}
+  - {fileID: 8300000, guid: 8489ab0f1936edd4f957dfba330715ca, type: 3}
+  - {fileID: 8300000, guid: ff1fcf5403218e54f998fa204eb599bf, type: 3}
+  - {fileID: 8300000, guid: d1e3fd55b05075547bf0a0278cf1b6fd, type: 3}
+  - {fileID: 8300000, guid: 483100146f92ae747a383b55c6594ceb, type: 3}
+  - {fileID: 8300000, guid: d8a17078d60cdcf45bc26ab77151b417, type: 3}
+  - {fileID: 8300000, guid: 5363d13e37747a743bb55f8b1640538c, type: 3}
+  - {fileID: 8300000, guid: b3f6f4d1822e8ae40a0ffb5aa8dd3707, type: 3}
+  - {fileID: 8300000, guid: 3e3b6a42241d3274289ac3ae1c1252ba, type: 3}
+  - {fileID: 8300000, guid: bd3ba4cb93eaf6143bba6f4eece6a517, type: 3}
+  - {fileID: 8300000, guid: a84a2977affba6f42b59887459f82338, type: 3}
+  - {fileID: 8300000, guid: f0852c941c5f75e4b958992bb6a765d1, type: 3}
+  m_FootstepRunSounds:
+  - {fileID: 8300000, guid: 3da771cb5909fa44bb5ead0da1f10edc, type: 3}
+  - {fileID: 8300000, guid: c1b404421870ac94c9af423ab7ea46d5, type: 3}
+  - {fileID: 8300000, guid: 8b3302aeffef7444cae959d7866fa1e0, type: 3}
+  - {fileID: 8300000, guid: 690fea94ba8b1774882e2d71d5010813, type: 3}
+  - {fileID: 8300000, guid: 7a1c4eab6bcceb0409b2fe5cb9b84bb2, type: 3}
+  - {fileID: 8300000, guid: 45301fdb79a64734db634952e362a046, type: 3}
+  - {fileID: 8300000, guid: cf1eec4d76de44c4a84aafebd429b6c0, type: 3}
+  - {fileID: 8300000, guid: 265c01e857985f4418ab554b82579b55, type: 3}
+  - {fileID: 8300000, guid: e26812f010e72524fb05f2b38d436c91, type: 3}
+  - {fileID: 8300000, guid: 1dd6b4e1bf172ae409fc6433144d7d0b, type: 3}
+  - {fileID: 8300000, guid: 5c013445e8d85704e9e2c415aa6408a3, type: 3}
+  - {fileID: 8300000, guid: c87ae7dd06ae8234fa7cc6001e14acd3, type: 3}
+  - {fileID: 8300000, guid: 8d6f33c66ea78554fb9dec2e392f81a5, type: 3}
+  - {fileID: 8300000, guid: 896405082f612174dbcc3cf3cca8f8e1, type: 3}
+  - {fileID: 8300000, guid: e051812df3563c3408c6196b0a41ad43, type: 3}
+  - {fileID: 8300000, guid: b1126ae9d56c785458d34dae6d6f3591, type: 3}
+  - {fileID: 8300000, guid: 60edbeb62c8c6334eb766e2dda1a12bd, type: 3}
+  - {fileID: 8300000, guid: 3861dce2c8e5975458ed147cc452e262, type: 3}
+--- !u!114 &114124154025900106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645880556462104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e89654dcf6db746d2a57aeaaa14f5e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+    intensity: 0.5
+    radius: 3
+    sampleCount: 3
+    sampleCountValue: 24
+    downsampling: 0
+    ambientOnly: 0
+    occlusionSource: 0
+    debug: 0
+  _aoShader: {fileID: 4800000, guid: 65e203e5acda447acbf9dc1ef78c4a39, type: 3}
+  _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114362770509119550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,7 +373,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645880556462104}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dad4a985d26b8741a059d2e35014e87, type: 3}
   m_Name: 
