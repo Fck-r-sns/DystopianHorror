@@ -24,10 +24,23 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     private float crossFadeRate = 1.5f;
 
     [SerializeField]
-    private AudioClip backgroundMusic1;
+    private AudioClip prologueMusic;
 
     [SerializeField]
-    private AudioClip backgroundMusic2;
+    private AudioClip coreLowMadnessMusic;
+
+    [SerializeField]
+    private AudioClip coreMediumMadnessMusic;
+
+    [SerializeField]
+    private AudioClip coreHighMadnessMusic;
+
+    [SerializeField]
+    private AudioClip badEpilogueMusic;
+
+    [SerializeField]
+    private AudioClip goodEpilogueMusic;
+
 
     private AudioSource[] sources = new AudioSource[2];
     private int address = AddressProvider.GetFreeAddress();
@@ -35,7 +48,7 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
 
     public void OnReceived(EBEvent e)
     {
-        changeAudio(backgroundMusic2);
+        
     }
 
     void Start () {
@@ -43,8 +56,7 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         source2.volume = maxVolume;
         sources[0] = source1;
         sources[1] = source2;
-        Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
-        changeAudio(backgroundMusic1);
+        changeAudio(prologueMusic);
     }
 	
 	void Update () {
