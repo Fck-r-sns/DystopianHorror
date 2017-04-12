@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Door : MonoBehaviour
 {
 
@@ -26,12 +27,22 @@ public class Door : MonoBehaviour
     [SerializeField]
     private float rotationSpeed = 10;
 
+    [SerializeField]
+    private AudioClip[] moveSounds;
+
+    [SerializeField]
+    private AudioClip[] closeSounds;
+
+    [SerializeField]
+    private AudioClip[] lockedSounds;
+
     private float minAngle;
     private float maxAngle;
     private float openDirection;
     private float zeroShift;
     private float angle;
     private Coroutine lastCoroutine = null;
+    private AudioSource audioSource;
 
     public void setAngle(float angle)
     {
@@ -53,10 +64,12 @@ public class Door : MonoBehaviour
     {
         if (locked)
         {
+            PlayLockedSound();
             return;
         }
         if (lastCoroutine != null)
         {
+            StopSound();
             StopCoroutine(lastCoroutine);
         }
         lastCoroutine = StartCoroutine(animateRotation(openAngle + zeroShift, openDirection));
@@ -71,6 +84,7 @@ public class Door : MonoBehaviour
     {
         if (lastCoroutine != null)
         {
+            StopSound();
             StopCoroutine(lastCoroutine);
         }
         lastCoroutine = StartCoroutine(animateRotation(closeAngle + zeroShift, -openDirection));
@@ -103,6 +117,7 @@ public class Door : MonoBehaviour
         openDirection = Mathf.Sign(openAngle - closeAngle);
         initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
         setAngle(initialAngle);
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void applyAngle(float angle)
@@ -114,10 +129,46 @@ public class Door : MonoBehaviour
 
     private IEnumerator animateRotation(float targetAngle, float directionMultiplier)
     {
+        PlayMoveSound();
         while (angle * directionMultiplier < targetAngle * directionMultiplier)
         {
             addAngle(Time.deltaTime * rotationSpeed * directionMultiplier);
             yield return null;
         }
+        if (getAngle() == closeAngle)
+        {
+            PlayCloseSound();
+        }
+    }
+
+    private void PlayRandomSound(AudioClip[] soundsCollection)
+    {
+        if (soundsCollection.Length == 0)
+        {
+            return;
+        }
+        int n = Random.Range(0, soundsCollection.Length);
+        audioSource.clip = soundsCollection[n];
+        audioSource.PlayOneShot(audioSource.clip);
+    }
+
+    private void PlayMoveSound()
+    {
+        PlayRandomSound(moveSounds);
+    }
+
+    private void PlayCloseSound()
+    {
+        PlayRandomSound(closeSounds);
+    }
+
+    private void PlayLockedSound()
+    {
+        PlayRandomSound(lockedSounds);
+    }
+
+    private void StopSound()
+    {
+        audioSource.Stop();
     }
 }
