@@ -246,7 +246,7 @@ MonoBehaviour:
     lockCursor: 1
   m_UseHeadBob: 1
   m_HeadBob:
-    HorizontalBobRange: 0.1
+    HorizontalBobRange: 0.07
     VerticalBobRange: 0.03
     Bobcurve:
       serializedVersion: 2
@@ -284,7 +284,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    VerticaltoHorizontalRatio: 1
+    VerticaltoHorizontalRatio: 0.5
   m_StepInterval: 3
   m_FootstepWalkSounds:
   - {fileID: 8300000, guid: 10d3cde3443ee5e4c8df9b76fc216e2c, type: 3}
