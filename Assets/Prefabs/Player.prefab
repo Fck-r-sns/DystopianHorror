@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsWalking: 0
   m_WalkSpeed: 2
-  m_RunSpeed: 5
+  m_RunSpeed: 4
   m_RunstepLenghten: 0.7
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
@@ -284,7 +284,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    VerticaltoHorizontalRatio: 2
+    VerticaltoHorizontalRatio: 1
   m_StepInterval: 3
   m_FootstepWalkSounds:
   - {fileID: 8300000, guid: 10d3cde3443ee5e4c8df9b76fc216e2c, type: 3}
