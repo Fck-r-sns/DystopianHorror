@@ -19,6 +19,9 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private Vector3 rootRotation;
 
+    [SerializeField]
+    private Predicate predicate;
+
     private int address = AddressProvider.GetFreeAddress();
     private Scene lastScene;
     private RoomsManager roomsManager;
@@ -53,6 +56,15 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     public void SetSpawningEnabled(bool enabled)
     {
         spawningEnabled = enabled;
+    }
+
+    public bool CheckPredicate(WorldState world)
+    {
+        if (predicate == null)
+        {
+            return false;
+        }
+        return predicate.Check(world);
     }
 
     public void OnReceived(EBEvent e)
