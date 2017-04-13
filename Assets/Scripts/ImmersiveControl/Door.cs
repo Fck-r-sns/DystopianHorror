@@ -62,6 +62,10 @@ public class Door : MonoBehaviour
 
     public void open()
     {
+        if (getAngle() == openAngle)
+        {
+            return;
+        }
         if (locked)
         {
             PlayLockedSound();
@@ -82,6 +86,10 @@ public class Door : MonoBehaviour
 
     public void close()
     {
+        if (getAngle() == closeAngle)
+        {
+            return;
+        }
         if (lastCoroutine != null)
         {
             StopSound();
