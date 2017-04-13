@@ -81,6 +81,8 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                         RoomScene room = roomsManager.GetRandomRoomScene();
                         AttachRoom(room);
                         SetSpawningEnabled(false);
+
+                        room.ClearCollectibles();
                         Transform itemPlace = room.GetCollectiblePlaceholder();
                         if (itemPlace != null)
                         {
@@ -90,6 +92,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                                 item.transform.parent = itemPlace;
                                 item.transform.position = itemPlace.position;
                                 item.transform.rotation = itemPlace.rotation;
+                                item.SetActive(true);
                             }
                         }
                     }

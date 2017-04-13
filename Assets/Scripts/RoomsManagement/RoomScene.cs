@@ -35,6 +35,18 @@ public class RoomScene : MonoBehaviour
         return sceneName;
     }
 
+    public void ClearCollectibles()
+    {
+        foreach (Transform placeholder in collectiblePlaceholders)
+        {
+            foreach (Transform child in placeholder)
+            {
+                child.parent = null;
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
     public Transform GetCollectiblePlaceholder()
     {
         if (collectibleFound || (collectiblePlaceholders.Length == 0))
