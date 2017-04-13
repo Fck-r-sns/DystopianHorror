@@ -14,6 +14,8 @@ public class ItemsManager : MonoBehaviour
     private WorldState worldState;
 
     private static ItemsManager instance;
+    private GameObject keys;
+    private GameObject[] booksPool;
 
     public static ItemsManager GetInstance()
     {
@@ -25,17 +27,27 @@ public class ItemsManager : MonoBehaviour
         float chance = GetBookChance() * 100;
         if (Random.Range(0, 99) < chance)
         {
-            int index = Random.Range(0, bookPrefabs.Length);
-            return Instantiate(bookPrefabs[index]);
+            int index = Random.Range(0, booksPool.Length);
+            return booksPool[index];
         }
         return null;
     }
 
     void Awake () {
         instance = this;
+
+        keys = Instantiate(keyPrefab);
+        keys.SetActive(false);
+
+        booksPool = new GameObject[bookPrefabs.Length];
+        for (int i = 0; i < bookPrefabs.Length; ++i)
+        {
+            GameObject book = Instantiate(bookPrefabs[i]);
+            book.SetActive(false);
+            booksPool[i] = book;
+        }
 	}
     
-
     private float GetBookChance()
     {
         //return (100 * WorldState.BOOK_SPAWN_INITIAL_CHANCE - worldState.collectiblesFound) 
