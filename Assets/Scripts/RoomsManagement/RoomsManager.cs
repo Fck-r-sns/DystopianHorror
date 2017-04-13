@@ -10,6 +10,9 @@ public class RoomsManager : MonoBehaviour
     private string id;
 
     [SerializeField]
+    private WorldState worldState;
+
+    [SerializeField]
     private string[] roomNames;
 
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
@@ -38,14 +41,30 @@ public class RoomsManager : MonoBehaviour
 
     public RoomEntry GetRandomRoomEntry()
     {
-        int index = Random.Range(0, roomEntries.Count);
-        return roomEntries[index];
+        List<RoomEntry> filtered = new List<RoomEntry>(roomEntries.Count);
+        foreach (RoomEntry re in roomEntries)
+        {
+            if (re.CheckPredicate(worldState))
+            {
+                filtered.Add(re);
+            }
+        }
+        int index = Random.Range(0, filtered.Count);
+        return filtered[index];
     }
 
     public RoomScene GetRandomRoomScene()
     {
-        int index = Random.Range(0, roomScenes.Count);
-        return roomScenes[index];
+        List<RoomScene> filtered = new List<RoomScene>(roomScenes.Count);
+        foreach (RoomScene rs in roomScenes)
+        {
+            if (rs.CheckPredicate(worldState))
+            {
+                filtered.Add(rs);
+            }
+        }
+        int index = Random.Range(0, filtered.Count);
+        return filtered[index];
     }
 
     private IEnumerator WaitForLoadingAndInitScene(string sceneName)
