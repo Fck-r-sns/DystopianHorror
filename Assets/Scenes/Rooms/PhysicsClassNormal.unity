@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsManagerId: School
+  roomScene: {fileID: 1681505985}
 --- !u!1001 &565281402
 Prefab:
   m_ObjectHideFlags: 0
@@ -3527,6 +3528,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1681505984}
+  - component: {fileID: 1681505985}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -3551,6 +3553,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1681505985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681505983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaf317193a744e40a9441314fe10dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: PhysicsClassNormal
+  predicate: {fileID: 0}
 --- !u!1001 &1707035662
 Prefab:
   m_ObjectHideFlags: 0

@@ -10,10 +10,11 @@ public class RoomsManager : MonoBehaviour
     private string id;
 
     [SerializeField]
-    private string[] rooms;
+    private string[] roomNames;
 
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
-    private Dictionary<int, RoomEntry> doors = new Dictionary<int, RoomEntry>();
+    private List<RoomEntry> roomEntries = new List<RoomEntry>();
+    private List<RoomScene> roomScenes = new List<RoomScene>();
 
     public static RoomsManager GetManager(string sceneName)
     {
@@ -23,55 +24,41 @@ public class RoomsManager : MonoBehaviour
     void Awake()
     {
         managers.Add(id, this);
-        foreach(string room in rooms) 
+        foreach(string room in roomNames) 
         {
             SceneManager.LoadSceneAsync(room, LoadSceneMode.Additive);
-            StartCoroutine(WaitForLoadingAndDisableScene(room));
+            StartCoroutine(WaitForLoadingAndInitScene(room));
         }
     }
 
-    public void RegisterDoor(int id, RoomEntry door)
+    public void RegisterRoomEntry(RoomEntry door)
     {
-        doors.Add(id, door);
+        roomEntries.Add(door);
     }
 
     public RoomEntry GetRandomRoomEntry()
     {
-        int index = Random.Range(0, doors.Count);
-        foreach (var door in doors.Values)
-        {
-            if (index == 0)
-            {
-                return door;
-            }
-            --index;
-        }
-        return null;
+        int index = Random.Range(0, roomEntries.Count);
+        return roomEntries[index];
     }
 
-    public Scene GetRandomRoom()
+    public RoomScene GetRandomRoomScene()
     {
-        int index = Random.Range(0, rooms.Length);
-        string sceneName = rooms[index];
-        return SceneManager.GetSceneByName(sceneName);
+        int index = Random.Range(0, roomScenes.Count);
+        return roomScenes[index];
     }
 
-    public GameObject GetRoot(Scene scene)
+    public void EnableRoom(RoomScene scene)
     {
-        return scene.GetRootGameObjects()[0];
+        scene.SetEnabled(true);
     }
 
-    public void EnableRoom(Scene scene)
+    public void DisableRoom(RoomScene scene)
     {
-        GetRoot(scene).SetActive(true);
+        scene.SetEnabled(false);
     }
 
-    public void DisableRoom(Scene scene)
-    {
-        GetRoot(scene).SetActive(false);
-    }
-
-    private IEnumerator WaitForLoadingAndDisableScene(string sceneName)
+    private IEnumerator WaitForLoadingAndInitScene(string sceneName)
     {
         Scene scene = SceneManager.GetSceneByName(sceneName);
         if (!scene.IsValid())
@@ -80,7 +67,10 @@ public class RoomsManager : MonoBehaviour
         }
         yield return new WaitUntil(() => scene.isLoaded);
         GameObject root = scene.GetRootGameObjects()[0];
-        root.SetActive(false);
+        RoomScene roomScene = root.GetComponent<RoomScene>();
+        DisableRoom(roomScene);
+        roomScene.SetScene(scene);
+        roomScenes.Add(roomScene);
     }
 
 }

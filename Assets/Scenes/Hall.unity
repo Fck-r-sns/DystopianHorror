@@ -2195,9 +2195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: School
-  rooms:
-  - PhysicsClassNormal
+  roomNames:
   - ChemistryRoomNormal
+  - PhysicsClassNormal
   - NormalClass1
   - StrangeRoom1
   - StrangeRoom2
@@ -2784,8 +2784,12 @@ MonoBehaviour:
   source2: {fileID: 1020227326}
   maxVolume: 0.245
   crossFadeRate: 0.6
-  backgroundMusic1: {fileID: 8300000, guid: 460532d42aac0af4d84d991120578a44, type: 3}
-  backgroundMusic2: {fileID: 8300000, guid: e756831ee13a951408c633fa71e80560, type: 3}
+  prologueMusic: {fileID: 0}
+  coreLowMadnessMusic: {fileID: 0}
+  coreMediumMadnessMusic: {fileID: 0}
+  coreHighMadnessMusic: {fileID: 0}
+  badEpilogueMusic: {fileID: 0}
+  goodEpilogueMusic: {fileID: 0}
 --- !u!82 &1020227326
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4181,7 +4185,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1762007783810258, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}

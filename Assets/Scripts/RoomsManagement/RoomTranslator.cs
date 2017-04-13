@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 using EventBus;
-using System;
 
 public class RoomTranslator : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]
     private string roomsManagerId = "default";
+
+    [SerializeField]
+    private RoomScene roomScene;
 
     private RoomsManager roomsManager;
     private int address = AddressProvider.GetFreeAddress();
@@ -47,10 +47,10 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
     {
         RoomEntry door = roomsManager.GetRandomRoomEntry();
         door.SetSpawningEnabled(false);
-        GameObject root = roomsManager.GetRoot(gameObject.scene);
+        GameObject root = roomScene.GetRoot();
         Vector3 oldPosition = root.transform.position;
         Vector3 oldRotation = root.transform.eulerAngles;
-        door.AttachRoom(gameObject.scene);
+        door.AttachRoom(roomScene);
         Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
             oldPosition,
             oldRotation,

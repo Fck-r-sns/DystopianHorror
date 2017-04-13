@@ -23,7 +23,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private Predicate predicate;
 
     private int address = AddressProvider.GetFreeAddress();
-    private Scene lastScene;
+    private RoomScene lastScene;
     private RoomsManager roomsManager;
     private Door door;
     private bool spawningEnabled = true;
@@ -77,7 +77,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                 {
                     if ((rstee.roomEntryId == id) && spawningEnabled)
                     {
-                        Scene room = roomsManager.GetRandomRoom();
+                        RoomScene room = roomsManager.GetRandomRoomScene();
                         AttachRoom(room);
                         SetSpawningEnabled(false);
                     }
@@ -106,7 +106,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     void Start()
     {
         roomsManager = RoomsManager.GetManager(roomsManagerId);
-        roomsManager.RegisterDoor(id, this);
+        roomsManager.RegisterRoomEntry(this);
         door = GetComponentInChildren<Door>();
         Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
         Dispatcher.Subscribe(EBEventType.DoorClosingTrigger, address, gameObject);
@@ -122,13 +122,12 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     public void CloseDoor()
     {
-        //door.setClosed();
         door.close();
     }
 
-    public void AttachRoom(Scene scene)
+    public void AttachRoom(RoomScene scene)
     {
-        if (lastScene.IsValid())
+        if (lastScene != null && lastScene.IsValid())
         {
             if (lastScene.name.Equals(scene.name))
             {
@@ -144,12 +143,12 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         lastScene = scene;
     }
 
-    private void MoveScene(Scene scene)
+    private void MoveScene(RoomScene scene)
     {
-        GameObject root = roomsManager.GetRoot(scene);
+        GameObject root = scene.GetRoot();
         root.transform.position = rootOffset;
         root.transform.eulerAngles = rootRotation;
-        root.SetActive(true);
+        scene.SetEnabled(true);
     }
 
 }
