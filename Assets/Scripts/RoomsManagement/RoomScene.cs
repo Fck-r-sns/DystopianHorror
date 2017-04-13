@@ -37,6 +37,10 @@ public class RoomScene : MonoBehaviour
 
     public void ClearCollectibles()
     {
+        if (collectiblePlaceholders == null)
+        {
+            return;
+        }
         foreach (Transform placeholder in collectiblePlaceholders)
         {
             foreach (Transform child in placeholder)
@@ -49,7 +53,7 @@ public class RoomScene : MonoBehaviour
 
     public Transform GetCollectiblePlaceholder()
     {
-        if (collectibleFound || (collectiblePlaceholders.Length == 0))
+        if (collectibleFound || (collectiblePlaceholders == null) || (collectiblePlaceholders.Length == 0))
         {
             return null;
         }
