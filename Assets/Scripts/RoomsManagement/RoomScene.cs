@@ -10,7 +10,11 @@ public class RoomScene : MonoBehaviour
     [SerializeField]
     private Predicate predicate;
 
+    [SerializeField]
+    private Transform[] collectiblePlaceholders;
+
     private Scene scene;
+    private bool collectibleFound = false;
 
     public bool CheckPredicate(WorldState world)
     {
@@ -29,6 +33,16 @@ public class RoomScene : MonoBehaviour
     public string GetSceneName()
     {
         return sceneName;
+    }
+
+    public Transform GetCollectiblePlaceholder()
+    {
+        if (collectibleFound || (collectiblePlaceholders.Length == 0))
+        {
+            return null;
+        }
+        int index = Random.Range(0, collectiblePlaceholders.Length);
+        return collectiblePlaceholders[index];
     }
 
     public void SetScene(Scene scene)
