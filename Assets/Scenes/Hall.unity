@@ -2876,14 +2876,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source1: {fileID: 1020227324}
   source2: {fileID: 1020227326}
-  maxVolume: 0.245
+  maxVolume: 0.3
   crossFadeRate: 0.6
-  prologueMusic: {fileID: 0}
-  coreLowMadnessMusic: {fileID: 0}
-  coreMediumMadnessMusic: {fileID: 0}
-  coreHighMadnessMusic: {fileID: 0}
-  badEpilogueMusic: {fileID: 0}
-  goodEpilogueMusic: {fileID: 0}
+  prologueMusic: {fileID: 8300000, guid: e3053b33de0b8a54f8fa03cf90751794, type: 3}
+  coreLowMadnessMusic: {fileID: 8300000, guid: 7b33c8f2442ceac43b05939be6f49f19, type: 3}
+  coreMediumMadnessMusic: {fileID: 8300000, guid: 58218f0598b419d47a9c60fff814889b,
+    type: 3}
+  coreHighMadnessMusic: {fileID: 8300000, guid: e9b61bedf4f496143bf6566a9d1ef6c1,
+    type: 3}
+  badEpilogueMusic: {fileID: 8300000, guid: a42a77136a2629349a8a1da60834a2f4, type: 3}
+  goodEpilogueMusic: {fileID: 8300000, guid: b98116a33fc8b79409a69cd739a0fab0, type: 3}
 --- !u!82 &1020227326
 AudioSource:
   m_ObjectHideFlags: 0
