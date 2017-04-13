@@ -26,6 +26,11 @@ public class RoomScene : MonoBehaviour
         return gameObject;
     }
 
+    public string GetSceneName()
+    {
+        return sceneName;
+    }
+
     public void SetScene(Scene scene)
     {
         this.scene = scene;

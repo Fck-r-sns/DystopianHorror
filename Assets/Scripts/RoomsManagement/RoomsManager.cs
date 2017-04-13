@@ -48,16 +48,6 @@ public class RoomsManager : MonoBehaviour
         return roomScenes[index];
     }
 
-    public void EnableRoom(RoomScene scene)
-    {
-        scene.SetEnabled(true);
-    }
-
-    public void DisableRoom(RoomScene scene)
-    {
-        scene.SetEnabled(false);
-    }
-
     private IEnumerator WaitForLoadingAndInitScene(string sceneName)
     {
         Scene scene = SceneManager.GetSceneByName(sceneName);
@@ -68,7 +58,7 @@ public class RoomsManager : MonoBehaviour
         yield return new WaitUntil(() => scene.isLoaded);
         GameObject root = scene.GetRootGameObjects()[0];
         RoomScene roomScene = root.GetComponent<RoomScene>();
-        DisableRoom(roomScene);
+        roomScene.SetEnabled(false);
         roomScene.SetScene(scene);
         roomScenes.Add(roomScene);
     }

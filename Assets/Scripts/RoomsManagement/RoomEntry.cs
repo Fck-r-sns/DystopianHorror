@@ -62,7 +62,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     {
         if (predicate == null)
         {
-            return false;
+            return true;
         }
         return predicate.Check(world);
     }
@@ -129,14 +129,14 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     {
         if (lastScene != null && lastScene.IsValid())
         {
-            if (lastScene.name.Equals(scene.name))
+            if (lastScene.GetSceneName().Equals(scene.name))
             {
                 MoveScene(scene);
                 return;
             }
             else
             {
-                roomsManager.DisableRoom(lastScene);
+                lastScene.SetEnabled(false);
             }
         }
         MoveScene(scene);
