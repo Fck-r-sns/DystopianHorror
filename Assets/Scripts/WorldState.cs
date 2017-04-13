@@ -4,6 +4,10 @@ using EventBus;
 
 public class WorldState : MonoBehaviour, IEventSubscriber
 {
+
+    public const int MIN_MADNESS = 0;
+    public const int MAX_MADNESS = 100;
+    
     private int roomsVisited_ = 0;
     private int madness_ = 0;
     private int collectiblesFound_ = 0;
