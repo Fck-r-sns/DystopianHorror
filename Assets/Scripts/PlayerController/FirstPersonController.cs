@@ -55,6 +55,16 @@ public class FirstPersonController : MonoBehaviour
     private AudioSource m_AudioSource;
     private float m_StickToGroundForce = 10.0f;
 
+    public void SetMouseLookEnabled(bool enabled)
+    {
+        m_MouseLook.enableMouseLook = enabled;
+    }
+
+    public void SetHeadBobEnabled(bool enabled)
+    {
+        m_UseHeadBob = enabled;
+    }
+
     // Use this for initialization
     private void Start()
     {
@@ -97,8 +107,7 @@ public class FirstPersonController : MonoBehaviour
 
         m_MoveDir.x = desiredMove.x * speed;
         m_MoveDir.z = desiredMove.z * speed;
-
-
+        
         if (m_CharacterController.isGrounded)
         {
             m_MoveDir.y = -m_StickToGroundForce;

@@ -32,7 +32,6 @@ public class MouseLook
                 cameraTargetRot = ClampRotationAroundXAxis(cameraTargetRot);
             }
 
-
             character.localRotation = characterTargetRot;
             camera.localRotation = cameraTargetRot;
         }

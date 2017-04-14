@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using EventBus;
 
 namespace Immersive {
 
@@ -48,6 +46,7 @@ namespace Immersive {
 
         public void OnAcquire(Vector3 from)
         {
+            Dispatcher.SendEvent(new DoorInteractionEvent(door, this));
             if (mode == Mode.Immersive)
             {
                 direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));
