@@ -16,7 +16,9 @@ namespace EventBus
         MonsterInFrustum,
         MonsterOutOfFrustum,
         MonsterInPlainSight,
-        MonsterOutOfPlainSight
+        MonsterOutOfPlainSight,
+        ItemCollected,
+        CaughtByMonster
     }
 
     public enum TriggerAction
