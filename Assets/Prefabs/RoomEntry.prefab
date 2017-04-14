@@ -123,6 +123,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4449657172239572}
   - component: {fileID: 114322370590785604}
+  - component: {fileID: 114011728057935524}
+  - component: {fileID: 114479577346255086}
   m_Layer: 0
   m_Name: RoomEntry
   m_TagString: Untagged
@@ -599,6 +601,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114011728057935524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802284198967442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcff30f76e177040bcaa24ca35951dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerBound: 0
+  upperBound: 100
 --- !u!114 &114222696728128254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -625,7 +640,21 @@ MonoBehaviour:
   id: 1
   rootOffset: {x: 0, y: 0, z: -0.01}
   rootRotation: {x: 0, y: 180, z: 0}
-  predicate: {fileID: 0}
+  predicates:
+  - {fileID: 114011728057935524}
+  - {fileID: 114479577346255086}
+--- !u!114 &114479577346255086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802284198967442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe92c29a8afcda64697ac925e502e4a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyFound: 0
 --- !u!114 &114506497061696850
 MonoBehaviour:
   m_ObjectHideFlags: 1
