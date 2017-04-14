@@ -61,7 +61,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     public bool CheckPredicate(WorldState world)
     {
-        return compositePredicate.Check(world);
+        return (compositePredicate != null) && compositePredicate.Check(world);
     }
 
     public void OnReceived(EBEvent e)
