@@ -14,7 +14,7 @@ public class ItemsManager : MonoBehaviour
     private WorldState worldState;
 
     [SerializeField]
-    private Predicate keysSpawningPredicate;
+    private CompositePredicate keysSpawningPredicate;
 
     private static ItemsManager instance;
     private CollectibleItem keys;
@@ -28,7 +28,7 @@ public class ItemsManager : MonoBehaviour
     public CollectibleItem GetItem()
     {
         float chance = 0.0f;
-        if (keysSpawningPredicate != null && keysSpawningPredicate.Check(worldState))
+        if ((keysSpawningPredicate != null) && keysSpawningPredicate.Check(worldState))
         {
             chance = GetKeyChance() * 100;
             if (Random.Range(0, 99) < chance)
