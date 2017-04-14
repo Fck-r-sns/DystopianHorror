@@ -6,8 +6,13 @@ using EventBus;
 
 public class Trigger_PrologueEntered : MonoBehaviour
 {
+    private bool triggered = false;
     private void OnTriggerEnter(Collider other)
     {
-        Dispatcher.SendEvent(new EBEvent() { type = EBEventType.PrologueEntered });
+        if (!triggered)
+        {
+            triggered = true;
+            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.PrologueEntered });
+        }
     }
 }

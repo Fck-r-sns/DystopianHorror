@@ -6,8 +6,13 @@ using EventBus;
 
 public class Trigger_PositiveEpilogueEntered : MonoBehaviour
 {
+    private bool triggered = false;
     private void OnTriggerEnter(Collider other)
     {
-        Dispatcher.SendEvent(new EBEvent() { type = EBEventType.PositiveEpilogueEntered });
+        if (!triggered)
+        {
+            triggered = true;
+            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.PositiveEpilogueEntered });
+        }
     }
 }
