@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     private float maxVolume;
 
     [SerializeField]
-    private float crossFadeRate = 1.5f;
+    private float crossFadeTime = 2.0f;
 
     [SerializeField]
     private AudioClip prologueMusic;
@@ -48,7 +48,7 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
 
     [SerializeField]
     private AudioClip grabKeySound;
-    
+
     private AudioSource[] sources = new AudioSource[2];
     private int address = AddressProvider.GetFreeAddress();
     private int currentSourceIndex = 0;
@@ -61,49 +61,33 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
                 ProcessItemCollectedEvent(e as ItemCollectedEvent);
                 break;
 
-            case EBEventType.PrologueEntered:
-                ChangeAudio(prologueMusic);
-                break;
-
-            case EBEventType.HallEntered:
-                ChangeAudio(coreLowMadnessMusic);
-                break;
-
-            case EBEventType.PositiveEpilogueEntered:
-                ChangeAudio(positiveEpilogueMusic);
-                break;
-
-            case EBEventType.NegativeEpilogueEntered:
-                ChangeAudio(negativeEpilogueMusic);
+            case EBEventType.WorldStateChanged:
+                ProcessWorldStateChangedEvent(e as WorldStateChangedEvent);
                 break;
         }
     }
 
-    void Start () {
+    void Start()
+    {
         musicSource1.volume = maxVolume;
         musicSource2.volume = maxVolume;
         sources[0] = musicSource1;
         sources[1] = musicSource2;
 
         Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.PrologueEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.HallEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.PositiveEpilogueEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.NegativeEpilogueEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
     }
 
     void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
-        Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
     }
 
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 
     void ChangeAudio(AudioClip clip)
     {
@@ -129,10 +113,10 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         inactiveSource.clip = clip;
         inactiveSource.Play();
 
-        float scaledRate = crossFadeRate * maxVolume;
+        float crossFadeRate = maxVolume / crossFadeTime;
         while (activeSource.volume > 0)
         {
-            float delta = scaledRate * Time.deltaTime;
+            float delta = crossFadeRate * Time.deltaTime;
             activeSource.volume -= delta;
             inactiveSource.volume += delta;
             inactiveSource.volume = Mathf.Min(inactiveSource.volume, maxVolume);
@@ -154,5 +138,56 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
                 interfaceSoundSource.PlayOneShot(grabKeySound);
                 break;
         }
+    }
+
+    private void ProcessWorldStateChangedEvent(WorldStateChangedEvent e)
+    {
+        WorldState world = e.worldState;
+
+        if ((world.location == WorldState.Location.Prologue)
+            && (sources[currentSourceIndex].clip != prologueMusic))
+        {
+            ChangeAudio(prologueMusic);
+            return;
+        }
+
+        if ((world.location == WorldState.Location.Hall)
+            && (world.madness < WorldState.MEDIUM_MADNESS_THRESHOLD)
+            && (sources[currentSourceIndex].clip != coreLowMadnessMusic))
+        {
+            ChangeAudio(coreLowMadnessMusic);
+            return;
+        }
+
+        if ((world.location == WorldState.Location.Hall)
+            && ((WorldState.MEDIUM_MADNESS_THRESHOLD <= world.madness) && (world.madness < WorldState.HIGH_MADNESS_THRESHOLD))
+            && (sources[currentSourceIndex].clip != coreMediumMadnessMusic))
+        {
+            ChangeAudio(coreMediumMadnessMusic);
+            return;
+        }
+
+        if ((world.location == WorldState.Location.Hall)
+            && (WorldState.HIGH_MADNESS_THRESHOLD <= world.madness)
+            && (sources[currentSourceIndex].clip != coreHighMadnessMusic))
+        {
+            ChangeAudio(coreHighMadnessMusic);
+            return;
+        }
+
+        if ((world.location == WorldState.Location.PositiveEpilogue)
+            && (sources[currentSourceIndex].clip != positiveEpilogueMusic))
+        {
+            ChangeAudio(positiveEpilogueMusic);
+            return;
+        }
+
+        if ((world.location == WorldState.Location.NegativeEpilogue)
+            && (sources[currentSourceIndex].clip != negativeEpilogueMusic))
+        {
+            ChangeAudio(negativeEpilogueMusic);
+            return;
+        }
+
     }
 }
