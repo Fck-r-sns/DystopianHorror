@@ -22,7 +22,8 @@ namespace EventBus
         PrologueEntered,
         HallEntered,
         PositiveEpilogueEntered,
-        NegativeEpilogueEntered
+        NegativeEpilogueEntered,
+        WorldStateChanged
     }
 
     public enum TriggerAction

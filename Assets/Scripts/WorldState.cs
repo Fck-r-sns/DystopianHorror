@@ -5,19 +5,36 @@ using EventBus;
 public class WorldState : MonoBehaviour, IEventSubscriber
 {
 
+    public enum Location
+    {
+        Prologue,
+        Hall,
+        PositiveEpilogue,
+        NegativeEpilogue
+    }
+
     public const int MIN_MADNESS = 0;
     public const int MAX_MADNESS = 100;
+    public const int MEDIUM_MADNESS_THRESHOLD = 30;
+    public const int HIGH_MADNESS_THRESHOLD = 70;
     public const int MADNESS_PER_ROOM_VISIT = +5;
     public const int MADNESS_PER_BOOK_COLLECTED = -10;
     public const int MADNESS_PER_MONSTER_CAUGHT = +50;
     public const float BOOK_SPAWN_INITIAL_CHANCE = 0.1f;
 
     private int address = AddressProvider.GetFreeAddress();
+    private Location location_;
     private int roomsVisited_ = 0;
     private int madness_ = 0;
     private int collectiblesFound_ = 0;
     private bool keyFound_ = false;
     private int timesCaughtByMonster_ = 0;
+
+    public Location location {
+        get {
+            return location_;
+        }
+    }
 
     public int roomsVisited {
         get {
@@ -60,7 +77,29 @@ public class WorldState : MonoBehaviour, IEventSubscriber
             case EBEventType.HallMovingTriggerEntered:
                 ProcessHallMoveinTriggerEnteredEvent(e as HallMovingTriggerEnteredEvent);
                 break;
+
+            case EBEventType.CaughtByMonster:
+                ProcessCaughtByMonsterEvent(e);
+                break;
+
+            case EBEventType.PrologueEntered:
+                location_ = Location.Prologue;
+                break;
+
+            case EBEventType.HallEntered:
+                location_ = Location.Hall;
+                break;
+
+            case EBEventType.PositiveEpilogueEntered:
+                location_ = Location.PositiveEpilogue;
+                break;
+
+            case EBEventType.NegativeEpilogueEntered:
+                location_ = Location.NegativeEpilogue;
+                break;
         }
+
+        Dispatcher.SendEvent(new WorldStateChangedEvent(this));
     }
 
     private void Start()
@@ -69,6 +108,10 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
         Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
         Dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.PrologueEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.HallEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.PositiveEpilogueEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.NegativeEpilogueEntered, address, gameObject);
     }
 
     private void OnDestroy()
@@ -77,6 +120,10 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
         Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
         Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
     }
 
     private void ProcessItemCollectedEvent(ItemCollectedEvent e)
@@ -87,6 +134,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
                 ++collectiblesFound_;
                 AddMadness(MADNESS_PER_BOOK_COLLECTED);
                 break;
+
             case CollectibleItem.Type.Key:
                 keyFound_ = true;
                 break;
