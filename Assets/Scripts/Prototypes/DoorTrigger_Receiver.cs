@@ -16,10 +16,10 @@ public class DoorTrigger_Receiver : MonoBehaviour, IEventSubscriber {
         switch (e.type)
         {
             case EBEventType.TestDoorTriggerEntered:
-                door.open();
+                door.Open();
                 break;
             case EBEventType.TestDoorTriggerExited:
-                door.close();
+                door.Close();
                 break;
         }
     }

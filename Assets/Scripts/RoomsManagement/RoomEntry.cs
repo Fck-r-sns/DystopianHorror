@@ -137,7 +137,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     public void CloseDoor()
     {
-        door.close();
+        door.Close();
     }
 
     public void AttachRoom(RoomScene scene)

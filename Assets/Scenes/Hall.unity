@@ -1145,7 +1145,7 @@ GameObject:
   - component: {fileID: 346093775}
   - component: {fileID: 346093774}
   m_Layer: 0
-  m_Name: HallEnteredTrigger
+  m_Name: HallEnteredTrigger1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1175,6 +1175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8fcfb493350ff48a8914a6d05c300f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
+  door: {fileID: 639286196}
+  roomEntry: {fileID: 359261823}
 --- !u!65 &346093775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1185,8 +1188,14 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.833763, y: 3.813385, z: 6.1221104}
-  m_Center: {x: 0.1438322, y: 1.4066925, z: 0.13548565}
+  m_Size: {x: 10.670782, y: 3.813385, z: 3.7130666}
+  m_Center: {x: -2.9035463, y: 1.4066925, z: -1.350276}
+--- !u!114 &359261823 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+    type: 2}
+  m_PrefabInternal: {fileID: 1495641142}
+  m_Script: {fileID: 11500000, guid: 0d83649d5fc3c2240b7ff1528c158102, type: 3}
 --- !u!1001 &388506512
 Prefab:
   m_ObjectHideFlags: 0
@@ -1634,6 +1643,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3082d75ff208f42a5076c91333249a, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &639286196 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114917259922659318, guid: 8c2c80a64909fe34f89b73b1a402a491,
+    type: 2}
+  m_PrefabInternal: {fileID: 1495641142}
+  m_Script: {fileID: 11500000, guid: 427ee8f9fe03bd24bbb24a4a465df25d, type: 3}
 --- !u!1 &646949504 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1762007783810258, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
@@ -3688,6 +3703,62 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3082d75ff208f42a5076c91333249a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1661023035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1661023036}
+  - component: {fileID: 1661023038}
+  - component: {fileID: 1661023037}
+  m_Layer: 0
+  m_Name: HallEnteredTrigger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1661023036
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661023035}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.07, y: 0, z: 13.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1811976346}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1661023037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661023035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae8fcfb493350ff48a8914a6d05c300f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 1
+  door: {fileID: 639286196}
+  roomEntry: {fileID: 359261823}
+--- !u!65 &1661023038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661023035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3430395, y: 3.813385, z: 6.395708}
+  m_Center: {x: 3.889194, y: 1.4066925, z: -0.0013113022}
 --- !u!1 &1764634509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3957,6 +4028,7 @@ Transform:
   - {fileID: 767590302}
   - {fileID: 1135187851}
   - {fileID: 346093773}
+  - {fileID: 1661023036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

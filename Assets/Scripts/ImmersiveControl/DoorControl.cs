@@ -54,7 +54,7 @@ namespace Immersive {
             }
             else
             {
-                door.toggle();
+                door.Toggle();
             }
         }
 
@@ -66,7 +66,7 @@ namespace Immersive {
         {
             if (mode == Mode.Immersive)
             {
-                door.toggle();
+                door.Toggle();
             }
         }
 
@@ -75,7 +75,7 @@ namespace Immersive {
             if (mode == Mode.Immersive)
             {
                 Vector2 force = (new Vector2(xAxis, yAxis) * direction).normalized * forceMultiplier;
-                door.addAngle(force.y + force.x);
+                door.AddAngle(force.y + force.x);
             }
         }
 

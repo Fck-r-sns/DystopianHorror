@@ -44,25 +44,35 @@ public class Door : MonoBehaviour
     private Coroutine lastCoroutine = null;
     private AudioSource audioSource;
 
-    public void setAngle(float angle)
+    public void SetAngle(float angle)
     {
         this.angle = Mathf.Clamp(angle, minAngle, maxAngle) + zeroShift;
-        applyAngle(this.angle);
+        ApplyAngle(this.angle);
     }
 
-    public float getAngle()
+    public float GetAngle()
     {
         return angle - zeroShift;
     }
 
-    public void addAngle(float angle)
+    public void AddAngle(float angle)
     {
-        setAngle(getAngle() + angle);
+        SetAngle(GetAngle() + angle);
     }
 
-    public void open()
+    public void Lock()
     {
-        if (getAngle() == openAngle)
+        locked = true;
+    }
+
+    public void Unlock()
+    {
+        locked = false;
+    }
+
+    public void Open()
+    {
+        if (GetAngle() == openAngle)
         {
             return;
         }
@@ -76,17 +86,17 @@ public class Door : MonoBehaviour
             StopSound();
             StopCoroutine(lastCoroutine);
         }
-        lastCoroutine = StartCoroutine(animateRotation(openAngle + zeroShift, openDirection));
+        lastCoroutine = StartCoroutine(AnimateRotation(openAngle + zeroShift, openDirection));
     }
 
-    public void setOpened()
+    public void SetOpened()
     {
-        setAngle(openAngle);
+        SetAngle(openAngle);
     }
 
-    public void close()
+    public void Close()
     {
-        if (getAngle() == closeAngle)
+        if (GetAngle() == closeAngle)
         {
             return;
         }
@@ -95,25 +105,25 @@ public class Door : MonoBehaviour
             StopSound();
             StopCoroutine(lastCoroutine);
         }
-        lastCoroutine = StartCoroutine(animateRotation(closeAngle + zeroShift, -openDirection));
+        lastCoroutine = StartCoroutine(AnimateRotation(closeAngle + zeroShift, -openDirection));
     }
 
-    public void setClosed()
+    public void SetClosed()
     {
-        setAngle(closeAngle);
+        SetAngle(closeAngle);
     }
 
-    public void toggle()
+    public void Toggle()
     {
         float median = (openAngle + closeAngle) / 2.0f;
-        float a = getAngle();
+        float a = GetAngle();
         if (a * openDirection < median * openDirection)
         {
-            open();
+            Open();
         }
         else
         {
-            close();
+            Close();
         }
     }
 
@@ -124,26 +134,26 @@ public class Door : MonoBehaviour
         maxAngle = Mathf.Max(closeAngle, openAngle);
         openDirection = Mathf.Sign(openAngle - closeAngle);
         initialAngle = Mathf.Clamp(initialAngle, minAngle, maxAngle);
-        setAngle(initialAngle);
+        SetAngle(initialAngle);
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void applyAngle(float angle)
+    private void ApplyAngle(float angle)
     {
         var rotation = transform.eulerAngles;
         rotation.y = angle;
         transform.eulerAngles = rotation;
     }
 
-    private IEnumerator animateRotation(float targetAngle, float directionMultiplier)
+    private IEnumerator AnimateRotation(float targetAngle, float directionMultiplier)
     {
         PlayMoveSound();
         while (angle * directionMultiplier < targetAngle * directionMultiplier)
         {
-            addAngle(Time.deltaTime * rotationSpeed * directionMultiplier);
+            AddAngle(Time.deltaTime * rotationSpeed * directionMultiplier);
             yield return null;
         }
-        if (getAngle() == closeAngle)
+        if (GetAngle() == closeAngle)
         {
             PlayCloseSound();
         }

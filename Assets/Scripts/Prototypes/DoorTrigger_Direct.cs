@@ -9,11 +9,11 @@ public class DoorTrigger_Direct : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        door.open();
+        door.Open();
     }
 
     void OnTriggerExit(Collider other)
     {
-        door.close();
+        door.Close();
     }
 }
