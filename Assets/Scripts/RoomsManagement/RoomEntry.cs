@@ -20,7 +20,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private Vector3 rootRotation;
 
     [SerializeField]
-    private Predicate predicate;
+    private Predicate[] predicates;
 
     private int address = AddressProvider.GetFreeAddress();
     private RoomScene lastScene;
@@ -61,11 +61,16 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     public bool CheckPredicate(WorldState world)
     {
-        if (predicate == null)
+        if ((predicates == null) || (predicates.Length == 0))
         {
-            return true;
+            return false;
         }
-        return predicate.Check(world);
+        bool res = true;
+        foreach (Predicate p in predicates)
+        {
+            res = res && p.Check(world);
+        }
+        return res;
     }
 
     public void OnReceived(EBEvent e)
