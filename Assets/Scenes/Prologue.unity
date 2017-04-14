@@ -6249,6 +6249,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1681505984}
+  - component: {fileID: 1681505985}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -6273,6 +6274,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1681505985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681505983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaf317193a744e40a9441314fe10dec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Prologue
+  predicate: {fileID: 0}
+  collectiblePlaceholders: []
 --- !u!4 &1682680675 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4231508241830794, guid: f2bc20a7f5d08b146842cd57cb0d374f,
@@ -7627,10 +7642,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1195678010809942, guid: f7e46dad533f75849a080dfc115a4539, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1899572078740492, guid: f7e46dad533f75849a080dfc115a4539, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114195585174560112, guid: f7e46dad533f75849a080dfc115a4539,
+        type: 2}
+      propertyPath: initialState
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

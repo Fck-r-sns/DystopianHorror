@@ -12,14 +12,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Prototypes/RoomsShuffling/Room3.unity
   - enabled: 1
-    path: Assets/Prototypes/SchoolHall/Hall.unity
-  - enabled: 1
-    path: Assets/Prototypes/SchoolHall/RoomWithCube.unity
-  - enabled: 1
-    path: Assets/Prototypes/SchoolHall/RoomWithCylinder.unity
-  - enabled: 1
-    path: Assets/Prototypes/SchoolHall/RoomWithSphere.unity
-  - enabled: 1
     path: Assets/Scenes/Rooms/ChemistryRoomNormal.unity
   - enabled: 1
     path: Assets/Scenes/Rooms/NormalClass1.unity
@@ -31,3 +23,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/StrangeRoom2.unity
   - enabled: 1
     path: Assets/Scenes/Rooms/StrangeRoom3.unity
+  - enabled: 1
+    path: Assets/Scenes/Hall.unity
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+  - enabled: 1
+    path: Assets/Scenes/PositiveEpilogue.unity
+  - enabled: 1
+    path: Assets/Scenes/Prologue.unity

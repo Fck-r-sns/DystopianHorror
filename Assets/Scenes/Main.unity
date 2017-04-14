@@ -624,10 +624,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
-  prologueSceneName: 
-  hallSceneName: 
-  positiveEpilogueSceneName: 
-  negativeEpilogueSceneName: 
+  loadScenes: 0
+  prologueSceneName: Prologue
+  hallSceneName: Hall
+  positiveEpilogueSceneName: PositiveEpilogue
+  negativeEpilogueSceneName: NegativeEpilogue
   roomNames:
   - ChemistryRoomNormal
   - PhysicsClassNormal

@@ -13,6 +13,9 @@ public class RoomsManager : MonoBehaviour
     private WorldState worldState;
 
     [SerializeField]
+    private bool loadScenes = true;
+
+    [SerializeField]
     private string prologueSceneName;
 
     [SerializeField]
@@ -28,12 +31,12 @@ public class RoomsManager : MonoBehaviour
     private string[] roomNames;
 
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
+    private List<RoomEntry> roomEntries = new List<RoomEntry>();
+    private List<RoomScene> roomScenes = new List<RoomScene>();
     private RoomScene prologueScene;
     private RoomScene hallScene;
     private RoomScene positiveEpilogueScene;
     private RoomScene negativeEpilogueScene;
-    private List<RoomEntry> roomEntries = new List<RoomEntry>();
-    private List<RoomScene> roomScenes = new List<RoomScene>();
 
     public static RoomsManager GetManager(string sceneName)
     {
@@ -43,7 +46,32 @@ public class RoomsManager : MonoBehaviour
     void Awake()
     {
         managers.Add(id, this);
-        foreach(string room in roomNames) 
+
+        if (loadScenes)
+        {
+            SceneManager.LoadSceneAsync(prologueSceneName, LoadSceneMode.Additive);
+        }
+        StartCoroutine(WaitForLoadingAndInitRoomScene(prologueSceneName));
+
+        if (loadScenes)
+        {
+            SceneManager.LoadSceneAsync(hallSceneName, LoadSceneMode.Additive);
+        }
+        StartCoroutine(WaitForLoadingAndInitRoomScene(hallSceneName));
+
+        if (loadScenes)
+        {
+            SceneManager.LoadSceneAsync(positiveEpilogueSceneName, LoadSceneMode.Additive);
+        }
+        StartCoroutine(WaitForLoadingAndInitRoomScene(positiveEpilogueSceneName));
+
+        if (loadScenes)
+        {
+            SceneManager.LoadSceneAsync(negativeEpilogueSceneName, LoadSceneMode.Additive);
+        }
+        StartCoroutine(WaitForLoadingAndInitRoomScene(negativeEpilogueSceneName));
+
+        foreach (string room in roomNames)
         {
             SceneManager.LoadSceneAsync(room, LoadSceneMode.Additive);
             StartCoroutine(WaitForLoadingAndInitRoomScene(room));
@@ -51,56 +79,81 @@ public class RoomsManager : MonoBehaviour
     }
 
     public void RegisterRoomEntry(RoomEntry door)
-    {
-        roomEntries.Add(door);
-    }
+{
+    roomEntries.Add(door);
+}
 
-    public RoomEntry GetRandomRoomEntry()
+public RoomEntry GetRandomRoomEntry()
+{
+    List<RoomEntry> filtered = new List<RoomEntry>(roomEntries.Count);
+    foreach (RoomEntry re in roomEntries)
     {
-        List<RoomEntry> filtered = new List<RoomEntry>(roomEntries.Count);
-        foreach (RoomEntry re in roomEntries)
+        if (re.CheckPredicate(worldState))
         {
-            if (re.CheckPredicate(worldState))
-            {
-                filtered.Add(re);
-            }
+            filtered.Add(re);
         }
-        int index = Random.Range(0, filtered.Count);
-        return filtered[index];
     }
+    int index = Random.Range(0, filtered.Count);
+    return filtered[index];
+}
 
-    public RoomScene GetRandomRoomScene()
+public RoomScene GetRandomRoomScene()
+{
+    List<RoomScene> filtered = new List<RoomScene>(roomScenes.Count);
+    foreach (RoomScene rs in roomScenes)
     {
-        List<RoomScene> filtered = new List<RoomScene>(roomScenes.Count);
-        foreach (RoomScene rs in roomScenes)
+        if (rs.CheckPredicate(worldState))
         {
-            if (rs.CheckPredicate(worldState))
-            {
-                filtered.Add(rs);
-            }
+            filtered.Add(rs);
         }
-        int index = Random.Range(0, filtered.Count);
-        return filtered[index];
     }
+    int index = Random.Range(0, filtered.Count);
+    return filtered[index];
+}
 
-    private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
+public void UnloadPrologue()
+{
+    prologueScene.SetEnabled(false);
+    SceneManager.UnloadSceneAsync(prologueSceneName);
+}
+
+private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
+{
+    Scene scene = SceneManager.GetSceneByName(sceneName);
+    if (!scene.IsValid())
     {
-        Scene scene = SceneManager.GetSceneByName(sceneName);
-        if (!scene.IsValid())
-        {
-            yield break;
-        }
-        yield return new WaitUntil(() => scene.isLoaded);
-        GameObject root = scene.GetRootGameObjects()[0];
+        yield break;
+    }
+    yield return new WaitUntil(() => scene.isLoaded);
+    GameObject root = scene.GetRootGameObjects()[0];
+    RoomScene roomScene = root.GetComponent<RoomScene>();
+    roomScene.SetScene(scene);
+
+    // hack, i don't like it
+    if (sceneName.Equals(prologueSceneName))
+    {
+        prologueScene = roomScene;
+    }
+    else if (sceneName.Equals(hallSceneName))
+    {
+        hallScene = roomScene;
+    }
+    else if (sceneName.Equals(positiveEpilogueSceneName))
+    {
+        positiveEpilogueScene = roomScene;
+    }
+    else if (sceneName.Equals(negativeEpilogueSceneName))
+    {
+        negativeEpilogueScene = roomScene;
+    }
+    else
+    {
         root.transform.position = new Vector3(-100, 0, -100);
-        RoomScene roomScene = root.GetComponent<RoomScene>();
-        roomScene.SetScene(scene);
         roomScenes.Add(roomScene);
-
-        // wait two frames (to complete start routines of rooms)
         yield return null;
         yield return null;
         roomScene.SetEnabled(false);
     }
+}
 
 }
