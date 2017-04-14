@@ -20,6 +20,9 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private Transform movementTarget;
 
+    [SerializeField]
+    private GameObject nature;
+
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
     private FirstPersonController controller;
@@ -31,6 +34,9 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
             DoorInteractionEvent die = e as DoorInteractionEvent;
             if (die.door == door)
             {
+                RenderSettings.fog = false;
+                camera.gameObject.GetComponent<UnityStandardAssets.CinematicEffects.AmbientOcclusion>().enabled = false;
+                nature.SetActive(true);
                 controller.SetMouseLookEnabled(false);
                 controller.SetHeadBobEnabled(false);
                 controller.enabled = false;
