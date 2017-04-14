@@ -14,6 +14,9 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private int id;
 
     [SerializeField]
+    private bool spawningEnabled = true;
+
+    [SerializeField]
     private Vector3 rootOffset;
 
     [SerializeField]
@@ -27,7 +30,6 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private RoomsManager roomsManager;
     private ItemsManager itemsManager;
     private Door door;
-    private bool spawningEnabled = true;
 
     public string GetRoomsManagerId()
     {
