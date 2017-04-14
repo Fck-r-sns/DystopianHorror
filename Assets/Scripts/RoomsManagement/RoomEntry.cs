@@ -88,6 +88,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                                 item.transform.parent = itemPlace;
                                 item.transform.position = itemPlace.position;
                                 item.transform.rotation = itemPlace.rotation;
+                                item.SetRoomScene(room);
                                 item.gameObject.SetActive(true);
                             }
                         }

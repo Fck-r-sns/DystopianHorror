@@ -19,10 +19,21 @@ public class CollectibleItem : MonoBehaviour, Controllable
     private Texture2D gestureTexture;
 
     private bool drawGesture = false;
+    private RoomScene roomScene;
 
     public Type GetItemType()
     {
         return type;
+    }
+
+    public void SetRoomScene(RoomScene scene)
+    {
+        this.roomScene = scene;
+    }
+
+    public RoomScene GetRoomScene()
+    {
+        return roomScene;
     }
 
     public void OnHoverOn(Vector3 from)
