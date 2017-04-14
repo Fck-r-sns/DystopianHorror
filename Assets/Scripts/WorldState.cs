@@ -85,7 +85,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         {
             case CollectibleItem.Type.Book:
                 ++collectiblesFound_;
-                madness_ += MADNESS_PER_BOOK_COLLECTED;
+                AddMadness(MADNESS_PER_BOOK_COLLECTED);
                 break;
             case CollectibleItem.Type.Key:
                 keyFound_ = true;
@@ -96,11 +96,17 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     private void ProcessHallMoveinTriggerEnteredEvent(HallMovingTriggerEnteredEvent e)
     {
         ++roomsVisited_;
-        madness_ += MADNESS_PER_ROOM_VISIT;
+        AddMadness(MADNESS_PER_ROOM_VISIT);
     }
 
     private void ProcessCaughtByMonsterEvent(EBEvent e)
     {
-        madness_ += MADNESS_PER_MONSTER_CAUGHT;
+        AddMadness(MADNESS_PER_MONSTER_CAUGHT);
+    }
+
+    private void AddMadness(int value)
+    {
+        madness_ += value;
+        madness_ = Mathf.Clamp(madness_, MIN_MADNESS, MAX_MADNESS);
     }
 }
