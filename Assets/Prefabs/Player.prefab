@@ -508,7 +508,7 @@ MonoBehaviour:
   hoverRadius: 0.25
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2304
   debug: 0
 --- !u!114 &114731648956556618
 MonoBehaviour:

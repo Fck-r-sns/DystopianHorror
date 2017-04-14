@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33233539271252210}
   - component: {fileID: 23632138203044362}
   - component: {fileID: 95708535367622278}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: key8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 33247933769956394}
   - component: {fileID: 23619339256860104}
   - component: {fileID: 95866042591053396}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: key15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4195153382801040}
   - component: {fileID: 114447168181120870}
   - component: {fileID: 65886744980291112}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Keys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4521958868994172}
   - component: {fileID: 33801519341843066}
   - component: {fileID: 23595231626697742}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: key6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 33436675990210424}
   - component: {fileID: 23138592979376662}
   - component: {fileID: 95323926085309526}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: key11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4920959869259600}
   - component: {fileID: 33915443999835106}
   - component: {fileID: 23175571937902570}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,3 +464,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  gestureTexture: {fileID: 2800000, guid: 4776197b497f594488e440edc40bbe28, type: 3}

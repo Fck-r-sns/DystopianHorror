@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using EventBus;
@@ -9,12 +8,15 @@ using System;
 public class AudioManager : MonoBehaviour, IEventSubscriber
 {
 
-    // 2 sources for crossfade
+    // 2 music sources for crossfade
     [SerializeField]
-    private AudioSource source1;
+    private AudioSource musicSource1;
 
     [SerializeField]
-    private AudioSource source2;
+    private AudioSource musicSource2;
+
+    [SerializeField]
+    private AudioSource interfaceSoundSource;
 
     [SerializeField]
     [Range(0.0f, 1.0f)]
@@ -41,25 +43,43 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private AudioClip goodEpilogueMusic;
 
+    [SerializeField]
+    private AudioClip grabBookSound;
 
+    [SerializeField]
+    private AudioClip grabKeySound;
+    
     private AudioSource[] sources = new AudioSource[2];
     private int address = AddressProvider.GetFreeAddress();
     private int currentSourceIndex = 0;
 
     public void OnReceived(EBEvent e)
     {
-        
+        switch (e.type)
+        {
+            case EBEventType.ItemCollected:
+                ProcessItemCollectedEvent(e as ItemCollectedEvent);
+                break;
+        }
     }
 
     void Start () {
-        source1.volume = maxVolume;
-        source2.volume = maxVolume;
-        sources[0] = source1;
-        sources[1] = source2;
-        changeAudio(prologueMusic);
+        musicSource1.volume = maxVolume;
+        musicSource2.volume = maxVolume;
+        sources[0] = musicSource1;
+        sources[1] = musicSource2;
+
+        Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
+
+        //changeAudio(prologueMusic);
     }
-	
-	void Update () {
+
+    void OnDestroy()
+    {
+        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+    }
+
+    void Update () {
 		
 	}
 
@@ -98,5 +118,19 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         }
 
         currentSourceIndex = 1 - currentSourceIndex;
+    }
+
+    private void ProcessItemCollectedEvent(ItemCollectedEvent e)
+    {
+        switch (e.item.GetItemType())
+        {
+            case CollectibleItem.Type.Book:
+                interfaceSoundSource.PlayOneShot(grabBookSound);
+                break;
+
+            case CollectibleItem.Type.Key:
+                interfaceSoundSource.PlayOneShot(grabKeySound);
+                break;
+        }
     }
 }

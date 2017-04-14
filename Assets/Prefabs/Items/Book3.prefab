@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4305764548749796}
   - component: {fileID: 33752720625087284}
   - component: {fileID: 23994995701032498}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: book_0001d
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4606844601231782}
   - component: {fileID: 114520056285680074}
   - component: {fileID: 65153478874875974}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Book3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,3 +134,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  gestureTexture: {fileID: 2800000, guid: 4776197b497f594488e440edc40bbe28, type: 3}
