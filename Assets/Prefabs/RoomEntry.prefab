@@ -638,6 +638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomsManagerId: School
   id: 1
+  spawningEnabled: 1
   rootOffset: {x: 0, y: 0, z: -0.01}
   rootRotation: {x: 0, y: 180, z: 0}
   compositePredicate:
@@ -705,7 +706,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: df3d6f16213b0db46ac52c6068a02dd8, type: 3}
   - {fileID: 8300000, guid: 22f4491a356633b44accee885f42c2c0, type: 3}
   lockedSounds:
-  - {fileID: 8300000, guid: 891c5f79fe73cbf4791b4319943ce88d, type: 3}
   - {fileID: 8300000, guid: d46fe40b8828e664fbc84bb1dfa616c7, type: 3}
 --- !u!136 &136244493522309460
 CapsuleCollider:
