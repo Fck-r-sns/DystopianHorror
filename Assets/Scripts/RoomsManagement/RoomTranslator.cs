@@ -14,12 +14,23 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
     private RoomsManager roomsManager;
     private int address = AddressProvider.GetFreeAddress();
     private bool translationEnabled = true;
+    private bool needTranslateRoom = false;
 
     public void OnReceived(EBEvent e)
     {
-        if (e.type == EBEventType.RoomSpawningTrigger)
+        switch (e.type)
         {
-            translationEnabled = true;
+            case EBEventType.RoomSpawningTrigger:
+                translationEnabled = true;
+                break;
+
+            case EBEventType.ItemCollected:
+                ItemCollectedEvent ice = e as ItemCollectedEvent;
+                if ((ice.item.GetItemType() == CollectibleItem.Type.Key) && (ice.item.GetRoomScene() == roomScene))
+                {
+                    needTranslateRoom = true;
+                }
+                break;
         }
     }
 
@@ -36,11 +47,22 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
     {
         roomsManager = RoomsManager.GetManager(roomsManagerId);
         Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
     }
 
     private void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
+        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+    }
+
+    private void Update()
+    {
+        if (needTranslateRoom)
+        {
+            needTranslateRoom = false;
+            TranslateRoom();
+        }
     }
 
     private void TranslateRoom()
