@@ -13,21 +13,28 @@ public class ItemsManager : MonoBehaviour
     [SerializeField]
     private WorldState worldState;
 
+    [SerializeField]
+    private Predicate keysSpawningPredicate;
+
     private static ItemsManager instance;
-    private GameObject keys;
-    private GameObject[] booksPool;
+    private CollectibleItem keys;
+    private CollectibleItem[] booksPool;
 
     public static ItemsManager GetInstance()
     {
         return instance;
     }
 
-    public GameObject GetItem()
+    public CollectibleItem GetItem()
     {
-        float chance = GetKeyChance() * 100;
-        if (Random.Range(0, 99) < chance)
+        float chance = 0.0f;
+        if (keysSpawningPredicate != null && keysSpawningPredicate.Check(worldState))
         {
-            return keys;
+            chance = GetKeyChance() * 100;
+            if (Random.Range(0, 99) < chance)
+            {
+                return keys;
+            }
         }
 
         chance = GetBookChance() * 100;
@@ -39,26 +46,28 @@ public class ItemsManager : MonoBehaviour
         return null;
     }
 
-    void Awake () {
+    void Awake()
+    {
         instance = this;
 
-        keys = Instantiate(keyPrefab);
-        keys.SetActive(false);
+        GameObject keysObject = Instantiate(keyPrefab);
+        keysObject.SetActive(false);
+        keys = keysObject.GetComponent<CollectibleItem>();
 
-        booksPool = new GameObject[bookPrefabs.Length];
+        booksPool = new CollectibleItem[bookPrefabs.Length];
         for (int i = 0; i < bookPrefabs.Length; ++i)
         {
             GameObject book = Instantiate(bookPrefabs[i]);
             book.SetActive(false);
-            booksPool[i] = book;
+            booksPool[i] = book.GetComponent<CollectibleItem>();
         }
-	}
+    }
 
     private float GetKeyChance()
     {
         return 0.3f;
     }
-    
+
     private float GetBookChance()
     {
         //return (100 * WorldState.BOOK_SPAWN_INITIAL_CHANCE - worldState.collectiblesFound) 

@@ -86,13 +86,13 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
                         Transform itemPlace = room.GetCollectiblePlaceholder();
                         if (itemPlace != null)
                         {
-                            GameObject item = itemsManager.GetItem();
+                            CollectibleItem item = itemsManager.GetItem();
                             if (item != null)
                             {
                                 item.transform.parent = itemPlace;
                                 item.transform.position = itemPlace.position;
                                 item.transform.rotation = itemPlace.rotation;
-                                item.SetActive(true);
+                                item.gameObject.SetActive(true);
                             }
                         }
                     }
