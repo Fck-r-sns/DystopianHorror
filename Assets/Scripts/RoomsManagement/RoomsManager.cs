@@ -13,9 +13,25 @@ public class RoomsManager : MonoBehaviour
     private WorldState worldState;
 
     [SerializeField]
+    private string prologueSceneName;
+
+    [SerializeField]
+    private string hallSceneName;
+
+    [SerializeField]
+    private string positiveEpilogueSceneName;
+
+    [SerializeField]
+    private string negativeEpilogueSceneName;
+
+    [SerializeField]
     private string[] roomNames;
 
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
+    private RoomScene prologueScene;
+    private RoomScene hallScene;
+    private RoomScene positiveEpilogueScene;
+    private RoomScene negativeEpilogueScene;
     private List<RoomEntry> roomEntries = new List<RoomEntry>();
     private List<RoomScene> roomScenes = new List<RoomScene>();
 
@@ -30,7 +46,7 @@ public class RoomsManager : MonoBehaviour
         foreach(string room in roomNames) 
         {
             SceneManager.LoadSceneAsync(room, LoadSceneMode.Additive);
-            StartCoroutine(WaitForLoadingAndInitScene(room));
+            StartCoroutine(WaitForLoadingAndInitRoomScene(room));
         }
     }
 
@@ -67,7 +83,7 @@ public class RoomsManager : MonoBehaviour
         return filtered[index];
     }
 
-    private IEnumerator WaitForLoadingAndInitScene(string sceneName)
+    private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
     {
         Scene scene = SceneManager.GetSceneByName(sceneName);
         if (!scene.IsValid())

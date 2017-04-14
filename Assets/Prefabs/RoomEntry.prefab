@@ -623,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomsManagerId: School
   id: 1
-  rootOffset: {x: 8, y: 0, z: -16.01}
+  rootOffset: {x: 0, y: 0, z: -0.01}
   rootRotation: {x: 0, y: 180, z: 0}
   predicate: {fileID: 0}
 --- !u!114 &114506497061696850

@@ -875,7 +875,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -993,7 +993,7 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 16.01
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -2223,12 +2223,12 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: -9.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
@@ -2476,12 +2476,12 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: 9.99
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
@@ -3364,12 +3364,12 @@ Prefab:
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.x
-      value: -8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: rootOffset.z
-      value: 16.01
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}

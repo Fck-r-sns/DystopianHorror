@@ -41,7 +41,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     public Vector3 GetRootOffset()
     {
-        return rootOffset;
+        return transform.TransformPoint(rootOffset);
     }
 
     public Vector3 GetRootRotation()
@@ -162,8 +162,8 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private void MoveScene(RoomScene scene)
     {
         GameObject root = scene.GetRoot();
-        root.transform.position = rootOffset;
-        root.transform.eulerAngles = rootRotation;
+        root.transform.position = GetRootOffset();
+        root.transform.eulerAngles = GetRootRotation();
         scene.SetEnabled(true);
     }
 
