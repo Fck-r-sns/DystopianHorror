@@ -4252,6 +4252,10 @@ Prefab:
       propertyPath: openAngle
       value: -30
       objectReference: {fileID: 0}
+    - target: {fileID: 4107904361885578, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
   m_IsPrefabParent: 0
@@ -4364,6 +4368,10 @@ Prefab:
     - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
         type: 2}
       propertyPath: locked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107904361885578, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
