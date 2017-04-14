@@ -241,6 +241,7 @@ MonoBehaviour:
     MinimumX: -90
     MaximumX: 90
     lockCursor: 1
+    enableMouseLook: 1
   m_UseHeadBob: 1
   m_HeadBob:
     HorizontalBobRange: 0.04

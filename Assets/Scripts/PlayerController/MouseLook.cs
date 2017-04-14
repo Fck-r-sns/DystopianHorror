@@ -11,27 +11,31 @@ public class MouseLook
     public float MinimumX = -90F;
     public float MaximumX = 90F;
     public bool lockCursor = true;
+    public bool enableMouseLook = true;
 
     private bool m_cursorIsLocked = true;
 
     public void LookRotation(Transform character, Transform camera)
     {
-        float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
-        float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
-
-        Quaternion characterTargetRot = character.localRotation;
-        Quaternion cameraTargetRot = camera.localRotation;
-        characterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
-        cameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
-
-        if (clampVerticalRotation)
+        if (enableMouseLook)
         {
-            cameraTargetRot = ClampRotationAroundXAxis(cameraTargetRot);
+            float yRot = CrossPlatformInputManager.GetAxis("Mouse X") * XSensitivity;
+            float xRot = CrossPlatformInputManager.GetAxis("Mouse Y") * YSensitivity;
+
+            Quaternion characterTargetRot = character.localRotation;
+            Quaternion cameraTargetRot = camera.localRotation;
+            characterTargetRot *= Quaternion.Euler(0f, yRot, 0f);
+            cameraTargetRot *= Quaternion.Euler(-xRot, 0f, 0f);
+
+            if (clampVerticalRotation)
+            {
+                cameraTargetRot = ClampRotationAroundXAxis(cameraTargetRot);
+            }
+
+
+            character.localRotation = characterTargetRot;
+            camera.localRotation = cameraTargetRot;
         }
-
-
-        character.localRotation = characterTargetRot;
-        camera.localRotation = cameraTargetRot;
 
         UpdateCursorLock();
     }
