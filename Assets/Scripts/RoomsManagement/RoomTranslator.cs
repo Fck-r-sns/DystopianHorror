@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using EventBus;
+using System.Collections;
 
 public class RoomTranslator : MonoBehaviour, IEventSubscriber
 {
@@ -15,6 +16,7 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
     private int address = AddressProvider.GetFreeAddress();
     private bool translationEnabled = true;
     private bool needTranslateRoom = false;
+    private int translationFrame = 0;
 
     public void OnReceived(EBEvent e)
     {
@@ -28,7 +30,7 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
                 ItemCollectedEvent ice = e as ItemCollectedEvent;
                 if ((ice.item.GetItemType() == CollectibleItem.Type.Key) && (ice.item.GetRoomScene() == roomScene))
                 {
-                    needTranslateRoom = true;
+                    TranslateRoom();
                 }
                 break;
         }
@@ -72,12 +74,20 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
         GameObject root = roomScene.GetRoot();
         Vector3 oldPosition = root.transform.position;
         Vector3 oldRotation = root.transform.eulerAngles;
-        door.AttachRoom(roomScene);
+        translationFrame = Time.frameCount + 2;
+        StartCoroutine(TranslateRoomOnNextUpdate(door));
         Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
+            translationFrame,
             oldPosition,
             oldRotation,
             door.GetRootOffset(),
             door.GetRootRotation()
             ));
+    }
+
+    private IEnumerator TranslateRoomOnNextUpdate(RoomEntry door)
+    {
+        yield return new WaitWhile(() => Time.frameCount < translationFrame);
+        door.AttachRoom(roomScene);
     }
 }

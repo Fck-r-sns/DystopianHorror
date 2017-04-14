@@ -7,14 +7,16 @@ using EventBus;
 public class HallMovingTriggerEnteredEvent : EBEvent
 {
 
-    public Vector3 oldPosition;
-    public Vector3 oldRotation;
-    public Vector3 newPosition;
-    public Vector3 newRotation;
+    public readonly int frameNumber;
+    public readonly Vector3 oldPosition;
+    public readonly Vector3 oldRotation;
+    public readonly Vector3 newPosition;
+    public readonly Vector3 newRotation;
 
-    public HallMovingTriggerEnteredEvent(Vector3 oldPosition, Vector3 oldRotation, Vector3 newPosition, Vector3 newRotation)
+    public HallMovingTriggerEnteredEvent(int frameNumber, Vector3 oldPosition, Vector3 oldRotation, Vector3 newPosition, Vector3 newRotation)
     {
         this.type = EBEventType.HallMovingTriggerEntered;
+        this.frameNumber = frameNumber;
         this.oldPosition = oldPosition;
         this.oldRotation = oldRotation;
         this.newPosition = newPosition;
