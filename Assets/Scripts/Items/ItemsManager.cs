@@ -24,7 +24,13 @@ public class ItemsManager : MonoBehaviour
 
     public GameObject GetItem()
     {
-        float chance = GetBookChance() * 100;
+        float chance = GetKeyChance() * 100;
+        if (Random.Range(0, 99) < chance)
+        {
+            return keys;
+        }
+
+        chance = GetBookChance() * 100;
         if (Random.Range(0, 99) < chance)
         {
             int index = Random.Range(0, booksPool.Length);
@@ -47,6 +53,11 @@ public class ItemsManager : MonoBehaviour
             booksPool[i] = book;
         }
 	}
+
+    private float GetKeyChance()
+    {
+        return 0.3f;
+    }
     
     private float GetBookChance()
     {
