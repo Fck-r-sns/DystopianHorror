@@ -76,10 +76,15 @@ public class RoomsManager : MonoBehaviour
         }
         yield return new WaitUntil(() => scene.isLoaded);
         GameObject root = scene.GetRootGameObjects()[0];
+        root.transform.position = new Vector3(-100, 0, -100);
         RoomScene roomScene = root.GetComponent<RoomScene>();
-        roomScene.SetEnabled(false);
         roomScene.SetScene(scene);
         roomScenes.Add(roomScene);
+
+        // wait two frames (to complete start routines of rooms)
+        yield return null;
+        yield return null;
+        roomScene.SetEnabled(false);
     }
 
 }
