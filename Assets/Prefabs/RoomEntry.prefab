@@ -640,9 +640,10 @@ MonoBehaviour:
   id: 1
   rootOffset: {x: 0, y: 0, z: -0.01}
   rootRotation: {x: 0, y: 180, z: 0}
-  predicates:
-  - {fileID: 114011728057935524}
-  - {fileID: 114479577346255086}
+  compositePredicate:
+    predicates:
+    - {fileID: 114011728057935524}
+    - {fileID: 114479577346255086}
 --- !u!114 &114479577346255086
 MonoBehaviour:
   m_ObjectHideFlags: 1
