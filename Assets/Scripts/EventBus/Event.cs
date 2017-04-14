@@ -18,7 +18,11 @@ namespace EventBus
         MonsterInPlainSight,
         MonsterOutOfPlainSight,
         ItemCollected,
-        CaughtByMonster
+        CaughtByMonster,
+        PrologueEntered,
+        HallEntered,
+        PositiveEpilogueEntered,
+        NegativeEpilogueEntered
     }
 
     public enum TriggerAction

@@ -38,10 +38,10 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     private AudioClip coreHighMadnessMusic;
 
     [SerializeField]
-    private AudioClip badEpilogueMusic;
+    private AudioClip positiveEpilogueMusic;
 
     [SerializeField]
-    private AudioClip goodEpilogueMusic;
+    private AudioClip negativeEpilogueMusic;
 
     [SerializeField]
     private AudioClip grabBookSound;
@@ -60,6 +60,22 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
             case EBEventType.ItemCollected:
                 ProcessItemCollectedEvent(e as ItemCollectedEvent);
                 break;
+
+            case EBEventType.PrologueEntered:
+                ChangeAudio(prologueMusic);
+                break;
+
+            case EBEventType.HallEntered:
+                ChangeAudio(coreLowMadnessMusic);
+                break;
+
+            case EBEventType.PositiveEpilogueEntered:
+                ChangeAudio(positiveEpilogueMusic);
+                break;
+
+            case EBEventType.NegativeEpilogueEntered:
+                ChangeAudio(negativeEpilogueMusic);
+                break;
         }
     }
 
@@ -70,24 +86,30 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         sources[1] = musicSource2;
 
         Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
-
-        //changeAudio(prologueMusic);
+        Dispatcher.Subscribe(EBEventType.PrologueEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.HallEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.PositiveEpilogueEntered, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.NegativeEpilogueEntered, address, gameObject);
     }
 
     void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
     }
 
     void Update () {
 		
 	}
 
-    void changeAudio(AudioClip clip)
+    void ChangeAudio(AudioClip clip)
     {
         if (sources[currentSourceIndex].isPlaying)
         {
-            StartCoroutine(changeAudioWithFading(clip));
+            StartCoroutine(ChangeAudioWithFading(clip));
         }
         else
         {
@@ -98,7 +120,7 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         }
     }
 
-    IEnumerator changeAudioWithFading(AudioClip clip)
+    IEnumerator ChangeAudioWithFading(AudioClip clip)
     {
         AudioSource activeSource = sources[currentSourceIndex];
         AudioSource inactiveSource = sources[1 - currentSourceIndex];

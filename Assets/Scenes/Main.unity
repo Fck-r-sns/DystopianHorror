@@ -364,7 +364,7 @@ MonoBehaviour:
   musicSource1: {fileID: 396468530}
   musicSource2: {fileID: 396468529}
   interfaceSoundSource: {fileID: 396468528}
-  maxVolume: 0.3
+  maxVolume: 0.5
   crossFadeRate: 0.6
   prologueMusic: {fileID: 8300000, guid: e3053b33de0b8a54f8fa03cf90751794, type: 3}
   coreLowMadnessMusic: {fileID: 8300000, guid: 7b33c8f2442ceac43b05939be6f49f19, type: 3}
@@ -372,8 +372,10 @@ MonoBehaviour:
     type: 3}
   coreHighMadnessMusic: {fileID: 8300000, guid: e9b61bedf4f496143bf6566a9d1ef6c1,
     type: 3}
-  badEpilogueMusic: {fileID: 8300000, guid: a42a77136a2629349a8a1da60834a2f4, type: 3}
-  goodEpilogueMusic: {fileID: 8300000, guid: b98116a33fc8b79409a69cd739a0fab0, type: 3}
+  positiveEpilogueMusic: {fileID: 8300000, guid: b98116a33fc8b79409a69cd739a0fab0,
+    type: 3}
+  negativeEpilogueMusic: {fileID: 8300000, guid: a42a77136a2629349a8a1da60834a2f4,
+    type: 3}
   grabBookSound: {fileID: 8300000, guid: 25fce2d32ef0a344abfc82639f03df87, type: 3}
   grabKeySound: {fileID: 8300000, guid: db6e4ea141f633b4fbc4210d8dc93580, type: 3}
 --- !u!4 &396468532
@@ -398,7 +400,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.9
+      value: -27.82
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -406,7 +408,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.5
+      value: 49.59
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalRotation.x
