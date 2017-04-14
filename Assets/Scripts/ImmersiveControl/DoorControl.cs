@@ -21,8 +21,15 @@ namespace Immersive {
         [SerializeField]
         private float forceMultiplier = 3.5f;
 
+        [SerializeField]
+        private Transform gesturePosition;
+
+        [SerializeField]
+        private Texture2D gestureTexture;
+
         private Door door;
         private float direction = 1.0f;
+        private bool drawGesture = false;
 
         private void Start()
         {
@@ -31,10 +38,12 @@ namespace Immersive {
 
         public void OnHoverOn(Vector3 from)
         {
+            drawGesture = true;
         }
 
         public void OnHoverOut(Vector3 from)
         {
+            drawGesture = false;
         }
 
         public void OnAcquire(Vector3 from)
@@ -67,6 +76,18 @@ namespace Immersive {
             {
                 Vector2 force = (new Vector2(xAxis, yAxis) * direction).normalized * forceMultiplier;
                 door.addAngle(force.y + force.x);
+            }
+        }
+
+        private void OnGUI()
+        {
+            if (drawGesture)
+            {
+                Camera cam = Camera.main;
+                Vector3 pos = gesturePosition.position;
+                pos = cam.WorldToViewportPoint(pos);
+                pos = cam.ViewportToScreenPoint(pos);
+                GUI.DrawTexture(new Rect(pos.x, cam.pixelHeight - pos.y, gestureTexture.width, gestureTexture.height), gestureTexture);
             }
         }
     }
