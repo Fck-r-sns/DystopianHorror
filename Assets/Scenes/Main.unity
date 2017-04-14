@@ -524,6 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769937865}
   - component: {fileID: 1769937864}
+  - component: {fileID: 1769937866}
   m_Layer: 0
   m_Name: ItemsManager
   m_TagString: Untagged
@@ -549,7 +550,9 @@ MonoBehaviour:
   - {fileID: 1734441160833564, guid: 403f42e8194a8a44da7c0869a47a6a0a, type: 2}
   - {fileID: 1584660416975222, guid: 6a18604ddaa24034585f5fe9f22647f6, type: 2}
   worldState: {fileID: 1154527652}
-  keysSpawningPredicate: {fileID: 0}
+  keysSpawningPredicate:
+    predicates:
+    - {fileID: 1769937866}
 --- !u!4 &1769937865
 Transform:
   m_ObjectHideFlags: 0
@@ -563,6 +566,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1769937866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769937863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6118d3f06e2fd164b97537d96da1a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerBound: 0
+  upperBound: 2147483647
 --- !u!1 &1838398940
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +608,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
+  prologueSceneName: 
+  hallSceneName: 
+  positiveEpilogueSceneName: 
+  negativeEpilogueSceneName: 
   roomNames:
   - ChemistryRoomNormal
   - PhysicsClassNormal
