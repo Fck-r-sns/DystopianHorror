@@ -1821,16 +1821,21 @@ MonoBehaviour:
   loadNegativeEpilogue: 0
   negativeEpilogueSceneName: NegativeEpilogue
   roomNames:
+  - ChairRoomNormal
+  - ChairRoomMad1
+  - ChairRoomMad2
   - ChemistryRoomNormal
-  - PhysicsClassNormal
-  - NormalClass1
-  - ChairRoom
-  - NegotiationRoom
-  - StrangeTablesRoom
-  - ComputerRoomNormal
   - ChemistryRoomMad
-  - NegotiationRoomMad
+  - ClassWithRoundTablesNormal
+  - ClassWithRoundTablesMad
+  - ComputerRoomNormal
   - ComputerRoomMad
+  - NegotiationRoomNormal
+  - NegotiationRoomMad
+  - PhysicsClassNormal
+  - PhysicsClassMad
+  - StrangeTablesRoomNormal
+  - StrangeTablesRoomMad
 --- !u!4 &1838398942
 Transform:
   m_ObjectHideFlags: 0

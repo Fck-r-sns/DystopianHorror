@@ -12,26 +12,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Prototypes/RoomsShuffling/Room3.unity
   - enabled: 1
-    path: Assets/Scenes/Rooms/ChemistryRoomNormal.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/ChemistryRoomMad.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/NormalClass1.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/PhysicsClassNormal.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/StrangeTablesRoom.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/ChairRoom.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/NegotiationRoom.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/NegotiationRoomMad.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/ComputerRoom.unity
-  - enabled: 1
-    path: Assets/Scenes/Rooms/ComputerRoomMad.unity
-  - enabled: 1
     path: Assets/Scenes/Hall.unity
   - enabled: 1
     path: Assets/Scenes/Main.unity
@@ -39,3 +19,33 @@ EditorBuildSettings:
     path: Assets/Scenes/PositiveEpilogue.unity
   - enabled: 1
     path: Assets/Scenes/Prologue.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChairRoomMad1.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChairRoomMad2.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChairRoomNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChemistryRoomMad.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ChemistryRoomNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ClassWithRoundTablesMad.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ClassWithRoundTablesNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ComputerRoomMad.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ComputerRoomNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/NegotiationRoomMad.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/NegotiationRoomNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/PhysicsClassMad.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/PhysicsClassNormal.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StrangeTablesRoomMad.unity
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StrangeTablesRoomNormal.unity
