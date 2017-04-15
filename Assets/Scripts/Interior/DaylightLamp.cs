@@ -9,7 +9,8 @@ public class DaylightLamp : MonoBehaviour
     {
         Off,
         On,
-        Broken
+        Broken,
+        BrokenOn,
     }
 
     [SerializeField]
@@ -24,6 +25,9 @@ public class DaylightLamp : MonoBehaviour
     [SerializeField]
     private GameObject brokenObject;
 
+    [SerializeField]
+    private GameObject brokenOnObject;
+
     private Dictionary<State, GameObject> objects = new Dictionary<State, GameObject>();
     private State state;
 
@@ -33,6 +37,7 @@ public class DaylightLamp : MonoBehaviour
         objects.Add(State.Off, offObject);
         objects.Add(State.On, onObject);
         objects.Add(State.Broken, brokenObject);
+        objects.Add(State.BrokenOn, brokenOnObject);
         ApplyState(initialState);
     }
 
