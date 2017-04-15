@@ -93,11 +93,11 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     {
         if (sources[currentSourceIndex].isPlaying)
         {
+            StopAllCoroutines();
             StartCoroutine(ChangeAudioWithFading(clip));
         }
         else
         {
-            currentSourceIndex = 1 - currentSourceIndex;
             AudioSource s = sources[currentSourceIndex];
             s.clip = clip;
             s.Play();
@@ -108,22 +108,21 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     {
         AudioSource activeSource = sources[currentSourceIndex];
         AudioSource inactiveSource = sources[1 - currentSourceIndex];
+        currentSourceIndex = 1 - currentSourceIndex;
 
         inactiveSource.volume = 0;
         inactiveSource.clip = clip;
         inactiveSource.Play();
 
         float crossFadeRate = maxVolume / crossFadeTime;
-        while (activeSource.volume > 0)
+        while ((activeSource.volume > 0) || (inactiveSource.volume < maxVolume))
         {
             float delta = crossFadeRate * Time.deltaTime;
-            activeSource.volume -= delta;
-            inactiveSource.volume += delta;
+            activeSource.volume -= Mathf.Min(delta, activeSource.volume);
+            inactiveSource.volume += Mathf.Min(delta, 1.0f - inactiveSource.volume);
             inactiveSource.volume = Mathf.Min(inactiveSource.volume, maxVolume);
             yield return null;
         }
-
-        currentSourceIndex = 1 - currentSourceIndex;
     }
 
     private void ProcessItemCollectedEvent(ItemCollectedEvent e)
@@ -188,6 +187,5 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
             ChangeAudio(negativeEpilogueMusic);
             return;
         }
-
     }
 }
