@@ -13,16 +13,25 @@ public class RoomsManager : MonoBehaviour
     private WorldState worldState;
 
     [SerializeField]
-    private bool loadScenes = true;
+    private bool loadPrologue = true;
 
     [SerializeField]
     private string prologueSceneName;
 
     [SerializeField]
+    private bool loadHall = true;
+
+    [SerializeField]
     private string hallSceneName;
 
     [SerializeField]
+    private bool loadPositiveEpilogue = true;
+
+    [SerializeField]
     private string positiveEpilogueSceneName;
+
+    [SerializeField]
+    private bool loadNegativeEpilogue = true;
 
     [SerializeField]
     private string negativeEpilogueSceneName;
@@ -47,25 +56,25 @@ public class RoomsManager : MonoBehaviour
     {
         managers.Add(id, this);
 
-        if (loadScenes)
+        if (loadPrologue)
         {
             SceneManager.LoadSceneAsync(prologueSceneName, LoadSceneMode.Additive);
         }
         StartCoroutine(WaitForLoadingAndInitRoomScene(prologueSceneName));
 
-        if (loadScenes)
+        if (loadHall)
         {
             SceneManager.LoadSceneAsync(hallSceneName, LoadSceneMode.Additive);
         }
         StartCoroutine(WaitForLoadingAndInitRoomScene(hallSceneName));
 
-        if (loadScenes)
+        if (loadPositiveEpilogue)
         {
             SceneManager.LoadSceneAsync(positiveEpilogueSceneName, LoadSceneMode.Additive);
         }
         StartCoroutine(WaitForLoadingAndInitRoomScene(positiveEpilogueSceneName));
 
-        if (loadScenes)
+        if (loadNegativeEpilogue)
         {
             SceneManager.LoadSceneAsync(negativeEpilogueSceneName, LoadSceneMode.Additive);
         }

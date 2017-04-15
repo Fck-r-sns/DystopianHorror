@@ -21,7 +21,7 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
     private Transform movementTarget;
 
     [SerializeField]
-    private GameObject nature;
+    private GameObject light;
 
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
@@ -36,7 +36,7 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
             {
                 RenderSettings.fog = false;
                 camera.gameObject.GetComponent<UnityStandardAssets.CinematicEffects.AmbientOcclusion>().enabled = false;
-                nature.SetActive(true);
+                light.SetActive(true);
                 controller.SetMouseLookEnabled(false);
                 controller.SetHeadBobEnabled(false);
                 controller.enabled = false;
