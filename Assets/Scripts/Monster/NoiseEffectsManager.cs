@@ -49,6 +49,11 @@ public class NoiseEffectsManager : MonoBehaviour, IEventSubscriber
     private bool monsterInFrustum = false;
     private bool monsterInPlainSight = false;
 
+    public void SetMonster(Transform monster)
+    {
+        this.monster = monster;
+    }
+
     public void OnReceived(EBEvent e)
     {
         switch (e.type)

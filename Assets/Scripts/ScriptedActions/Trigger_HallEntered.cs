@@ -21,6 +21,9 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private RoomEntry roomEntry;
 
+    [SerializeField]
+    private GameObject monster;
+
     private int address = AddressProvider.GetFreeAddress();
     private static bool triggered = false;
     
@@ -65,6 +68,12 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
             Dispatcher.SendEvent(new EBEvent() { type = EBEventType.HallEntered });
             door.Close();
             door.Lock();
+            if (other.gameObject.tag.Equals("Player"))
+            {
+                monster.GetComponent<MonsterBehaviour>().SetMainTarget(other.transform);
+                monster.GetComponent<CameraVisibilityChecker>().SetCamera(other.gameObject.GetComponentInChildren<Camera>());
+                other.gameObject.GetComponentInChildren<NoiseEffectsManager>().SetMonster(monster.transform);
+            }
         }
     }
 

@@ -1178,6 +1178,7 @@ MonoBehaviour:
   mode: 0
   door: {fileID: 639286196}
   roomEntry: {fileID: 359261823}
+  monster: {fileID: 646949504}
 --- !u!65 &346093775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1663,7 +1664,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e756831ee13a951408c633fa71e80560, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6b8dc9d8db1540347b7bfcb66e019932, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.78
   m_Pitch: 1
@@ -3747,6 +3748,7 @@ MonoBehaviour:
   mode: 1
   door: {fileID: 639286196}
   roomEntry: {fileID: 359261823}
+  monster: {fileID: 646949504}
 --- !u!65 &1661023038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3970,7 +3972,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1762007783810258, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4943606478628800, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_LocalScale.x
@@ -3984,7 +3986,8 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114334473178488992, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1798238271 stripped

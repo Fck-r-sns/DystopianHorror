@@ -54,6 +54,11 @@ public class MonsterBehaviour : MonoBehaviour
     private int currentWaypointIndex = -1;
     private bool inPlainSight = false;
 
+    public void SetMainTarget(Transform target)
+    {
+        mainTarget = target;
+    }
+
     // Use this for initialization
     void Start()
     {

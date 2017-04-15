@@ -18,6 +18,11 @@ public class CameraVisibilityChecker : MonoBehaviour {
         return visible;
     }
 
+    public void SetCamera(Camera camera)
+    {
+        this.camera = camera;
+    }
+
     private void Awake()
     {
         targetCollider = GetComponent<Collider>();
