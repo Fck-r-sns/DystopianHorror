@@ -42,6 +42,9 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField]
     private AudioClip[] m_FootstepRunSounds;    // an array of footstep sounds that will be randomly selected from.
 
+    [SerializeField]
+    private AudioClip[] m_FallingSounds;    // an array of sounds that will be randomly selected from.
+
     private Camera m_Camera;
     private float m_YRotation;
     private Vector2 m_Input;
@@ -63,6 +66,12 @@ public class FirstPersonController : MonoBehaviour
     public void SetHeadBobEnabled(bool enabled)
     {
         m_UseHeadBob = enabled;
+    }
+
+    public void PlayFallingSound()
+    {
+        int index = Random.Range(0, m_FallingSounds.Length);
+        m_AudioSource.PlayOneShot(m_FallingSounds[index]);
     }
 
     // Use this for initialization

@@ -46,12 +46,18 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
         float startTime = Time.time;
         Quaternion from = controller.transform.rotation;
         Quaternion to = Quaternion.LookRotation(Vector3.up, controller.transform.right);
+        bool soundPlayed = false;
         float t = 0.0f;
         while (t < 1.0f)
         {
             t = (Time.time - startTime) / catchAnimationTime;
             Quaternion rotation = Quaternion.Slerp(from, to, t);
             controller.transform.rotation = rotation;
+            if ((t > 0.7f) && !soundPlayed)
+            {
+                controller.PlayFallingSound();
+                soundPlayed = true;
+            }
             yield return null;
         }
         cameraFading.FadeToBlack();

@@ -325,6 +325,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b1126ae9d56c785458d34dae6d6f3591, type: 3}
   - {fileID: 8300000, guid: 60edbeb62c8c6334eb766e2dda1a12bd, type: 3}
   - {fileID: 8300000, guid: 3861dce2c8e5975458ed147cc452e262, type: 3}
+  m_FallingSounds:
+  - {fileID: 8300000, guid: 44a5316525cd0734a8158202a13b803d, type: 3}
 --- !u!114 &114124154025900106
 MonoBehaviour:
   m_ObjectHideFlags: 1
