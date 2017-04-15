@@ -635,6 +635,7 @@ MonoBehaviour:
   - StrangeRoom1
   - StrangeRoom2
   - StrangeRoom3
+  monsterRoomName: StrangeRoom3
 --- !u!4 &1838398942
 Transform:
   m_ObjectHideFlags: 0

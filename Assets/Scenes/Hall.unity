@@ -3516,6 +3516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catchAnimationTime: 0.5
+  roomsManagerId: School
 --- !u!1 &1637384787
 GameObject:
   m_ObjectHideFlags: 0

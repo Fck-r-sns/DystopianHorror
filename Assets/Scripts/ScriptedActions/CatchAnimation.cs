@@ -10,16 +10,21 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private float catchAnimationTime = 2.0f;
 
+    [SerializeField]
+    private string roomsManagerId = "School";
+
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
     private CameraFading cameraFading;
     private FirstPersonController controller;
+    private RoomsManager roomsManager;
 
     public void Init(Camera camera, CameraFading cameraFading, FirstPersonController controller)
     {
         this.camera = camera;
         this.cameraFading = cameraFading;
         this.controller = controller;
+        roomsManager = RoomsManager.GetManager(roomsManagerId);
     }
 
     public void OnReceived(EBEvent e)
@@ -61,6 +66,13 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
             yield return null;
         }
         cameraFading.FadeToBlack();
+        yield return new WaitForSeconds(1.0f);
+
+        RoomScene room = roomsManager.GetMonsterRoom();
+        RoomEntry entry = roomsManager.GetRandomRoomEntry();
+        room.ClearCollectibles();
+        entry.AttachRoom(room);
+        entry.SetSpawningEnabled(false);
     }
 
     private IEnumerator AnimateRestoration()

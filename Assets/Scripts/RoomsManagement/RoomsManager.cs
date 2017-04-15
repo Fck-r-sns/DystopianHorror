@@ -39,6 +39,9 @@ public class RoomsManager : MonoBehaviour
     [SerializeField]
     private string[] roomNames;
 
+    [SerializeField]
+    private string monsterRoomName;
+
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
     private List<RoomEntry> roomEntries = new List<RoomEntry>();
     private List<RoomScene> roomScenes = new List<RoomScene>();
@@ -46,6 +49,7 @@ public class RoomsManager : MonoBehaviour
     private RoomScene hallScene;
     private RoomScene positiveEpilogueScene;
     private RoomScene negativeEpilogueScene;
+    private RoomScene monsterRoom;
 
     public static RoomsManager GetManager(string sceneName)
     {
@@ -88,81 +92,90 @@ public class RoomsManager : MonoBehaviour
     }
 
     public void RegisterRoomEntry(RoomEntry door)
-{
-    roomEntries.Add(door);
-}
-
-public RoomEntry GetRandomRoomEntry()
-{
-    List<RoomEntry> filtered = new List<RoomEntry>(roomEntries.Count);
-    foreach (RoomEntry re in roomEntries)
     {
-        if (re.CheckPredicate(worldState))
+        roomEntries.Add(door);
+    }
+
+    public RoomEntry GetRandomRoomEntry()
+    {
+        List<RoomEntry> filtered = new List<RoomEntry>(roomEntries.Count);
+        foreach (RoomEntry re in roomEntries)
         {
-            filtered.Add(re);
+            if (re.CheckPredicate(worldState))
+            {
+                filtered.Add(re);
+            }
+        }
+        int index = Random.Range(0, filtered.Count);
+        return filtered[index];
+    }
+
+    public RoomScene GetRandomRoomScene()
+    {
+        List<RoomScene> filtered = new List<RoomScene>(roomScenes.Count);
+        foreach (RoomScene rs in roomScenes)
+        {
+            if (rs.CheckPredicate(worldState))
+            {
+                filtered.Add(rs);
+            }
+        }
+        int index = Random.Range(0, filtered.Count);
+        return filtered[index];
+    }
+
+    public RoomScene GetMonsterRoom()
+    {
+        return monsterRoom;
+    }
+
+    public void UnloadPrologue()
+    {
+        prologueScene.SetEnabled(false);
+        SceneManager.UnloadSceneAsync(prologueSceneName);
+    }
+
+    private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
+    {
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+        if (!scene.IsValid())
+        {
+            yield break;
+        }
+        yield return new WaitUntil(() => scene.isLoaded);
+        GameObject root = scene.GetRootGameObjects()[0];
+        RoomScene roomScene = root.GetComponent<RoomScene>();
+        roomScene.SetScene(scene);
+
+        // hack, i don't like it
+        if (sceneName.Equals(prologueSceneName))
+        {
+            prologueScene = roomScene;
+        }
+        else if (sceneName.Equals(hallSceneName))
+        {
+            hallScene = roomScene;
+        }
+        else if (sceneName.Equals(positiveEpilogueSceneName))
+        {
+            positiveEpilogueScene = roomScene;
+        }
+        else if (sceneName.Equals(negativeEpilogueSceneName))
+        {
+            negativeEpilogueScene = roomScene;
+        }
+        else
+        {
+            root.transform.position = new Vector3(-100, 0, -100);
+            roomScenes.Add(roomScene);
+            yield return null;
+            yield return null;
+            roomScene.SetEnabled(false);
+            if (sceneName.Equals(monsterRoomName))
+            {
+                monsterRoom = roomScene;
+            }
         }
     }
-    int index = Random.Range(0, filtered.Count);
-    return filtered[index];
-}
-
-public RoomScene GetRandomRoomScene()
-{
-    List<RoomScene> filtered = new List<RoomScene>(roomScenes.Count);
-    foreach (RoomScene rs in roomScenes)
-    {
-        if (rs.CheckPredicate(worldState))
-        {
-            filtered.Add(rs);
-        }
-    }
-    int index = Random.Range(0, filtered.Count);
-    return filtered[index];
-}
-
-public void UnloadPrologue()
-{
-    prologueScene.SetEnabled(false);
-    SceneManager.UnloadSceneAsync(prologueSceneName);
-}
-
-private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
-{
-    Scene scene = SceneManager.GetSceneByName(sceneName);
-    if (!scene.IsValid())
-    {
-        yield break;
-    }
-    yield return new WaitUntil(() => scene.isLoaded);
-    GameObject root = scene.GetRootGameObjects()[0];
-    RoomScene roomScene = root.GetComponent<RoomScene>();
-    roomScene.SetScene(scene);
-
-    // hack, i don't like it
-    if (sceneName.Equals(prologueSceneName))
-    {
-        prologueScene = roomScene;
-    }
-    else if (sceneName.Equals(hallSceneName))
-    {
-        hallScene = roomScene;
-    }
-    else if (sceneName.Equals(positiveEpilogueSceneName))
-    {
-        positiveEpilogueScene = roomScene;
-    }
-    else if (sceneName.Equals(negativeEpilogueSceneName))
-    {
-        negativeEpilogueScene = roomScene;
-    }
-    else
-    {
-        root.transform.position = new Vector3(-100, 0, -100);
-        roomScenes.Add(roomScene);
-        yield return null;
-        yield return null;
-        roomScene.SetEnabled(false);
-    }
-}
 
 }
