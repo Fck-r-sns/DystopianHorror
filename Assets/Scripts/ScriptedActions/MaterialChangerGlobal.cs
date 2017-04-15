@@ -17,7 +17,7 @@ public class MaterialChangerGlobal : MonoBehaviour, IEventSubscriber
                 if (!isMad)
                 {
                     isMad = true;
-                    Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeWallsToMadRequest });
+                    Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeStateToMadRequest });
                 }
             }
             else
@@ -25,7 +25,7 @@ public class MaterialChangerGlobal : MonoBehaviour, IEventSubscriber
                 if (isMad)
                 {
                     isMad = false;
-                    Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeWallsToNormalRequest });
+                    Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeStateToNormalRequest });
                 }
             }
         }

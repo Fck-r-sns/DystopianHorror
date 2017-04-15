@@ -31,6 +31,11 @@ public class DaylightLamp : MonoBehaviour
     private Dictionary<State, GameObject> objects = new Dictionary<State, GameObject>();
     private State state;
 
+    public void SetState(State state)
+    {
+        ApplyState(state);
+    }
+
     // Use this for initialization
     void Start()
     {

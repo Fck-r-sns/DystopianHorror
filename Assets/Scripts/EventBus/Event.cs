@@ -25,8 +25,8 @@ namespace EventBus
         NegativeEpilogueEntered,
         WorldStateChanged,
         InteractionWithDoor,
-        ChangeWallsToNormalRequest,
-        ChangeWallsToMadRequest
+        ChangeStateToNormalRequest,
+        ChangeStateToMadRequest
     }
 
     public enum TriggerAction

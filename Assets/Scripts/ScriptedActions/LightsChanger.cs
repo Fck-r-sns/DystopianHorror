@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
 using EventBus;
 
-public class MaterialChanger : MonoBehaviour, IEventSubscriber
+public class LightsChanger : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]
-    private Material normalMaterial;
+    private DaylightLamp.State normalState = DaylightLamp.State.On;
 
     [SerializeField]
-    private Material madMaterial;
+    private DaylightLamp.State madState = DaylightLamp.State.BrokenOn;
 
     private int address = AddressProvider.GetFreeAddress();
 
@@ -17,16 +20,17 @@ public class MaterialChanger : MonoBehaviour, IEventSubscriber
         switch (e.type)
         {
             case EBEventType.ChangeStateToNormalRequest:
-                GetComponent<Renderer>().material = normalMaterial;
+                ChangeLampsStates(normalState);
                 break;
 
             case EBEventType.ChangeStateToMadRequest:
-                GetComponent<Renderer>().material = madMaterial;
+                ChangeLampsStates(madState);
                 break;
         }
     }
 
-    private void Start () {
+    private void Start()
+    {
         Dispatcher.Subscribe(EBEventType.ChangeStateToNormalRequest, address, gameObject);
         Dispatcher.Subscribe(EBEventType.ChangeStateToMadRequest, address, gameObject);
     }
@@ -37,4 +41,15 @@ public class MaterialChanger : MonoBehaviour, IEventSubscriber
         Dispatcher.Unsubscribe(EBEventType.ChangeStateToMadRequest, address);
     }
 
+    private void ChangeLampsStates(DaylightLamp.State state)
+    {
+        foreach (Transform child in transform)
+        {
+            DaylightLamp lamp = child.GetComponent<DaylightLamp>();
+            if (lamp != null)
+            {
+                lamp.SetState(state);
+            }
+        }
+    }
 }
