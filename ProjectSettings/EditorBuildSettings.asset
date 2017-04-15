@@ -24,6 +24,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/StrangeRoom3.unity
   - enabled: 1
+    path: Assets/Scenes/Rooms/ComputerRoom.unity
+  - enabled: 1
     path: Assets/Scenes/Hall.unity
   - enabled: 1
     path: Assets/Scenes/Main.unity

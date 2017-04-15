@@ -154,6 +154,7 @@ public class RoomsManager : MonoBehaviour
         GameObject root = scene.GetRootGameObjects()[0];
         RoomScene roomScene = root.GetComponent<RoomScene>();
         roomScene.SetScene(scene);
+        roomScene.SetSceneName(sceneName);
 
         // hack, i don't like it
         if (sceneName.Equals(prologueSceneName))

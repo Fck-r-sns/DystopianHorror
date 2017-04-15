@@ -5,10 +5,7 @@ public class RoomScene : MonoBehaviour
 {
 
     [SerializeField]
-    private string sceneName;
-
-    [SerializeField]
-    private Predicate predicate;
+    private CompositePredicate predicate;
 
     [SerializeField]
     private Transform[] collectiblePlaceholders;
@@ -17,6 +14,7 @@ public class RoomScene : MonoBehaviour
     private Transform[] wakeUpPositions;
 
     private Scene scene;
+    private string sceneName;
     private bool collectibleFound = false;
 
     public bool CheckPredicate(WorldState world)
@@ -78,6 +76,11 @@ public class RoomScene : MonoBehaviour
     public void SetScene(Scene scene)
     {
         this.scene = scene;
+    }
+
+    public void SetSceneName(string sceneName)
+    {
+        this.sceneName = sceneName;
     }
 
     public void SetEnabled(bool enabled)
