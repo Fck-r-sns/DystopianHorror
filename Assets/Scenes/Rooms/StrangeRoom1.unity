@@ -1783,6 +1783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1681505984}
   - component: {fileID: 1681505985}
+  - component: {fileID: 1681505986}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -1819,14 +1820,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaf317193a744e40a9441314fe10dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: StrangeRoom1
-  predicate: {fileID: 0}
+  predicate:
+    predicates:
+    - {fileID: 1681505986}
   collectiblePlaceholders:
   - {fileID: 221235184}
   - {fileID: 1311622918}
   - {fileID: 688490133}
   - {fileID: 1680917029}
   - {fileID: 1354920040}
+  wakeUpPositions: []
+--- !u!114 &1681505986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681505983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcff30f76e177040bcaa24ca35951dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerBound: 30
+  upperBound: 100
 --- !u!1001 &1707035662
 Prefab:
   m_ObjectHideFlags: 0

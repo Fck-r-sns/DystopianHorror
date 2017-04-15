@@ -1814,7 +1814,7 @@ MonoBehaviour:
   worldState: {fileID: 1154527652}
   loadPrologue: 0
   prologueSceneName: Prologue
-  loadHall: 0
+  loadHall: 1
   hallSceneName: Hall
   loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue

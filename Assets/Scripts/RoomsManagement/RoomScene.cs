@@ -19,11 +19,7 @@ public class RoomScene : MonoBehaviour
 
     public bool CheckPredicate(WorldState world)
     {
-        if (predicate == null)
-        {
-            return true;
-        }
-        return predicate.Check(world);
+		return (predicate != null) && predicate.Check(world);
     }
 
     public bool IsWakeUpRoom()
