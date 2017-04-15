@@ -6841,6 +6841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b07654106039c4cabe340f59d5a8ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door: {fileID: 1243084701}
 --- !u!65 &582138105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13894,6 +13895,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 442488, guid: ec78ebca7517fb745a45a931cb06d2bd, type: 2}
   m_PrefabInternal: {fileID: 1239759895}
+--- !u!114 &1243084701 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114917259922659318, guid: 8c2c80a64909fe34f89b73b1a402a491,
+    type: 2}
+  m_PrefabInternal: {fileID: 1138351522}
+  m_Script: {fileID: 11500000, guid: 427ee8f9fe03bd24bbb24a4a465df25d, type: 3}
 --- !u!1001 &1244667327
 Prefab:
   m_ObjectHideFlags: 0
@@ -17850,7 +17857,7 @@ MonoBehaviour:
   director: {fileID: 1659807155}
   rotationTarget: {fileID: 928559893}
   movementTarget: {fileID: 668862211}
-  nature: {fileID: 1790905886}
+  light: {fileID: 1731020266}
 --- !u!1001 &1664103653
 Prefab:
   m_ObjectHideFlags: 0
@@ -18394,7 +18401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1731020267
 Transform:
   m_ObjectHideFlags: 0
@@ -18437,7 +18444,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
   m_ShadowRadius: 0
@@ -18952,7 +18959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1790905887
 Transform:
   m_ObjectHideFlags: 0

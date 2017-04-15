@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: fb3b9b55c01d2194c816b2d469854e16, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -400,7 +400,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.46
+      value: 53.29
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -620,10 +620,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
-  loadScenes: 0
+  loadPrologue: 0
   prologueSceneName: Prologue
+  loadHall: 0
   hallSceneName: Hall
+  loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue
+  loadNegativeEpilogue: 0
   negativeEpilogueSceneName: NegativeEpilogue
   roomNames:
   - ChemistryRoomNormal
