@@ -21,6 +21,7 @@ public class CameraFading : MonoBehaviour
     {
         Normal,
         FadeIn,
+        Faded,
         FadeOut
     }
 
@@ -53,15 +54,37 @@ public class CameraFading : MonoBehaviour
                 break;
 
             case State.FadeIn:
-                alpha += Time.deltaTime / fadingTime;
-                alpha = Mathf.Clamp01(alpha);
-                Color color = GUI.color;
-                color.a = alpha;
-                GUI.color = color;
+                {
+                    alpha += Time.deltaTime / fadingTime;
+                    alpha = Mathf.Clamp01(alpha);
+                    Color color = GUI.color;
+                    color.a = alpha;
+                    GUI.color = color;
+                    GUI.DrawTexture(camera.pixelRect, currentTexture);
+                    if (alpha >= 1.0f)
+                    {
+                        state = State.Faded;
+                    }
+                }
+                break;
+
+            case State.Faded:
                 GUI.DrawTexture(camera.pixelRect, currentTexture);
                 break;
 
             case State.FadeOut:
+                {
+                    alpha -= Time.deltaTime / fadingTime;
+                    alpha = Mathf.Clamp01(alpha);
+                    Color color = GUI.color;
+                    color.a = alpha;
+                    GUI.color = color;
+                    GUI.DrawTexture(camera.pixelRect, currentTexture);
+                    if (alpha <= 0.0f)
+                    {
+                        state = State.Normal;
+                    }
+                }
                 break;
         }
     }
