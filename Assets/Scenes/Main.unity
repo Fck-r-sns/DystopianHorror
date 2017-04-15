@@ -629,11 +629,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
-  loadPrologue: 0
+  loadPrologue: 1
   prologueSceneName: Prologue
   loadHall: 0
   hallSceneName: Hall
-  loadPositiveEpilogue: 0
+  loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue
   loadNegativeEpilogue: 0
   negativeEpilogueSceneName: NegativeEpilogue

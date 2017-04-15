@@ -24,6 +24,9 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private GameObject monster;
 
+    [SerializeField]
+    private CatchAnimation catchAnimation;
+
     private int address = AddressProvider.GetFreeAddress();
     private static bool triggered = false;
     
@@ -73,6 +76,10 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
                 monster.GetComponent<MonsterBehaviour>().SetMainTarget(other.transform);
                 monster.GetComponent<CameraVisibilityChecker>().SetCamera(other.gameObject.GetComponentInChildren<Camera>());
                 other.gameObject.GetComponentInChildren<NoiseEffectsManager>().SetMonster(monster.transform);
+                catchAnimation.Init(
+                    other.gameObject.GetComponentInChildren<Camera>(),
+                    other.gameObject.GetComponent<FirstPersonController>()
+                    );
             }
         }
     }

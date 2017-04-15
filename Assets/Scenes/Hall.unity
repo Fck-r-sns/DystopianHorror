@@ -1179,6 +1179,7 @@ MonoBehaviour:
   door: {fileID: 639286196}
   roomEntry: {fileID: 359261823}
   monster: {fileID: 646949504}
+  catchAnimation: {fileID: 1616597195}
 --- !u!65 &346093775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3554,6 +3555,100 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7e46dad533f75849a080dfc115a4539, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1572886409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1572886410}
+  - component: {fileID: 1572886411}
+  - component: {fileID: 1572886412}
+  m_Layer: 0
+  m_Name: CatchLogic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1572886410
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1572886409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1135187851}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1572886411
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1572886409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1572886412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1572886409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a878e3999e26da44b46aef8b66b015b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1616597193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1616597194}
+  - component: {fileID: 1616597195}
+  m_Layer: 0
+  m_Name: CatchAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616597194
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616597193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1811976346}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1616597195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616597193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d566b60c2edd3644bc166c412ee8cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catchAnimationTime: 0.5
 --- !u!1 &1637384787
 GameObject:
   m_ObjectHideFlags: 0
@@ -3749,6 +3844,7 @@ MonoBehaviour:
   door: {fileID: 639286196}
   roomEntry: {fileID: 359261823}
   monster: {fileID: 646949504}
+  catchAnimation: {fileID: 1616597195}
 --- !u!65 &1661023038
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3986,6 +4082,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114334473178488992, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
@@ -4033,6 +4134,7 @@ Transform:
   - {fileID: 1135187851}
   - {fileID: 346093773}
   - {fileID: 1661023036}
+  - {fileID: 1616597194}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
