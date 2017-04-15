@@ -23,6 +23,9 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private GameObject light;
 
+    [SerializeField]
+    private AudioSource birds;
+
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
     private FirstPersonController controller;
@@ -40,6 +43,7 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
                 controller.SetMouseLookEnabled(false);
                 controller.SetHeadBobEnabled(false);
                 controller.enabled = false;
+                birds.Play();
                 director.StartAnimating(camera, rotationTarget, movementTarget);
             }
         }
