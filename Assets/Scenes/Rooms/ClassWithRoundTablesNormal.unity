@@ -2591,7 +2591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowerBound: 0
-  upperBound: 100
+  upperBound: 49
 --- !u!1 &1694456033
 GameObject:
   m_ObjectHideFlags: 0

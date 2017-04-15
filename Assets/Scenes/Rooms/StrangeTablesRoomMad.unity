@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcff30f76e177040bcaa24ca35951dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerBound: 70
+  lowerBound: 50
   upperBound: 100
 --- !u!1001 &1707035662
 Prefab:
