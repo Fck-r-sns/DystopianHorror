@@ -1827,8 +1827,10 @@ MonoBehaviour:
   - ChairRoom
   - NegotiationRoom
   - StrangeTablesRoom
-  - ComputerRoom
+  - ComputerRoomNormal
   - ChemistryRoomMad
+  - NegotiationRoomMad
+  - ComputerRoomMad
 --- !u!4 &1838398942
 Transform:
   m_ObjectHideFlags: 0

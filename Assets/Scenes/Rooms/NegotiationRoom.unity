@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lowerBound: 30
-  upperBound: 100
+  upperBound: 69
 --- !u!1001 &1707035662
 Prefab:
   m_ObjectHideFlags: 0
