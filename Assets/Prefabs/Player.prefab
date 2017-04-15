@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 114362770509119550}
   - component: {fileID: 114519383292392592}
   - component: {fileID: 114423718762979626}
+  - component: {fileID: 114606300614092374}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -62,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565652022338276}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -27.82, y: 1.48, z: 49.59}
+  m_LocalPosition: {x: -12.5, y: 1.03, z: 12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4244226199101694}
@@ -371,7 +372,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645880556462104}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4dad4a985d26b8741a059d2e35014e87, type: 3}
   m_Name: 
@@ -491,6 +492,21 @@ MonoBehaviour:
   gamma: 1
   strength: 0.1
   steps: 5
+--- !u!114 &114606300614092374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1645880556462104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb873c7cce0bfd84cb658e1fde16f138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 20589605494881126}
+  blackFading: {fileID: 2800000, guid: 34ae68c618f05c54a902477bfaddd1fb, type: 3}
+  whiteFading: {fileID: 2800000, guid: c424f091d08e09d4baf8a579e62a1a63, type: 3}
+  fadingTime: 2
 --- !u!114 &114626916414389798
 MonoBehaviour:
   m_ObjectHideFlags: 1

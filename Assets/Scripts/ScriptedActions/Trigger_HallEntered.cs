@@ -78,6 +78,7 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
                 other.gameObject.GetComponentInChildren<NoiseEffectsManager>().SetMonster(monster.transform);
                 catchAnimation.Init(
                     other.gameObject.GetComponentInChildren<Camera>(),
+                    other.gameObject.GetComponentInChildren<CameraFading>(),
                     other.gameObject.GetComponent<FirstPersonController>()
                     );
             }

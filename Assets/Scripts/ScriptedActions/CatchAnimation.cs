@@ -12,11 +12,13 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
 
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
+    private CameraFading cameraFading;
     private FirstPersonController controller;
 
-    public void Init(Camera camera, FirstPersonController controller)
+    public void Init(Camera camera, CameraFading cameraFading, FirstPersonController controller)
     {
         this.camera = camera;
+        this.cameraFading = cameraFading;
         this.controller = controller;
     }
 
@@ -52,6 +54,7 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
             controller.transform.rotation = rotation;
             yield return null;
         }
+        cameraFading.FadeToBlack();
     }
 
     private IEnumerator AnimateRestoration()
