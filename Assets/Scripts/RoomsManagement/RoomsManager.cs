@@ -39,9 +39,6 @@ public class RoomsManager : MonoBehaviour
     [SerializeField]
     private string[] roomNames;
 
-    [SerializeField]
-    private string monsterRoomName;
-
     private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
     private List<RoomEntry> roomEntries = new List<RoomEntry>();
     private List<RoomScene> roomScenes = new List<RoomScene>();
@@ -49,7 +46,6 @@ public class RoomsManager : MonoBehaviour
     private RoomScene hallScene;
     private RoomScene positiveEpilogueScene;
     private RoomScene negativeEpilogueScene;
-    private RoomScene monsterRoom;
 
     public static RoomsManager GetManager(string sceneName)
     {
@@ -124,15 +120,27 @@ public class RoomsManager : MonoBehaviour
         return filtered[index];
     }
 
-    public RoomScene GetMonsterRoom()
+    public RoomScene GetRandomWakeUpRoom()
     {
-        return monsterRoom;
+        List<RoomScene> filtered = new List<RoomScene>(roomScenes.Count);
+        foreach (RoomScene rs in roomScenes)
+        {
+            if (rs.IsWakeUpRoom() && rs.CheckPredicate(worldState))
+            {
+                filtered.Add(rs);
+            }
+        }
+        int index = Random.Range(0, filtered.Count);
+        return filtered[index];
     }
 
     public void UnloadPrologue()
     {
-        prologueScene.SetEnabled(false);
-        SceneManager.UnloadSceneAsync(prologueSceneName);
+        if (prologueScene != null)
+        {
+            prologueScene.SetEnabled(false);
+            SceneManager.UnloadSceneAsync(prologueSceneName);
+        }
     }
 
     private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
@@ -171,10 +179,6 @@ public class RoomsManager : MonoBehaviour
             yield return null;
             yield return null;
             roomScene.SetEnabled(false);
-            if (sceneName.Equals(monsterRoomName))
-            {
-                monsterRoom = roomScene;
-            }
         }
     }
 

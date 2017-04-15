@@ -8,7 +8,16 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]
-    private float catchAnimationTime = 2.0f;
+    private float catchAnimationTime = 0.5f;
+
+    [SerializeField]
+    private float wakeUpTime = 4.0f;
+
+    [SerializeField]
+    private float fadeToBlackTime = 2.0f;
+
+    [SerializeField]
+    private float fadeToNormalTime = 4.0f;
 
     [SerializeField]
     private string roomsManagerId = "School";
@@ -51,6 +60,7 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
         float startTime = Time.time;
         Quaternion from = controller.transform.rotation;
         Quaternion to = Quaternion.LookRotation(Vector3.up, controller.transform.right);
+        float initialY = controller.transform.position.y;
         bool soundPlayed = false;
         float t = 0.0f;
         while (t < 1.0f)
@@ -65,19 +75,32 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
             }
             yield return null;
         }
-        cameraFading.FadeToBlack();
-        yield return new WaitForSeconds(1.0f);
+        cameraFading.FadeToBlack(fadeToBlackTime);
+        yield return new WaitUntil(() => cameraFading.GetState() == CameraFading.State.Faded);
 
-        RoomScene room = roomsManager.GetMonsterRoom();
+        RoomScene room = roomsManager.GetRandomWakeUpRoom();
         RoomEntry entry = roomsManager.GetRandomRoomEntry();
         room.ClearCollectibles();
         entry.AttachRoom(room);
         entry.SetSpawningEnabled(false);
 
-        Vector3 rootOffset = entry.GetRootOffset();
-        Vector3 rootRotation = entry.GetRootRotation();
+        Transform wakeUpPosition = room.GetWakeUpPosition();
+        controller.transform.position = wakeUpPosition.position;
+        controller.transform.rotation = wakeUpPosition.rotation;
 
-        controller.transform.position = rootOffset + room.transform.forward * 4 + room.transform.right * -1;
+        Vector3 eulerAngles = controller.transform.eulerAngles;
+        eulerAngles.x = 0.0f;
+        eulerAngles.z = 0.0f;
+        controller.transform.eulerAngles = eulerAngles;
+
+        Vector3 pos = controller.transform.position;
+        pos.y = initialY;
+        controller.transform.position = pos;
+
+        yield return new WaitForSeconds(wakeUpTime);
+
+        cameraFading.FadeToNormal(fadeToNormalTime);
+        controller.enabled = true;
     }
 
     private IEnumerator AnimateRestoration()

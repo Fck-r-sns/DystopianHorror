@@ -508,7 +508,6 @@ MonoBehaviour:
   camera: {fileID: 20589605494881126}
   blackFading: {fileID: 2800000, guid: 34ae68c618f05c54a902477bfaddd1fb, type: 3}
   whiteFading: {fileID: 2800000, guid: c424f091d08e09d4baf8a579e62a1a63, type: 3}
-  fadingTime: 2
 --- !u!114 &114626916414389798
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,6 +13,9 @@ public class RoomScene : MonoBehaviour
     [SerializeField]
     private Transform[] collectiblePlaceholders;
 
+    [SerializeField]
+    private Transform[] wakeUpPositions;
+
     private Scene scene;
     private bool collectibleFound = false;
 
@@ -23,6 +26,11 @@ public class RoomScene : MonoBehaviour
             return true;
         }
         return predicate.Check(world);
+    }
+
+    public bool IsWakeUpRoom()
+    {
+        return (wakeUpPositions != null) && (wakeUpPositions.Length > 0);
     }
 
     public GameObject GetRoot()
@@ -61,6 +69,12 @@ public class RoomScene : MonoBehaviour
         return collectiblePlaceholders[index];
     }
 
+    public Transform GetWakeUpPosition()
+    {
+        int index = Random.Range(0, wakeUpPositions.Length);
+        return wakeUpPositions[index];
+    }
+
     public void SetScene(Scene scene)
     {
         this.scene = scene;
@@ -76,13 +90,15 @@ public class RoomScene : MonoBehaviour
         return scene.IsValid();
     }
 
-	// Use this for initialization
-	void Awake () {
-        
+    // Use this for initialization
+    void Awake()
+    {
+
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

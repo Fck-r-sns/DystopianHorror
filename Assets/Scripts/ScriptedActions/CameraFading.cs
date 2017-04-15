@@ -5,6 +5,14 @@ using UnityEngine;
 public class CameraFading : MonoBehaviour
 {
 
+    public enum State
+    {
+        Normal,
+        FadeIn,
+        Faded,
+        FadeOut
+    }
+
     [SerializeField]
     private Camera camera;
 
@@ -14,35 +22,33 @@ public class CameraFading : MonoBehaviour
     [SerializeField]
     private Texture2D whiteFading;
 
-    [SerializeField]
-    private float fadingTime = 1.0f;
-
-    private enum State
-    {
-        Normal,
-        FadeIn,
-        Faded,
-        FadeOut
-    }
-
     private State state = State.Normal;
     private Texture2D currentTexture;
     private float alpha = 0.0f;
+    private float fadingTime = 1.0f;
 
-    public void FadeToBlack()
+    public State GetState()
     {
+        return state;
+    }
+
+    public void FadeToBlack(float fadingTime)
+    {
+        this.fadingTime = fadingTime;
         currentTexture = blackFading;
         state = State.FadeIn;
     }
 
-    public void FadeToWhite()
+    public void FadeToWhite(float fadingTime)
     {
+        this.fadingTime = fadingTime;
         currentTexture = whiteFading;
         state = State.FadeIn;
     }
 
-    public void FadeToNormal()
+    public void FadeToNormal(float fadingTime)
     {
+        this.fadingTime = fadingTime;
         state = State.FadeOut;
     }
 
