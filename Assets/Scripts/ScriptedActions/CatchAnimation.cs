@@ -73,6 +73,11 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
         room.ClearCollectibles();
         entry.AttachRoom(room);
         entry.SetSpawningEnabled(false);
+
+        Vector3 rootOffset = entry.GetRootOffset();
+        Vector3 rootRotation = entry.GetRootRotation();
+
+        controller.transform.position = rootOffset + room.transform.forward * 4 + room.transform.right * -1;
     }
 
     private IEnumerator AnimateRestoration()
