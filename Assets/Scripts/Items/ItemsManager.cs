@@ -72,6 +72,6 @@ public class ItemsManager : MonoBehaviour
     {
         //return (100 * WorldState.BOOK_SPAWN_INITIAL_CHANCE - worldState.collectiblesFound) 
         //    / (100 - worldState.roomsVisited);
-        return 1f;
+        return 0.3f;
     }
 }
