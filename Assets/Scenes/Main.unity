@@ -666,11 +666,11 @@ MonoBehaviour:
   crossFadeTime: 4
   prologueMusic: {fileID: 8300000, guid: e3053b33de0b8a54f8fa03cf90751794, type: 3}
   coreLowMadnessMusic: {fileID: 8300000, guid: 7b33c8f2442ceac43b05939be6f49f19, type: 3}
-  coreMediumMadnessMusic: {fileID: 8300000, guid: 58218f0598b419d47a9c60fff814889b,
+  coreMediumMadnessMusic: {fileID: 8300000, guid: 231d3cf41e4406343bedd57e154837b2,
     type: 3}
-  coreHighMadnessMusic: {fileID: 8300000, guid: e9b61bedf4f496143bf6566a9d1ef6c1,
+  coreHighMadnessMusic: {fileID: 8300000, guid: 2264c95909b345f4fa5380df463cef21,
     type: 3}
-  positiveEpilogueMusic: {fileID: 8300000, guid: b98116a33fc8b79409a69cd739a0fab0,
+  positiveEpilogueMusic: {fileID: 8300000, guid: 77cb94ac2d380dc42bd40b355320bfd9,
     type: 3}
   negativeEpilogueMusic: {fileID: 8300000, guid: a42a77136a2629349a8a1da60834a2f4,
     type: 3}
@@ -1044,6 +1044,11 @@ Prefab:
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114023129863629562, guid: 06474a8f900eb974ba50beb50555c9c4,
+        type: 2}
+      propertyPath: m_HeadBob.VerticalBobRange
+      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
@@ -1805,7 +1810,7 @@ MonoBehaviour:
   worldState: {fileID: 1154527652}
   loadPrologue: 1
   prologueSceneName: Prologue
-  loadHall: 0
+  loadHall: 1
   hallSceneName: Hall
   loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue
