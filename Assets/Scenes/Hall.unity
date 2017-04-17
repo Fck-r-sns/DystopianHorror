@@ -4587,7 +4587,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4943606478628800, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.5
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4943606478628800, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4595,7 +4595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4943606478628800, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -12.5
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 4943606478628800, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4643,18 +4643,8 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
         type: 2}
-      propertyPath: ignoreTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
-        type: 2}
-      propertyPath: chaseSpeed
-      value: 3.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
-        type: 2}
       propertyPath: attackSpeed
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}

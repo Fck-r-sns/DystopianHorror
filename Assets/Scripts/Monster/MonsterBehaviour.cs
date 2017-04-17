@@ -44,7 +44,7 @@ public class MonsterBehaviour : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask = -1;
 
-    private static float WAYPOINT_PASS_DISTANCE = 1.0f;
+    private static float WAYPOINT_PASS_DISTANCE = 0.1f;
 
     private NavMeshAgent navMeshAgent;
     private CameraVisibilityChecker visibilityChecker;
@@ -76,20 +76,23 @@ public class MonsterBehaviour : MonoBehaviour
         {
             if (visibilityChecker.isVisible())
             {
-                Attack();
+                navMeshAgent.speed = attackSpeed;
                 state = State.Attack;
             }
             else
             {
-                Chase();
+                navMeshAgent.speed = chaseSpeed;
                 state = State.Chase;
             }
         }
         else
         {
-            Patrol();
+            navMeshAgent.speed = patrolSpeed;
             state = State.Patrol;
         }
+
+        Patrol();
+
         if (inPlainSight != newSightState)
         {
             inPlainSight = newSightState;
@@ -97,26 +100,10 @@ public class MonsterBehaviour : MonoBehaviour
         }
     }
 
-    private void Attack()
-    {
-        currentTarget = mainTarget;
-        currentWaypointIndex = -1;
-        navMeshAgent.SetDestination(currentTarget.position);
-        navMeshAgent.speed = attackSpeed;
-    }
-
-    private void Chase()
-    {
-        currentTarget = mainTarget;
-        currentWaypointIndex = -1;
-        navMeshAgent.SetDestination(currentTarget.position);
-        navMeshAgent.speed = chaseSpeed;
-    }
-
     private void Patrol()
     {
         float dst = float.MaxValue;
-        if ((currentTarget != null) && (currentTarget != mainTarget))
+        if (currentTarget != null)
         {
             Vector3 v1 = transform.position;
             v1.y = 0;
@@ -125,14 +112,13 @@ public class MonsterBehaviour : MonoBehaviour
             dst = Vector3.Distance(v1, v2);
         }
 
-        if ((currentTarget == null) || (state != State.Patrol) || (dst < WAYPOINT_PASS_DISTANCE))
+        if ((currentTarget == null) || (dst < WAYPOINT_PASS_DISTANCE))
         {
             currentWaypointIndex = GetNextWaypoint();
             currentTarget = waypoints[currentWaypointIndex];
         }
 
         navMeshAgent.SetDestination(currentTarget.position);
-        navMeshAgent.speed = patrolSpeed;
     }
 
     private int GetNextWaypoint()
