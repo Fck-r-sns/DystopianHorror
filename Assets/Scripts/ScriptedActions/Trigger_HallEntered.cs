@@ -73,16 +73,19 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
             door.Lock();
             if (other.gameObject.tag.Equals("Player"))
             {
-                monster.GetComponent<MonsterBehaviour>().SetMainTarget(other.transform);
-                monster.GetComponent<CameraVisibilityChecker>().SetCamera(other.gameObject.GetComponentInChildren<Camera>());
                 NoiseEffectsManager noiseEffectsManager = other.gameObject.GetComponentInChildren<NoiseEffectsManager>();
                 noiseEffectsManager.enabled = true;
                 noiseEffectsManager.SetMonster(monster.transform);
+
                 catchAnimation.Init(
                     other.gameObject.GetComponentInChildren<Camera>(),
                     other.gameObject.GetComponentInChildren<CameraFading>(),
                     other.gameObject.GetComponent<FirstPersonController>()
                     );
+
+                monster.GetComponent<MonsterBehaviour>().SetMainTarget(other.transform);
+                monster.GetComponent<CameraVisibilityChecker>().SetCamera(other.gameObject.GetComponentInChildren<Camera>());
+                monster.SetActive(true);
             }
         }
     }

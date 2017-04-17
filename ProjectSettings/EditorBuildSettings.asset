@@ -12,13 +12,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Prototypes/RoomsShuffling/Room3.unity
   - enabled: 1
-    path: Assets/Scenes/Hall.unity
-  - enabled: 1
     path: Assets/Scenes/Main.unity
   - enabled: 1
-    path: Assets/Scenes/PositiveEpilogue.unity
-  - enabled: 1
     path: Assets/Scenes/Prologue.unity
+  - enabled: 1
+    path: Assets/Scenes/Hall.unity
+  - enabled: 1
+    path: Assets/Scenes/PositiveEpilogue.unity
   - enabled: 1
     path: Assets/Scenes/Rooms/ChairRoomMad1.unity
   - enabled: 1
