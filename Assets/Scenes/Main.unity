@@ -1045,15 +1045,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 114423718762979626, guid: 06474a8f900eb974ba50beb50555c9c4,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
   m_IsPrefabParent: 0
@@ -1814,7 +1805,7 @@ MonoBehaviour:
   worldState: {fileID: 1154527652}
   loadPrologue: 1
   prologueSceneName: Prologue
-  loadHall: 1
+  loadHall: 0
   hallSceneName: Hall
   loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue
