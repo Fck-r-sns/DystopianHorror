@@ -4641,6 +4641,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
+        type: 2}
+      propertyPath: ignoreTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
+        type: 2}
+      propertyPath: chaseSpeed
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114283280043557966, guid: 4a9acef8cb37c06439a9a45ab563eaf2,
+        type: 2}
+      propertyPath: attackSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a9acef8cb37c06439a9a45ab563eaf2, type: 2}
   m_IsPrefabParent: 0
