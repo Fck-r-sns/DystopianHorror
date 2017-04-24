@@ -1359,6 +1359,7 @@ GameObject:
   - component: {fileID: 1681505984}
   - component: {fileID: 1681505985}
   - component: {fileID: 1681505986}
+  - component: {fileID: 1681505987}
   m_Layer: 0
   m_Name: root
   m_TagString: Untagged
@@ -1399,6 +1400,7 @@ MonoBehaviour:
   predicate:
     predicates:
     - {fileID: 1681505986}
+    - {fileID: 1681505987}
   collectiblePlaceholders:
   - {fileID: 1588402072}
   - {fileID: 1036061679}
@@ -1417,8 +1419,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcff30f76e177040bcaa24ca35951dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerBound: 30
+  lowerBound: 0
   upperBound: 49
+--- !u!114 &1681505987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1681505983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7764d45b936bc8d4fbaf13b0bd3dd05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowerBound: 1
+  upperBound: 2147483647
 --- !u!1001 &1707035662
 Prefab:
   m_ObjectHideFlags: 0
