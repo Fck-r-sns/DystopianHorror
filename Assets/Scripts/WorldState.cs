@@ -21,7 +21,8 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     public const int MADNESS_PER_ROOM_VISIT = +10;
     public const int MADNESS_PER_BOOK_COLLECTED = -20;
     public const int MADNESS_PER_MONSTER_CAUGHT = +30;
-    public const float BOOK_SPAWN_INITIAL_CHANCE = 0.1f;
+    public const float BOOK_SPAWN_TURNS = 10;
+    public const float KEY_SPAWN_TURNS = 4;
 
     private int address = AddressProvider.GetFreeAddress();
     private Location location_;

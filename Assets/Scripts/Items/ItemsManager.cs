@@ -19,6 +19,8 @@ public class ItemsManager : MonoBehaviour
     private static ItemsManager instance;
     private CollectibleItem keys;
     private CollectibleItem[] booksPool;
+    private int bookSpawnTries = 0;
+    private int keySpawnTries = 0;
 
     public static ItemsManager GetInstance()
     {
@@ -30,18 +32,29 @@ public class ItemsManager : MonoBehaviour
         float chance = 0.0f;
         if ((keysSpawningPredicate != null) && keysSpawningPredicate.Check(worldState))
         {
-            chance = GetKeyChance() * 100;
-            if (Random.Range(0, 99) < chance)
+            chance = GetKeyChance();
+            if (Random.value <= chance)
             {
+                keySpawnTries = 0;
                 return keys;
+            }
+            else
+            {
+                ++keySpawnTries;
             }
         }
 
-        chance = GetBookChance() * 100;
-        if (Random.Range(0, 99) < chance)
+        chance = GetBookChance();
+        Debug.Log(Time.time + ": Book spawn chance = " + chance);
+        if (Random.value <= chance)
         {
+            bookSpawnTries = 0;
             int index = Random.Range(0, booksPool.Length);
             return booksPool[index];
+        }
+        else
+        {
+            ++bookSpawnTries;
         }
         return null;
     }
@@ -65,13 +78,11 @@ public class ItemsManager : MonoBehaviour
 
     private float GetKeyChance()
     {
-        return 0.3f;
+        return Mathf.Clamp01(1 / (WorldState.KEY_SPAWN_TURNS - keySpawnTries));
     }
 
     private float GetBookChance()
     {
-        //return (100 * WorldState.BOOK_SPAWN_INITIAL_CHANCE - worldState.collectiblesFound) 
-        //    / (100 - worldState.roomsVisited);
-        return 0.3f;
+        return Mathf.Clamp01(1 / (WorldState.BOOK_SPAWN_TURNS - bookSpawnTries));
     }
 }
