@@ -20,7 +20,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     public const int NORMAL_TO_MAD_BOUNDARY = 50;
     public const int MADNESS_PER_ROOM_VISIT = +10;
     public const int MADNESS_PER_BOOK_COLLECTED = -20;
-    public const int MADNESS_PER_MONSTER_CAUGHT = +50;
+    public const int MADNESS_PER_MONSTER_CAUGHT = +30;
     public const float BOOK_SPAWN_INITIAL_CHANCE = 0.1f;
 
     private int address = AddressProvider.GetFreeAddress();

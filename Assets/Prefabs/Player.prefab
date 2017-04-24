@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1565652022338276}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -27, y: 1, z: 49.5}
+  m_LocalPosition: {x: -27, y: 0.5, z: 49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4244226199101694}
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_UseHeadBob: 1
   m_HeadBob:
     HorizontalBobRange: 0.04
-    VerticalBobRange: 0.04
+    VerticalBobRange: 0.02
     Bobcurve:
       serializedVersion: 2
       m_Curve:
@@ -508,6 +508,8 @@ MonoBehaviour:
   camera: {fileID: 20589605494881126}
   blackFading: {fileID: 2800000, guid: 34ae68c618f05c54a902477bfaddd1fb, type: 3}
   whiteFading: {fileID: 2800000, guid: c424f091d08e09d4baf8a579e62a1a63, type: 3}
+  initialState: 2
+  initialColor: 0
 --- !u!114 &114626916414389798
 MonoBehaviour:
   m_ObjectHideFlags: 1
