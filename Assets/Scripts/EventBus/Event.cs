@@ -19,6 +19,7 @@ namespace EventBus
         MonsterOutOfPlainSight,
         ItemCollected,
         CaughtByMonster,
+        ApplyMadnessAfterMonsterCaught,
         PrologueEntered,
         HallEntered,
         PositiveEpilogueEntered,

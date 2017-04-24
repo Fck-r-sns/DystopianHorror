@@ -20,7 +20,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     public const int NORMAL_TO_MAD_BOUNDARY = 50;
     public const int MADNESS_PER_ROOM_VISIT = +10;
     public const int MADNESS_PER_BOOK_COLLECTED = -20;
-    public const int MADNESS_PER_MONSTER_CAUGHT = +30;
+    public const int MADNESS_PER_MONSTER_CAUGHT = +70;
     public const float BOOK_SPAWN_TURNS = 10;
     public const float KEY_SPAWN_TURNS = 4;
 
@@ -62,7 +62,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         }
     }
 
-    public int timeCaughtByMonster {
+    public int timesCaughtByMonster {
         get {
             return timesCaughtByMonster_;
         }
@@ -82,6 +82,10 @@ public class WorldState : MonoBehaviour, IEventSubscriber
 
             case EBEventType.CaughtByMonster:
                 ProcessCaughtByMonsterEvent(e);
+                break;
+
+            case EBEventType.ApplyMadnessAfterMonsterCaught:
+                ProcessApplyMadnessAfterMonsterEvent(e);
                 break;
 
             case EBEventType.PrologueEntered:
@@ -110,6 +114,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
         Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
         Dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address, gameObject);
         Dispatcher.Subscribe(EBEventType.PrologueEntered, address, gameObject);
         Dispatcher.Subscribe(EBEventType.HallEntered, address, gameObject);
         Dispatcher.Subscribe(EBEventType.PositiveEpilogueEntered, address, gameObject);
@@ -122,6 +127,7 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
         Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
         Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        Dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
         Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
         Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
         Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
@@ -150,6 +156,11 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     }
 
     private void ProcessCaughtByMonsterEvent(EBEvent e)
+    {
+        ++timesCaughtByMonster_;
+    }
+
+    private void ProcessApplyMadnessAfterMonsterEvent(EBEvent e)
     {
         AddMadness(MADNESS_PER_MONSTER_CAUGHT);
     }

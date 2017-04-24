@@ -101,6 +101,8 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
 
         cameraFading.FadeToNormal(fadeToNormalTime);
         controller.enabled = true;
+
+        Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ApplyMadnessAfterMonsterCaught });
     }
 
     private IEnumerator AnimateRestoration()

@@ -33,7 +33,7 @@ public class WorldStateGui : MonoBehaviour
         madness.text = "" + worldState.madness;
         collectibles.text = "" + worldState.collectiblesFound;
         keyFound.text = "" + worldState.keyFound;
-        caught.text = "" + worldState.timeCaughtByMonster;
+        caught.text = "" + worldState.timesCaughtByMonster;
         fps.text = "" + (1.0f / Time.deltaTime);
 	}
 }
