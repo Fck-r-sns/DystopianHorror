@@ -2228,6 +2228,230 @@ Transform:
   m_PrefabParentObject: {fileID: 4666941058323810, guid: 4bdc82be90d4c03499d4deb18c4bc52f,
     type: 2}
   m_PrefabInternal: {fileID: 2135528692}
+--- !u!1 &577295642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 577295643}
+  - component: {fileID: 577295644}
+  m_Layer: 0
+  m_Name: ToiletScreamer_WaterAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577295643
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577295642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.77, y: 0, z: -0.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1681505984}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &577295644
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577295642}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 326c00b20a71c470a820ce1b6fccc295, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.002
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.015650013
+      value: 0.5093964
+      inSlope: -17.816126
+      outSlope: -17.816126
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.026634384
+      value: 0
+      inSlope: -2.3749816
+      outSlope: -2.3749816
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!1 &578126507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 578126509}
+  - component: {fileID: 578126508}
+  m_Layer: 0
+  m_Name: ToiletScreamer_MetalAudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &578126508
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578126507}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 97606f63111aeb946986cf0d1d3ec4f5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &578126509
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578126507}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20.770002, y: 0, z: -0.710001}
+  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
+  m_Children: []
+  m_Father: {fileID: 1681505984}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &591504229
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,6 +3612,62 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 424304, guid: cd2596b244d86394b8ac31263d76fa34, type: 2}
   m_PrefabInternal: {fileID: 817758766}
+--- !u!1 &877482388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 877482389}
+  - component: {fileID: 877482391}
+  - component: {fileID: 877482390}
+  m_Layer: 0
+  m_Name: ToiletScreamer_Setup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &877482389
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 877482388}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -23.73, y: 0, z: -15.21}
+  m_LocalScale: {x: 1.8582485, y: 1, z: 2.6604705}
+  m_Children: []
+  m_Father: {fileID: 1681505984}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &877482390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 877482388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1c4cfaa22e2dd418ba27f86794c2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 1141734667}
+  metalAudioSource: {fileID: 578126508}
+  waterAudioSource: {fileID: 577295644}
+--- !u!65 &877482391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 877482388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4.2164297, z: 4.149668}
+  m_Center: {x: -0.0004720688, y: 1.6082149, z: 0.07725048}
 --- !u!1 &882586267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,6 +4507,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2076240656}
     m_Modifications:
+    - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: closeSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4231508241830794, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -20
@@ -4283,7 +4568,7 @@ Prefab:
     - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
         type: 2}
       propertyPath: initialAngle
-      value: -30
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
         type: 2}
@@ -4304,6 +4589,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 82966075051363636, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: rotationSpeed
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: closeSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: df3d6f16213b0db46ac52c6068a02dd8, type: 3}
+    - target: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+        type: 2}
+      propertyPath: closeSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 22f4491a356633b44accee885f42c2c0, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2bc20a7f5d08b146842cd57cb0d374f, type: 2}
   m_IsPrefabParent: 0
@@ -4358,6 +4663,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 424304, guid: cd2596b244d86394b8ac31263d76fa34, type: 2}
   m_PrefabInternal: {fileID: 1595749579}
+--- !u!114 &1141734667 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114449169016710486, guid: f2bc20a7f5d08b146842cd57cb0d374f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1136958872}
+  m_Script: {fileID: 11500000, guid: 427ee8f9fe03bd24bbb24a4a465df25d, type: 3}
 --- !u!1001 &1153569022
 Prefab:
   m_ObjectHideFlags: 0
@@ -6271,6 +6582,10 @@ Transform:
   - {fileID: 835047696}
   - {fileID: 1003044372}
   - {fileID: 882586268}
+  - {fileID: 578126509}
+  - {fileID: 577295643}
+  - {fileID: 1689847953}
+  - {fileID: 877482389}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -6285,9 +6600,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaf317193a744e40a9441314fe10dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Prologue
-  predicate: {fileID: 0}
+  predicate:
+    predicates: []
   collectiblePlaceholders: []
+  wakeUpPositions: []
 --- !u!4 &1682680675 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4231508241830794, guid: f2bc20a7f5d08b146842cd57cb0d374f,
@@ -6348,6 +6664,61 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f7e46dad533f75849a080dfc115a4539, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1689847952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1689847953}
+  - component: {fileID: 1689847955}
+  - component: {fileID: 1689847954}
+  m_Layer: 0
+  m_Name: ToiletScreamer_Punchline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1689847953
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689847952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20, y: 0, z: -3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1681505984}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689847954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689847952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2a353755c6ef644b7568e3a098ffbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 1141734667}
+  audioSource: {fileID: 577295644}
+--- !u!135 &1689847955
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689847952}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1690177521
 Prefab:
   m_ObjectHideFlags: 0
