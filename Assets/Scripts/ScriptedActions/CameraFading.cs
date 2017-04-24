@@ -52,6 +52,14 @@ public class CameraFading : MonoBehaviour
         state = State.FadeOut;
     }
 
+    private void Start()
+    {
+        currentTexture = blackFading;
+        state = State.Faded;
+        alpha = 1.0f;
+        FadeToNormal(7.0f);
+    }
+
     private void OnGUI()
     {
         switch (state)
