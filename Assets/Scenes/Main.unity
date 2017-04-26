@@ -1808,13 +1808,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
-  loadPrologue: 0
+  loadPrologue: 1
   prologueSceneName: Prologue
   loadHall: 1
   hallSceneName: Hall
   loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue
-  loadNegativeEpilogue: 0
+  loadNegativeEpilogue: 1
   negativeEpilogueSceneName: NegativeEpilogue
   roomNames:
   - ChairRoomNormal

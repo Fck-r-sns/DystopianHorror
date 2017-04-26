@@ -2501,8 +2501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaf317193a744e40a9441314fe10dec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: PositiveEpilogue
-  predicate: {fileID: 0}
+  predicate:
+    predicates: []
   collectiblePlaceholders: []
   wakeUpPositions: []
 --- !u!1001 &310830521
@@ -8320,6 +8320,11 @@ Prefab:
         type: 2}
       propertyPath: keyFound
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114011728057935524, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: upperBound
+      value: 69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
