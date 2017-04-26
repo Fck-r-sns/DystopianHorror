@@ -45,7 +45,6 @@ public class ItemsManager : MonoBehaviour
         }
 
         chance = GetBookChance();
-        Debug.Log(Time.time + ": Book spawn chance = " + chance);
         if (Random.value <= chance)
         {
             bookSpawnTries = 0;
