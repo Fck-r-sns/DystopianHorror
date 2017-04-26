@@ -1015,7 +1015,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -27
+      value: 66.61
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1023,7 +1023,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 49.5
+      value: -193.52
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1031,7 +1031,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalRotation.z
@@ -1049,6 +1049,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
@@ -1765,7 +1769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6118d3f06e2fd164b97537d96da1a759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerBound: 10
+  lowerBound: 0
   upperBound: 2147483647
 --- !u!114 &1769937867
 MonoBehaviour:
@@ -1808,13 +1812,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
-  loadPrologue: 1
+  loadPrologue: 0
   prologueSceneName: Prologue
-  loadHall: 1
+  loadHall: 0
   hallSceneName: Hall
-  loadPositiveEpilogue: 1
+  loadPositiveEpilogue: 0
   positiveEpilogueSceneName: PositiveEpilogue
-  loadNegativeEpilogue: 1
+  loadNegativeEpilogue: 0
   negativeEpilogueSceneName: NegativeEpilogue
   roomNames:
   - ChairRoomNormal
