@@ -143,6 +143,15 @@ public class RoomsManager : MonoBehaviour
         }
     }
 
+    public void UnloadHall()
+    {
+        if (hallScene != null)
+        {
+            hallScene.SetEnabled(false);
+            SceneManager.UnloadSceneAsync(hallSceneName);
+        }
+    }
+
     private IEnumerator WaitForLoadingAndInitRoomScene(string sceneName)
     {
         Scene scene = SceneManager.GetSceneByName(sceneName);

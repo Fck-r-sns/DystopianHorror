@@ -19,6 +19,11 @@ public class Trigger_NegativeEpilogueEntered : MonoBehaviour
             door.Close();
             door.Lock();
             Dispatcher.SendEvent(new EBEvent() { type = EBEventType.NegativeEpilogueEntered });
+            NoiseEffectsManager noiseEffectManager = other.gameObject.GetComponentInChildren<NoiseEffectsManager>();
+            noiseEffectManager.enabled = false;
+            noiseEffectManager.SetMonster(null);
+            RoomsManager manager = RoomsManager.GetManager("School");
+            manager.UnloadHall();
         }
     }
 }
