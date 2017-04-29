@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using EventBus;
+using System.Collections;
 
 public class WorldState : MonoBehaviour, IEventSubscriber
 {
@@ -98,10 +99,12 @@ public class WorldState : MonoBehaviour, IEventSubscriber
 
             case EBEventType.PositiveEpilogueEntered:
                 location_ = Location.PositiveEpilogue;
+                StartCoroutine(ProcessEnding());
                 break;
 
             case EBEventType.NegativeEpilogueEntered:
                 location_ = Location.NegativeEpilogue;
+                StartCoroutine(ProcessEnding());
                 break;
         }
 
@@ -169,5 +172,18 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     {
         madness_ += value;
         madness_ = Mathf.Clamp(madness_, MIN_MADNESS, MAX_MADNESS);
+    }
+
+    private IEnumerator ProcessEnding()
+    {
+        yield return null;
+        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        Dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
+        Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
+        Dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
     }
 }

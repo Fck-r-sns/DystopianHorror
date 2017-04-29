@@ -30,6 +30,9 @@ public class MonsterBehaviour : MonoBehaviour
     private Transform mainTarget;
 
     [SerializeField]
+    private bool patrolEnabled = true;
+
+    [SerializeField]
     private bool ignoreTarget = false;
 
     [SerializeField]
@@ -57,6 +60,11 @@ public class MonsterBehaviour : MonoBehaviour
     public void SetMainTarget(Transform target)
     {
         mainTarget = target;
+    }
+
+    public void SetPatrolEnabled(bool enabled)
+    {
+        patrolEnabled = enabled;
     }
 
     // Use this for initialization
@@ -102,6 +110,11 @@ public class MonsterBehaviour : MonoBehaviour
 
     private void Patrol()
     {
+        if (!patrolEnabled)
+        {
+            return;
+        }
+
         float dst = float.MaxValue;
         if (currentTarget != null)
         {
