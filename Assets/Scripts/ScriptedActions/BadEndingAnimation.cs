@@ -26,6 +26,7 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
     private FirstPersonController controller;
+    private bool isTriggered = false;
 
     public void OnReceived(EBEvent e)
     {
@@ -78,8 +79,9 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player"))
+        if (!isTriggered && other.gameObject.tag.Equals("Player"))
         {
+            isTriggered = true;
             camera = other.gameObject.GetComponentInChildren<Camera>();
             controller = other.gameObject.GetComponentInChildren<FirstPersonController>();
         }
