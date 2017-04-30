@@ -26,7 +26,8 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
     private FirstPersonController controller;
-    private bool isTriggered = false;
+    private bool isInited = false;
+    private bool isDoorTriggered = false;
 
     public void OnReceived(EBEvent e)
     {
@@ -35,8 +36,9 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
             case EBEventType.InteractionWithDoor:
                 {
                     DoorInteractionEvent die = e as DoorInteractionEvent;
-                    if (die.door == door)
+                    if (!isDoorTriggered && (die.door == door))
                     {
+                        isDoorTriggered = true;
                         monster.SetActive(true);
                         monster.GetComponent<CameraVisibilityChecker>().SetCamera(camera);
                         monster.GetComponent<MonsterBehaviour>().SetMainTarget(controller.transform);
@@ -79,9 +81,9 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isTriggered && other.gameObject.tag.Equals("Player"))
+        if (!isInited && other.gameObject.tag.Equals("Player"))
         {
-            isTriggered = true;
+            isInited = true;
             camera = other.gameObject.GetComponentInChildren<Camera>();
             controller = other.gameObject.GetComponentInChildren<FirstPersonController>();
         }
