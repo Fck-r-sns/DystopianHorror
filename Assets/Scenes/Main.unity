@@ -1015,7 +1015,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -27
+      value: -13.15
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1023,7 +1023,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 49.5
+      value: 13.16
       objectReference: {fileID: 0}
     - target: {fileID: 4002609151014450, guid: 06474a8f900eb974ba50beb50555c9c4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1812,9 +1812,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: School
   worldState: {fileID: 1154527652}
-  loadPrologue: 1
+  loadPrologue: 0
   prologueSceneName: Prologue
-  loadHall: 1
+  loadHall: 0
   hallSceneName: Hall
   loadPositiveEpilogue: 1
   positiveEpilogueSceneName: PositiveEpilogue

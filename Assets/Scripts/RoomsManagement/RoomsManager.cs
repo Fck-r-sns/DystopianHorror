@@ -134,6 +134,25 @@ public class RoomsManager : MonoBehaviour
         return filtered[index];
     }
 
+    public void LockAllDoors()
+    {
+        foreach (RoomEntry re in roomEntries)
+        {
+            Door door = re.gameObject.GetComponentInChildren<Door>();
+            door.SetClosed();
+            door.Lock();
+        }
+    }
+
+    public void UnlockAllDoors()
+    {
+        foreach (RoomEntry re in roomEntries)
+        {
+            Door door = re.gameObject.GetComponentInChildren<Door>();
+            door.Unlock();
+        }
+    }
+
     public void UnloadPrologue()
     {
         if (prologueScene != null)

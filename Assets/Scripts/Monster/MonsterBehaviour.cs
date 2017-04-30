@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 using EventBus;
@@ -67,14 +65,32 @@ public class MonsterBehaviour : MonoBehaviour
         patrolEnabled = enabled;
     }
 
-    // Use this for initialization
+    public void MoveToFarthestWaypointFrom(Vector3 point)
+    {
+        Transform farthest = null;
+        float maxDst = 0f;
+        for (int i = 0; i < waypoints.Length; ++i)
+        {
+            Transform waypoint = waypoints[i];
+            float dst = Mathf.Abs(point.x - waypoint.transform.position.x) + Mathf.Abs(point.z - waypoint.transform.position.z);
+            if (farthest == null || dst > maxDst)
+            {
+                farthest = waypoint;
+                maxDst = dst;
+            }
+        }
+        if (farthest != null)
+        {
+            transform.position = farthest.position;
+        }
+    }
+
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         visibilityChecker = GetComponent<CameraVisibilityChecker>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(transform.position, mainTarget.position - transform.position);

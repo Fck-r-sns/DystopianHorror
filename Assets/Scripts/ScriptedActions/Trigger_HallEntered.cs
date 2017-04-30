@@ -85,7 +85,6 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
 
                 monster.GetComponent<MonsterBehaviour>().SetMainTarget(other.transform);
                 monster.GetComponent<CameraVisibilityChecker>().SetCamera(other.gameObject.GetComponentInChildren<Camera>());
-                monster.SetActive(true);
             }
         }
     }
