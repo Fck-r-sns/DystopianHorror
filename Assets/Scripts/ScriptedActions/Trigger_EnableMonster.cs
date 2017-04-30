@@ -9,6 +9,9 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private GameObject monster;
 
+    [SerializeField]
+    private SchoolBellsManager schoolBellsManager;
+
     private const int ROOMS_VISITED_BEFORE_MONSTER_APPEARS = 1;
 
     private static bool isTriggered;
@@ -49,6 +52,8 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
 
         RoomsManager roomsManager = RoomsManager.GetManager("School");
         roomsManager.LockAllDoors();
+
+        schoolBellsManager.StartRinging();
 
         yield return new WaitForSeconds(3.0f);
 
