@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: bc89562a6faa5aa43b65c8696317963d
-timeCreated: 1493587827
+guid: d97801d86d035e543bb0d5ee8e02c264
+timeCreated: 1493658014
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,9 +9,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Future TimeSplitters
+  fontName: Strawobbly
   fontNames:
-  - Future TimeSplitters
+  - Strawobbly
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
