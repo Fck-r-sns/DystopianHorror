@@ -1,76 +1,70 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
+using EventBus;
+
+public class MainMenuController : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]
-    private FirstPersonController controller;
+    private GameFlowManager gameFlowManager;
 
-    [SerializeField]
     private GameObject mainMenu;
-
     private GameObject newGameButton;
     private GameObject continueGameButton;
+    private int address = AddressProvider.GetFreeAddress();
     private bool isPaused = false;
 
     private void Start()
     {
+        mainMenu = transform.Find("MainMenu").gameObject;
         newGameButton = transform.Find("MainMenu/NewGame").gameObject;
         continueGameButton = transform.Find("MainMenu/ContinueGame").gameObject;
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
+
+        Dispatcher.Subscribe(EBEventType.GamePaused, address, gameObject);
+        Dispatcher.Subscribe(EBEventType.GameResumed, address, gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        Dispatcher.Unsubscribe(EBEventType.GamePaused, address);
+        Dispatcher.Unsubscribe(EBEventType.GameResumed, address);
+    }
+
+    public void OnReceived(EBEvent e)
+    {
+        switch (e.type)
+        {
+            case EBEventType.GamePaused:
+                SetMenuVisible(true);
+                break;
+
+            case EBEventType.GameResumed:
+                SetMenuVisible(false);
+                break;
+        }
     }
 
     public void NewGame()
     {
-        SceneManager.LoadScene("Main");
+        gameFlowManager.StartNewGame();
         newGameButton.SetActive(false);
         continueGameButton.SetActive(true);
     }
 
     public void ContinueGame()
     {
-        SetPause(false);
+        gameFlowManager.ResumeGame();
     }
 
     public void Exit()
     {
-        Application.Quit();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SetPause(!isPaused);
-            SetMenuVisible(isPaused);
-        }
+        gameFlowManager.QuitGame();
     }
 
     private void SetMenuVisible(bool isVisible)
     {
         mainMenu.SetActive(isVisible);
-    }
-
-    private void SetPause(bool isPaused)
-    {
-        this.isPaused = isPaused;
-        if (isPaused)
-        {
-            Time.timeScale = 0.0f;
-            controller.SetMouseLookEnabled(false);
-            controller.SetHeadBobEnabled(false);
-            controller.SetCursorLock(false);
-            controller.enabled = false;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
-            controller.SetMouseLookEnabled(true);
-            controller.SetHeadBobEnabled(true);
-            controller.SetCursorLock(true);
-            controller.enabled = true;
-        }
     }
 }

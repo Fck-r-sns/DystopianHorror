@@ -27,7 +27,9 @@ namespace EventBus
         WorldStateChanged,
         InteractionWithDoor,
         ChangeStateToNormalRequest,
-        ChangeStateToMadRequest
+        ChangeStateToMadRequest,
+        GamePaused,
+        GameResumed
     }
 
     public enum TriggerAction
