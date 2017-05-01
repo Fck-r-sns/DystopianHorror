@@ -40,16 +40,11 @@ public class MouseLook
     public void SetCursorLock(bool value)
     {
         lockCursor = value;
-        if (!lockCursor)
-        {//we force unlock the cursor if the user disable the cursor locking helper
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+        UpdateCursorLock();
     }
 
     public void UpdateCursorLock()
     {
-        //if the user set "lockCursor" we check & properly lock the cursos
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
