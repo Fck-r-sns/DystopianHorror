@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 using EventBus;
 
@@ -8,17 +9,41 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private GameFlowManager gameFlowManager;
 
+    [SerializeField]
+    private GameSettings gameSettings;
+
+    private GameObject menu;
     private GameObject mainMenu;
+    private GameObject settingsMenu;
     private GameObject newGameButton;
     private GameObject continueGameButton;
+    private GameObject backFromSettingsButton;
+
+    private Slider brightnessSlider;
+    private Text brightnessText;
+    private Toggle ambientOcclusionToggle;
+    private Slider volumeSlider;
+    private Text volumeText;
+
     private int address = AddressProvider.GetFreeAddress();
     private bool isBlocked = false;
 
     private void Start()
     {
-        mainMenu = transform.Find("Canvas/Menu").gameObject;
+        menu = transform.Find("Canvas/Menu").gameObject;
+        mainMenu = transform.Find("Canvas/Menu/Main").gameObject;
+        settingsMenu = transform.Find("Canvas/Menu/Settings").gameObject;
         newGameButton = transform.Find("Canvas/Menu/Main/NewGame").gameObject;
         continueGameButton = transform.Find("Canvas/Menu/Main/ContinueGame").gameObject;
+
+        brightnessSlider = transform.Find("Canvas/Menu/Settings/BrightnessValue").gameObject.GetComponent<Slider>();
+        brightnessText = transform.Find("Canvas/Menu/Settings/BrightnessValueText").gameObject.GetComponent<Text>();
+        ambientOcclusionToggle = transform.Find("Canvas/Menu/Settings/AmbientOcclusionValue").gameObject.GetComponent<Toggle>();
+        volumeSlider = transform.Find("Canvas/Menu/Settings/VolumeValue").gameObject.GetComponent<Slider>();
+        volumeText = transform.Find("Canvas/Menu/Settings/VolumeValueText").gameObject.GetComponent<Text>();
+
+        InitSettingsGUI();
+
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
 
@@ -71,6 +96,16 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         }
     }
 
+    public void OpenSettings()
+    {
+        if (!isBlocked)
+        {
+            mainMenu.SetActive(false);
+            settingsMenu.SetActive(true);
+            UpdateSettingsGUI();
+        }
+    }
+
     public void Exit()
     {
         if (!isBlocked)
@@ -79,9 +114,45 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         }
     }
 
+    public void BackFromSettings()
+    {
+        if (!isBlocked)
+        {
+            settingsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+        }
+    }
+
     private void SetMenuVisible(bool isVisible)
     {
-        mainMenu.SetActive(isVisible);
+        menu.SetActive(isVisible);
         isBlocked = !isVisible;
+    }
+
+    private void InitSettingsGUI()
+    {
+        brightnessSlider.onValueChanged.AddListener(value =>
+        {
+            gameSettings.brightness = value;
+            brightnessText.text = value.ToString("0.00");
+        });
+        ambientOcclusionToggle.onValueChanged.AddListener(value =>
+        {
+            gameSettings.ambientOcclusionEnabled = value;
+        });
+        volumeSlider.onValueChanged.AddListener(value =>
+        {
+            gameSettings.volume = value;
+            volumeText.text = value.ToString("0.00");
+        });
+    }
+
+    private void UpdateSettingsGUI()
+    {
+        brightnessSlider.value = gameSettings.brightness;
+        brightnessText.text = gameSettings.brightness.ToString("0.00");
+        ambientOcclusionToggle.isOn = gameSettings.ambientOcclusionEnabled;
+        volumeSlider.value = gameSettings.volume;
+        volumeText.text = gameSettings.volume.ToString("0.00");
     }
 }
