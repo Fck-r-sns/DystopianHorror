@@ -8,13 +8,16 @@ public class GameFlowManager : MonoBehaviour
 {
 
     [SerializeField]
+    private GameObject mainMenuCameraHolder;
+
+    [SerializeField]
     private FirstPersonController controller;
 
     private bool isPaused;
 
     public void StartNewGame()
     {
-        ResumeGame();
+        StartCoroutine(StartGame_impl());
     }
 
     public void QuitGame()
@@ -38,6 +41,11 @@ public class GameFlowManager : MonoBehaviour
     {
         isPaused = !isPaused;
         ApplyPause();
+    }
+
+    private void Start()
+    {
+        PauseGame();
     }
 
     private void Update()
@@ -68,5 +76,20 @@ public class GameFlowManager : MonoBehaviour
         }
 
         Dispatcher.SendEvent(new EBEvent() { type = (isPaused ? EBEventType.GamePaused : EBEventType.GameResumed) });
+    }
+
+    private IEnumerator StartGame_impl()
+    {
+        mainMenuCameraHolder.SetActive(false);
+        controller.gameObject.SetActive(true);
+        controller.SetCursorLock(true);
+        
+        Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameStarted });
+
+        Time.timeScale = 1.0f;
+
+        yield return new WaitForSeconds(2.0f);
+
+        ResumeGame();
     }
 }

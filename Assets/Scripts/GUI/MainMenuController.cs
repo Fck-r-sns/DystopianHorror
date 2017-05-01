@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     private GameObject newGameButton;
     private GameObject continueGameButton;
     private int address = AddressProvider.GetFreeAddress();
-    private bool isPaused = false;
+    private bool isStarted = false;
 
     private void Start()
     {
@@ -22,12 +22,14 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
 
+        Dispatcher.Subscribe(EBEventType.GameStarted, address, gameObject);
         Dispatcher.Subscribe(EBEventType.GamePaused, address, gameObject);
         Dispatcher.Subscribe(EBEventType.GameResumed, address, gameObject);
     }
 
     private void OnDestroy()
     {
+        Dispatcher.Unsubscribe(EBEventType.GameStarted, address);
         Dispatcher.Unsubscribe(EBEventType.GamePaused, address);
         Dispatcher.Unsubscribe(EBEventType.GameResumed, address);
     }
@@ -36,6 +38,10 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     {
         switch (e.type)
         {
+            case EBEventType.GameStarted:
+                SetMenuVisible(false);
+                break;
+
             case EBEventType.GamePaused:
                 SetMenuVisible(true);
                 break;
