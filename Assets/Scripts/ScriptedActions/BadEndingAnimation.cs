@@ -54,7 +54,7 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
             case EBEventType.CaughtByMonster:
                 controller.enabled = false;
                 monster.GetComponent<MonsterBehaviour>().SetPatrolEnabled(false);
-                camera.GetComponent<CameraFading>().FadeToBlack(5);
+                FadingManager.GetInstance().FadeToBlack(5);
                 StartCoroutine(FadeOutMonsterSounds(5));
                 break;
 

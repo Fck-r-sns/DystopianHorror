@@ -79,7 +79,6 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
 
                 catchAnimation.Init(
                     other.gameObject.GetComponentInChildren<Camera>(),
-                    other.gameObject.GetComponentInChildren<CameraFading>(),
                     other.gameObject.GetComponent<FirstPersonController>()
                     );
 

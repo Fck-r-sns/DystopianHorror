@@ -16,9 +16,9 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        mainMenu = transform.Find("MainMenu").gameObject;
-        newGameButton = transform.Find("MainMenu/NewGame").gameObject;
-        continueGameButton = transform.Find("MainMenu/ContinueGame").gameObject;
+        mainMenu = transform.Find("Canvas/MainMenu").gameObject;
+        newGameButton = transform.Find("Canvas/MainMenu/NewGame").gameObject;
+        continueGameButton = transform.Find("Canvas/MainMenu/ContinueGame").gameObject;
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
 
@@ -40,6 +40,8 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         {
             case EBEventType.GameStarted:
                 SetMenuVisible(false);
+                newGameButton.SetActive(false);
+                continueGameButton.SetActive(true);
                 break;
 
             case EBEventType.GamePaused:
@@ -55,8 +57,6 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     public void NewGame()
     {
         gameFlowManager.StartNewGame();
-        newGameButton.SetActive(false);
-        continueGameButton.SetActive(true);
     }
 
     public void ContinueGame()

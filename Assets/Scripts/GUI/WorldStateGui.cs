@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class WorldStateGui : MonoBehaviour
@@ -18,13 +16,13 @@ public class WorldStateGui : MonoBehaviour
     private Text fps;
 
     void Start () {
-        location = transform.Find("LocationValue").gameObject.GetComponent<Text>();
-        roomsVisited = transform.Find("RoomsValue").gameObject.GetComponent<Text>();
-        madness = transform.Find("MadnessValue").gameObject.GetComponent<Text>();
-        collectibles = transform.Find("CollectiblesValue").gameObject.GetComponent<Text>();
-        keyFound = transform.Find("KeyFoundValue").gameObject.GetComponent<Text>();
-        caught = transform.Find("CaughtValue").gameObject.GetComponent<Text>();
-        fps = transform.Find("FpsValue").gameObject.GetComponent<Text>();
+        location = transform.Find("Canvas/WorldState/LocationValue").gameObject.GetComponent<Text>();
+        roomsVisited = transform.Find("Canvas/WorldState/RoomsValue").gameObject.GetComponent<Text>();
+        madness = transform.Find("Canvas/WorldState/MadnessValue").gameObject.GetComponent<Text>();
+        collectibles = transform.Find("Canvas/WorldState/CollectiblesValue").gameObject.GetComponent<Text>();
+        keyFound = transform.Find("Canvas/WorldState/KeyFoundValue").gameObject.GetComponent<Text>();
+        caught = transform.Find("Canvas/WorldState/CaughtValue").gameObject.GetComponent<Text>();
+        fps = transform.Find("Canvas/WorldState/FpsValue").gameObject.GetComponent<Text>();
     }
 	
 	void Update () {

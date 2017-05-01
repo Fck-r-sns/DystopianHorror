@@ -24,14 +24,14 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
 
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
-    private CameraFading cameraFading;
+    private FadingManager cameraFading;
     private FirstPersonController controller;
     private RoomsManager roomsManager;
 
-    public void Init(Camera camera, CameraFading cameraFading, FirstPersonController controller)
+    public void Init(Camera camera, FirstPersonController controller)
     {
         this.camera = camera;
-        this.cameraFading = cameraFading;
+        this.cameraFading = FadingManager.GetInstance();
         this.controller = controller;
         roomsManager = RoomsManager.GetManager(roomsManagerId);
     }
@@ -76,7 +76,7 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
             yield return null;
         }
         cameraFading.FadeToBlack(fadeToBlackTime);
-        yield return new WaitUntil(() => cameraFading.GetState() == CameraFading.State.Faded);
+        yield return new WaitUntil(() => cameraFading.GetState() == FadingManager.State.Faded);
 
         RoomScene room = roomsManager.GetRandomWakeUpRoom();
         RoomEntry entry = roomsManager.GetRandomRoomEntry();

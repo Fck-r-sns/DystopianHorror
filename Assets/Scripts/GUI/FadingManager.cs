@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class CameraFading : MonoBehaviour
+public class FadingManager : MonoBehaviour
 {
 
     public enum State
@@ -14,18 +13,21 @@ public class CameraFading : MonoBehaviour
     }
 
     [SerializeField]
-    private Camera camera;
+    private RawImage blackFading;
 
     [SerializeField]
-    private Texture2D blackFading;
+    private RawImage whiteFading;
 
-    [SerializeField]
-    private Texture2D whiteFading;
-
+    private static FadingManager instance;
     private State state = State.Normal;
-    private Texture2D currentTexture;
-    private float alpha = 0.0f;
+    private RawImage currentFading;
+    private float alpha = 1.0f;
     private float fadingTime = 1.0f;
+
+    public static FadingManager GetInstance()
+    {
+        return instance;
+    }
 
     public State GetState()
     {
@@ -35,14 +37,14 @@ public class CameraFading : MonoBehaviour
     public void FadeToBlack(float fadingTime)
     {
         this.fadingTime = fadingTime;
-        currentTexture = blackFading;
+        currentFading = blackFading;
         state = State.FadeIn;
     }
 
     public void FadeToWhite(float fadingTime)
     {
         this.fadingTime = fadingTime;
-        currentTexture = whiteFading;
+        currentFading = whiteFading;
         state = State.FadeIn;
     }
 
@@ -52,15 +54,17 @@ public class CameraFading : MonoBehaviour
         state = State.FadeOut;
     }
 
-    private void Start()
+    private void Awake()
     {
-        currentTexture = blackFading;
-        state = State.Faded;
-        alpha = 1.0f;
-        FadeToNormal(7.0f);
+        instance = this;
     }
 
-    private void OnGUI()
+    private void Start()
+    {
+        currentFading = blackFading;
+    }
+
+    private void Update()
     {
         switch (state)
         {
@@ -71,10 +75,9 @@ public class CameraFading : MonoBehaviour
                 {
                     alpha += Time.deltaTime / fadingTime;
                     alpha = Mathf.Clamp01(alpha);
-                    Color color = GUI.color;
+                    Color color = currentFading.color;
                     color.a = alpha;
-                    GUI.color = color;
-                    GUI.DrawTexture(camera.pixelRect, currentTexture);
+                    currentFading.color = color;
                     if (alpha >= 1.0f)
                     {
                         state = State.Faded;
@@ -83,17 +86,15 @@ public class CameraFading : MonoBehaviour
                 break;
 
             case State.Faded:
-                GUI.DrawTexture(camera.pixelRect, currentTexture);
                 break;
 
             case State.FadeOut:
                 {
                     alpha -= Time.deltaTime / fadingTime;
                     alpha = Mathf.Clamp01(alpha);
-                    Color color = GUI.color;
+                    Color color = currentFading.color;
                     color.a = alpha;
-                    GUI.color = color;
-                    GUI.DrawTexture(camera.pixelRect, currentTexture);
+                    currentFading.color = color;
                     if (alpha <= 0.0f)
                     {
                         state = State.Normal;

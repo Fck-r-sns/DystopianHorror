@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using EventBus;
@@ -46,6 +45,8 @@ public class GameFlowManager : MonoBehaviour
     private void Start()
     {
         PauseGame();
+        Time.timeScale = 1.0f;
+        FadingManager.GetInstance().FadeToNormal(6.0f);
     }
 
     private void Update()
@@ -80,15 +81,17 @@ public class GameFlowManager : MonoBehaviour
 
     private IEnumerator StartGame_impl()
     {
+        FadingManager.GetInstance().FadeToBlack(2.0f);
+        yield return new WaitForSeconds(2.0f);
+
         mainMenuCameraHolder.SetActive(false);
         controller.gameObject.SetActive(true);
         controller.SetCursorLock(true);
-        
+
         Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameStarted });
 
-        Time.timeScale = 1.0f;
-
-        yield return new WaitForSeconds(2.0f);
+        FadingManager.GetInstance().FadeToNormal(5.0f);
+        yield return new WaitForSeconds(1.0f);
 
         ResumeGame();
     }
