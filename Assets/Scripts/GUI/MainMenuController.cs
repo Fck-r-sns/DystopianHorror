@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     private GameObject newGameButton;
     private GameObject continueGameButton;
     private int address = AddressProvider.GetFreeAddress();
-    private bool isStarted = false;
+    private bool isBlocked = false;
 
     private void Start()
     {
@@ -56,21 +56,32 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     public void NewGame()
     {
-        gameFlowManager.StartNewGame();
+        if (!isBlocked)
+        {
+            isBlocked = true;
+            gameFlowManager.StartNewGame();
+        }
     }
 
     public void ContinueGame()
     {
-        gameFlowManager.ResumeGame();
+        if (!isBlocked)
+        {
+            gameFlowManager.ResumeGame();
+        }
     }
 
     public void Exit()
     {
-        gameFlowManager.QuitGame();
+        if (!isBlocked)
+        {
+            gameFlowManager.QuitGame();
+        }
     }
 
     private void SetMenuVisible(bool isVisible)
     {
         mainMenu.SetActive(isVisible);
+        isBlocked = !isVisible;
     }
 }
