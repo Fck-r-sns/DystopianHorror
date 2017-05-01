@@ -58,6 +58,12 @@ public class FirstPersonController : MonoBehaviour
     private AudioSource m_AudioSource;
     private float m_StickToGroundForce = 10.0f;
 
+    public void SetMouseSensitivity(float value)
+    {
+        m_MouseLook.XSensitivity = value;
+        m_MouseLook.YSensitivity = value;
+    }
+
     public void SetMouseLookEnabled(bool enabled)
     {
         m_MouseLook.enableMouseLook = enabled;

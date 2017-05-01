@@ -24,6 +24,8 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     private Toggle ambientOcclusionToggle;
     private Slider volumeSlider;
     private Text volumeText;
+    private Slider mouseSensitivitySlider;
+    private Text mouseSensitivityText;
 
     private int address = AddressProvider.GetFreeAddress();
     private bool isBlocked = false;
@@ -41,6 +43,8 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         ambientOcclusionToggle = transform.Find("Canvas/Menu/Settings/AmbientOcclusionValue").gameObject.GetComponent<Toggle>();
         volumeSlider = transform.Find("Canvas/Menu/Settings/VolumeValue").gameObject.GetComponent<Slider>();
         volumeText = transform.Find("Canvas/Menu/Settings/VolumeValueText").gameObject.GetComponent<Text>();
+        mouseSensitivitySlider = transform.Find("Canvas/Menu/Settings/MouseSensitivityValue").gameObject.GetComponent<Slider>();
+        mouseSensitivityText = transform.Find("Canvas/Menu/Settings/MouseSensitivityValueText").gameObject.GetComponent<Text>();
 
         InitSettingsGUI();
 
@@ -145,6 +149,11 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
             gameSettings.volume = value;
             volumeText.text = value.ToString("0.00");
         });
+        mouseSensitivitySlider.onValueChanged.AddListener(value =>
+        {
+            gameSettings.mouseSensitivity = value;
+            mouseSensitivityText.text = value.ToString("0.00");
+        });
     }
 
     private void UpdateSettingsGUI()
@@ -154,5 +163,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         ambientOcclusionToggle.isOn = gameSettings.ambientOcclusionEnabled;
         volumeSlider.value = gameSettings.volume;
         volumeText.text = gameSettings.volume.ToString("0.00");
+        mouseSensitivitySlider.value = gameSettings.mouseSensitivity;
+        mouseSensitivityText.text = gameSettings.mouseSensitivity.ToString("0.00");
     }
 }

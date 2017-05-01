@@ -7,6 +7,9 @@ public class GameSettings : MonoBehaviour
     private AmbientOcclusion[] ambientOcclusions;
 
     [SerializeField]
+    private FirstPersonController controller;
+
+    [SerializeField]
     [Range(0.0f, 1.0f)]
     private float _brightness = 0.25f;
 
@@ -16,6 +19,10 @@ public class GameSettings : MonoBehaviour
     [SerializeField]
     [Range(0.0f, 1.0f)]
     private float _volume = 1.0f;
+
+    [SerializeField]
+    [Range(0.0f, 5.0f)]
+    private float _mouseSensitivity = 2.0f;
 
     public float brightness {
         get {
@@ -50,11 +57,22 @@ public class GameSettings : MonoBehaviour
         }
     }
 
+    public float mouseSensitivity {
+        get {
+            return _mouseSensitivity;
+        }
+        set {
+            _mouseSensitivity = value;
+            controller.SetMouseSensitivity(_mouseSensitivity);
+        }
+    }
+
     private void Start()
     {
         brightness = brightness;
         ambientOcclusionEnabled = ambientOcclusionEnabled;
         volume = volume;
+        mouseSensitivity = mouseSensitivity;
     }
 
 }
