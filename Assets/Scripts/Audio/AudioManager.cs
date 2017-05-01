@@ -26,6 +26,9 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     private float crossFadeTime = 2.0f;
 
     [SerializeField]
+    private AudioClip mainMenuMusic;
+
+    [SerializeField]
     private AudioClip prologueMusic;
 
     [SerializeField]
@@ -76,17 +79,14 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
 
         Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
         Dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
+
+        ChangeAudio(mainMenuMusic);
     }
 
     void OnDestroy()
     {
         Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
         Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
-    }
-
-    void Update()
-    {
-
     }
 
     void ChangeAudio(AudioClip clip)
