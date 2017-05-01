@@ -46,7 +46,7 @@ public class GameFlowManager : MonoBehaviour
     {
         PauseGame();
         Time.timeScale = 1.0f;
-        FadingManager.GetInstance().FadeToNormal(6.0f);
+        FadingManager.GetInstance().FadeToNormal(4.0f);
     }
 
     private void Update()
@@ -90,7 +90,7 @@ public class GameFlowManager : MonoBehaviour
 
         Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameStarted });
 
-        FadingManager.GetInstance().FadeToNormal(5.0f);
+        FadingManager.GetInstance().FadeToNormal(3.0f);
         yield return new WaitForSeconds(1.0f);
 
         ResumeGame();
