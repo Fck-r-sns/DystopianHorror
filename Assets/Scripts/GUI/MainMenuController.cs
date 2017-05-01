@@ -16,9 +16,9 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        mainMenu = transform.Find("Canvas/MainMenu").gameObject;
-        newGameButton = transform.Find("Canvas/MainMenu/NewGame").gameObject;
-        continueGameButton = transform.Find("Canvas/MainMenu/ContinueGame").gameObject;
+        mainMenu = transform.Find("Canvas/Menu").gameObject;
+        newGameButton = transform.Find("Canvas/Menu/Main/NewGame").gameObject;
+        continueGameButton = transform.Find("Canvas/Menu/Main/ContinueGame").gameObject;
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
 
