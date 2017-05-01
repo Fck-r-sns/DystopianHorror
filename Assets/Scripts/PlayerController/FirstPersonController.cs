@@ -68,6 +68,11 @@ public class FirstPersonController : MonoBehaviour
         m_UseHeadBob = enabled;
     }
 
+    public void SetCursorLock(bool cursorLock)
+    {
+        m_MouseLook.SetCursorLock(cursorLock);
+    }
+
     public void PlayFallingSound()
     {
         int index = Random.Range(0, m_FallingSounds.Length);

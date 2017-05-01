@@ -13,8 +13,6 @@ public class MouseLook
     public bool lockCursor = true;
     public bool enableMouseLook = true;
 
-    private bool m_cursorIsLocked = true;
-
     public void LookRotation(Transform character, Transform camera)
     {
         if (enableMouseLook)
@@ -53,26 +51,11 @@ public class MouseLook
     {
         //if the user set "lockCursor" we check & properly lock the cursos
         if (lockCursor)
-            InternalLockUpdate();
-    }
-
-    private void InternalLockUpdate()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            m_cursorIsLocked = false;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            m_cursorIsLocked = true;
-        }
-
-        if (m_cursorIsLocked)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        else if (!m_cursorIsLocked)
+        else
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
