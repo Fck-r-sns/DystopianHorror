@@ -92,6 +92,14 @@ public class RoomsManager : MonoBehaviour
         roomEntries.Add(door);
     }
 
+    public void DisableAllRoomScenes()
+    {
+        foreach (RoomScene scene in roomScenes)
+        {
+            scene.SetEnabled(false);
+        }
+    }
+
     public RoomEntry GetRandomRoomEntry()
     {
         List<RoomEntry> filtered = new List<RoomEntry>(roomEntries.Count);
