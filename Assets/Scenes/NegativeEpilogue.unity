@@ -1285,6 +1285,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1583075596}
     m_Modifications:
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: compositePredicate.predicates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4449657172239572, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1373,7 +1378,19 @@ Prefab:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: compositePredicate.predicates.Array.data[0]
+      value: 
+      objectReference: {fileID: 209399573}
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: compositePredicate.predicates.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114011728057935524, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
+    - {fileID: 114479577346255086, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &209399570 stripped
@@ -1387,6 +1404,22 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 209399569}
   m_Script: {fileID: 11500000, guid: 427ee8f9fe03bd24bbb24a4a465df25d, type: 3}
+--- !u!1 &209399572 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1802284198967442, guid: 8c2c80a64909fe34f89b73b1a402a491,
+    type: 2}
+  m_PrefabInternal: {fileID: 209399569}
+--- !u!114 &209399573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 209399572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71de4f4160630d1418258368242a5d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &249516780 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1762007783810258, guid: 4a9acef8cb37c06439a9a45ab563eaf2,

@@ -19,10 +19,11 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     public const int MEDIUM_MADNESS_THRESHOLD = 30;
     public const int HIGH_MADNESS_THRESHOLD = 70;
     public const int NORMAL_TO_MAD_BOUNDARY = 50;
+    public const int ENDING_MADNESS_THRESHOLD = 80;
     public const int MADNESS_PER_ROOM_VISIT = +10;
     public const int MADNESS_PER_BOOK_COLLECTED = -20;
     public const int MADNESS_PER_MONSTER_CAUGHT = +50;
-    public const float BOOK_SPAWN_TURNS = 7;
+    public const float BOOK_SPAWN_TURNS = 6;
     public const float KEY_SPAWN_TURNS = 3;
 
     private int address = AddressProvider.GetFreeAddress();

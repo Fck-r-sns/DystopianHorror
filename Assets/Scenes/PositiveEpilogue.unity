@@ -8274,6 +8274,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1981093313}
     m_Modifications:
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: compositePredicate.predicates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4449657172239572, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8324,11 +8329,39 @@ Prefab:
     - target: {fileID: 114011728057935524, guid: 8c2c80a64909fe34f89b73b1a402a491,
         type: 2}
       propertyPath: upperBound
-      value: 69
+      value: 89
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: compositePredicate.predicates.Array.data[0]
+      value: 
+      objectReference: {fileID: 1138351524}
+    - target: {fileID: 114322370590785604, guid: 8c2c80a64909fe34f89b73b1a402a491,
+        type: 2}
+      propertyPath: compositePredicate.predicates.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114011728057935524, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
+    - {fileID: 114479577346255086, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8c2c80a64909fe34f89b73b1a402a491, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1138351523 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1802284198967442, guid: 8c2c80a64909fe34f89b73b1a402a491,
+    type: 2}
+  m_PrefabInternal: {fileID: 1138351522}
+--- !u!114 &1138351524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1138351523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5627db3570c0564b9392016d474d812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1160600725
 Prefab:
   m_ObjectHideFlags: 0
