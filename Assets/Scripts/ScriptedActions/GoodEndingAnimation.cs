@@ -38,14 +38,7 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
             DoorInteractionEvent die = e as DoorInteractionEvent;
             if (die.door == door)
             {
-                RenderSettings.fog = false;
-                camera.gameObject.GetComponent<UnityStandardAssets.CinematicEffects.AmbientOcclusion>().enabled = false;
-                light.SetActive(true);
-                controller.SetMouseLookEnabled(false);
-                controller.SetHeadBobEnabled(false);
-                controller.enabled = false;
-                birds.Play();
-                director.StartAnimating(camera, rotationTarget, movementTarget);
+                StartCoroutine(Animation());
             }
         }
     }
@@ -73,6 +66,25 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
             camera = other.gameObject.GetComponentInChildren<Camera>();
             controller = other.gameObject.GetComponentInChildren<FirstPersonController>();
         }
+    }
+
+    private IEnumerator Animation()
+    {
+        RenderSettings.fog = false;
+        camera.gameObject.GetComponent<UnityStandardAssets.CinematicEffects.AmbientOcclusion>().enabled = false;
+        light.SetActive(true);
+        controller.SetMouseLookEnabled(false);
+        controller.SetHeadBobEnabled(false);
+        controller.enabled = false;
+        birds.Play();
+        director.StartAnimating(camera, rotationTarget, movementTarget);
+        yield return new WaitUntil(() => director.IsFinished());
+
+        TextOutput textOutput = TextOutput.GetInstance();
+        textOutput.ShowText(TextManager.GetGoodEndingText());
+        yield return new WaitWhile(() => textOutput.IsActive());
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
 
 }

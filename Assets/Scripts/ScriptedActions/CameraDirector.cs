@@ -17,6 +17,7 @@ public class CameraDirector : MonoBehaviour
     private Quaternion toRotation;
     private Vector3 fromMovement;
     private Vector3 toMovement;
+    private bool finished = false;
 
     public void StartAnimating(Camera camera, Transform rotationTarget, Transform movementTarget)
     {
@@ -30,6 +31,11 @@ public class CameraDirector : MonoBehaviour
 
         animationStartTime = Time.time;
         StartCoroutine(Animation());
+    }
+
+    public bool IsFinished ()
+    {
+        return finished;
     }
 
     private IEnumerator Animation()
@@ -48,5 +54,7 @@ public class CameraDirector : MonoBehaviour
 
             yield return null;
         }
+
+        finished = true;
     }
 }
