@@ -52,10 +52,7 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
                 break;
 
             case EBEventType.CaughtByMonster:
-                controller.enabled = false;
-                monster.GetComponent<MonsterBehaviour>().SetPatrolEnabled(false);
-                FadingManager.GetInstance().FadeToBlack(5);
-                StartCoroutine(FadeOutMonsterSounds(5));
+                StartCoroutine(EndingAnimation());
                 break;
 
             case EBEventType.MonsterInFrustum:
@@ -98,6 +95,20 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
             source.volume -= delta * Time.deltaTime;
             yield return null;
         }
+    }
+
+    private IEnumerator EndingAnimation()
+    {
+        controller.enabled = false;
+        monster.GetComponent<MonsterBehaviour>().SetPatrolEnabled(false);
+        FadingManager.GetInstance().FadeToBlack(5);
+        yield return FadeOutMonsterSounds(5);
+
+        TextOutput textOutput = TextOutput.GetInstance();
+        textOutput.ShowText(TextManager.GetBadEndingText());
+        yield return new WaitWhile(() => textOutput.IsActive());
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
 
 }
