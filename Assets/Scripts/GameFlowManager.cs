@@ -15,6 +15,11 @@ public class GameFlowManager : MonoBehaviour
     private bool isPauseAllowed = false;
     private bool isPaused;
 
+    private bool isMouseLookEnabled = true;
+    private bool isHeadBobEnabled = true;
+    private bool isCursorLocked = true;
+    private bool isControllerEnabled = true;
+
     public void StartNewGame()
     {
         StartCoroutine(StartGame_impl());
@@ -63,6 +68,12 @@ public class GameFlowManager : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0.0f;
+
+            isMouseLookEnabled = controller.IsMouseLookEnabled();
+            isHeadBobEnabled = controller.IsHeadbobEnabled();
+            isCursorLocked = controller.IsCursorLocked();
+            isControllerEnabled = controller.enabled;
+
             controller.SetMouseLookEnabled(false);
             controller.SetHeadBobEnabled(false);
             controller.SetCursorLock(false);
@@ -71,10 +82,10 @@ public class GameFlowManager : MonoBehaviour
         else
         {
             Time.timeScale = 1.0f;
-            controller.SetMouseLookEnabled(true);
-            controller.SetHeadBobEnabled(true);
-            controller.SetCursorLock(true);
-            controller.enabled = true;
+            controller.SetMouseLookEnabled(isMouseLookEnabled);
+            controller.SetHeadBobEnabled(isHeadBobEnabled);
+            controller.SetCursorLock(isCursorLocked);
+            controller.enabled = isControllerEnabled;
         }
 
         Dispatcher.SendEvent(new EBEvent() { type = (isPaused ? EBEventType.GamePaused : EBEventType.GameResumed) });

@@ -69,14 +69,29 @@ public class FirstPersonController : MonoBehaviour
         m_MouseLook.enableMouseLook = enabled;
     }
 
+    public bool IsMouseLookEnabled()
+    {
+        return m_MouseLook.enableMouseLook;
+    }
+
     public void SetHeadBobEnabled(bool enabled)
     {
         m_UseHeadBob = enabled;
     }
 
+    public bool IsHeadbobEnabled()
+    {
+        return m_UseHeadBob;
+    }
+
     public void SetCursorLock(bool cursorLock)
     {
         m_MouseLook.SetCursorLock(cursorLock);
+    }
+
+    public bool IsCursorLocked()
+    {
+        return m_MouseLook.IsCursorLocked();
     }
 
     public void PlayFallingSound()

@@ -43,6 +43,11 @@ public class MouseLook
         UpdateCursorLock();
     }
 
+    public bool IsCursorLocked()
+    {
+        return lockCursor;
+    }
+
     public void UpdateCursorLock()
     {
         if (lockCursor)
