@@ -110,9 +110,12 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         AudioSource inactiveSource = sources[1 - currentSourceIndex];
         currentSourceIndex = 1 - currentSourceIndex;
 
-        inactiveSource.volume = 0;
-        inactiveSource.clip = clip;
-        inactiveSource.Play();
+        if (inactiveSource.clip != clip)
+        {
+            inactiveSource.volume = 0;
+            inactiveSource.clip = clip;
+            inactiveSource.Play();
+        }
 
         float crossFadeRate = maxVolume / crossFadeTime;
         while ((activeSource.volume > 0) || (inactiveSource.volume < maxVolume))
