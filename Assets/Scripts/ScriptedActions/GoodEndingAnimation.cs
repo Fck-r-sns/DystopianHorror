@@ -80,6 +80,8 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
         director.StartAnimating(camera, rotationTarget, movementTarget);
         yield return new WaitUntil(() => director.IsFinished());
 
+        yield return new WaitForSeconds(1.0f);
+
         TextOutput textOutput = TextOutput.GetInstance();
         textOutput.ShowText(TextManager.GetGoodEndingText());
         yield return new WaitWhile(() => textOutput.IsActive());
