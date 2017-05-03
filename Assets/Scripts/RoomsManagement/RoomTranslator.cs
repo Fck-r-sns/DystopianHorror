@@ -13,9 +13,9 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
     private RoomScene roomScene;
 
     private RoomsManager roomsManager;
+    private RoomEntry attachedDoor;
     private int address = AddressProvider.GetFreeAddress();
     private bool translationEnabled = true;
-    private bool needTranslateRoom = false;
     private int translationFrame = 0;
 
     public void OnReceived(EBEvent e)
@@ -23,7 +23,10 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
         switch (e.type)
         {
             case EBEventType.RoomSpawningTrigger:
-                translationEnabled = true;
+                if (attachedDoor == null || (e as RoomSpawningTriggerEvent).roomEntryId != attachedDoor.GetId())
+                {
+                    translationEnabled = true;
+                }
                 break;
 
             case EBEventType.ItemCollected:
@@ -58,30 +61,21 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
         Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
     }
 
-    private void Update()
-    {
-        if (needTranslateRoom)
-        {
-            needTranslateRoom = false;
-            TranslateRoom();
-        }
-    }
-
     private void TranslateRoom()
     {
-        RoomEntry door = roomsManager.GetRandomRoomEntry();
-        door.SetSpawningEnabled(false);
+        attachedDoor = roomsManager.GetRandomRoomEntry();
+        attachedDoor.SetSpawningEnabled(false);
         GameObject root = roomScene.GetRoot();
         Vector3 oldPosition = root.transform.position;
         Vector3 oldRotation = root.transform.eulerAngles;
         translationFrame = Time.frameCount + 2;
-        StartCoroutine(TranslateRoomOnNextUpdate(door));
+        StartCoroutine(TranslateRoomOnNextUpdate(attachedDoor));
         Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
             translationFrame,
             oldPosition,
             oldRotation,
-            door.GetRootOffset(),
-            door.GetRootRotation()
+            attachedDoor.GetRootOffset(),
+            attachedDoor.GetRootRotation()
             ));
     }
 
