@@ -82,6 +82,10 @@ public class ItemsManager : MonoBehaviour
 
     private float GetBookChance()
     {
+        if (worldState.roomsVisited == 0)
+        {
+            return 1.0f; // first room always has book
+        }
         return Mathf.Clamp01(1 / (WorldState.BOOK_SPAWN_TURNS - bookSpawnTries));
     }
 }
