@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using EventBus;
@@ -19,9 +18,6 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private float fadeToNormalTime = 4.0f;
 
-    [SerializeField]
-    private string roomsManagerId = "School";
-
     private int address = AddressProvider.GetFreeAddress();
     private Camera camera;
     private FadingManager cameraFading;
@@ -33,7 +29,7 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
         this.camera = camera;
         this.cameraFading = FadingManager.GetInstance();
         this.controller = controller;
-        roomsManager = RoomsManager.GetManager(roomsManagerId);
+        roomsManager = RoomsManager.GetManager();
     }
 
     public void OnReceived(EBEvent e)

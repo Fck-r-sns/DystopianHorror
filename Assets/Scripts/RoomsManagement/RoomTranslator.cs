@@ -7,9 +7,6 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
 {
 
     [SerializeField]
-    private string roomsManagerId = "default";
-
-    [SerializeField]
     private RoomScene roomScene;
 
     private RoomsManager roomsManager;
@@ -50,7 +47,7 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        roomsManager = RoomsManager.GetManager(roomsManagerId);
+        roomsManager = RoomsManager.GetManager();
         Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
         Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
     }

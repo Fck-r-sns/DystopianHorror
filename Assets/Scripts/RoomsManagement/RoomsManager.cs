@@ -7,9 +7,6 @@ public class RoomsManager : MonoBehaviour
 {
 
     [SerializeField]
-    private string id;
-
-    [SerializeField]
     private WorldState worldState;
 
     [SerializeField]
@@ -39,7 +36,7 @@ public class RoomsManager : MonoBehaviour
     [SerializeField]
     private string[] roomNames;
 
-    private static Dictionary<string, RoomsManager> managers = new Dictionary<string, RoomsManager>();
+    private static RoomsManager instance;
     private List<RoomEntry> roomEntries = new List<RoomEntry>();
     private List<RoomScene> roomScenes = new List<RoomScene>();
     private RoomScene prologueScene;
@@ -47,14 +44,14 @@ public class RoomsManager : MonoBehaviour
     private RoomScene positiveEpilogueScene;
     private RoomScene negativeEpilogueScene;
 
-    public static RoomsManager GetManager(string sceneName)
+    public static RoomsManager GetManager()
     {
-        return managers[sceneName];
+        return instance;
     }
 
     void Awake()
     {
-        managers.Add(id, this);
+        instance = this;
 
         if (loadPrologue)
         {

@@ -1,14 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using EventBus;
 
 public class RoomEntry : MonoBehaviour, IEventSubscriber
 {
-
-    [SerializeField]
-    private string roomsManagerId = "default";
 
     [SerializeField]
     private int id;
@@ -30,11 +24,6 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     private RoomsManager roomsManager;
     private ItemsManager itemsManager;
     private Door door;
-
-    public string GetRoomsManagerId()
-    {
-        return roomsManagerId;
-    }
 
     public int GetId()
     {
@@ -72,7 +61,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         {
             case EBEventType.RoomSpawningTrigger:
                 RoomSpawningTriggerEvent rstee = (e as RoomSpawningTriggerEvent);
-                if (rstee.roomsManagerId.Equals(roomsManagerId) && (rstee.action == TriggerAction.Enter))
+                if (rstee.action == TriggerAction.Enter)
                 {
                     if ((rstee.roomEntryId == id) && spawningEnabled)
                     {
@@ -106,7 +95,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
             case EBEventType.DoorClosingTrigger:
                 DoorClosingTriggerEvent dcte = (e as DoorClosingTriggerEvent);
-                if (dcte.roomsManagerId.Equals(roomsManagerId) && (dcte.roomEntryId == id) && (dcte.action == TriggerAction.Exit))
+                if ((dcte.roomEntryId == id) && (dcte.action == TriggerAction.Exit))
                 {
                     CloseDoor();
                 }
@@ -120,7 +109,7 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
 
     void Start()
     {
-        roomsManager = RoomsManager.GetManager(roomsManagerId);
+        roomsManager = RoomsManager.GetManager();
         roomsManager.RegisterRoomEntry(this);
         itemsManager = ItemsManager.GetInstance();
         door = GetComponentInChildren<Door>();

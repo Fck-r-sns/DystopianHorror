@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 using EventBus;
 
@@ -22,7 +20,7 @@ public class Trigger_NegativeEpilogueEntered : MonoBehaviour
             NoiseEffectsManager noiseEffectManager = other.gameObject.GetComponentInChildren<NoiseEffectsManager>();
             noiseEffectManager.enabled = false;
             noiseEffectManager.SetMonster(null);
-            RoomsManager manager = RoomsManager.GetManager("School");
+            RoomsManager manager = RoomsManager.GetManager();
             manager.UnloadHall();
         }
     }

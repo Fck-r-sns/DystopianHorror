@@ -39,8 +39,7 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
             {
                 door.Unlock();
                 roomEntry.SetSpawningEnabled(true);
-                string roomsManagerId = roomEntry.GetRoomsManagerId();
-                RoomsManager manager = RoomsManager.GetManager(roomsManagerId);
+                RoomsManager manager = RoomsManager.GetManager();
                 manager.UnloadPrologue();
                 StartCoroutine(UnsubscribeOnNextUpdate());
             }

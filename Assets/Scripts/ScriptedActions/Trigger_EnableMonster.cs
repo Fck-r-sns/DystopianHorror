@@ -50,7 +50,7 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
     {
         Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
 
-        RoomsManager roomsManager = RoomsManager.GetManager("School");
+        RoomsManager roomsManager = RoomsManager.GetManager();
         roomsManager.LockAllDoors();
 
         schoolBellsManager.StartRinging();
