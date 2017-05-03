@@ -12,6 +12,7 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField]
     private FirstPersonController controller;
 
+    private bool isPauseAllowed = false;
     private bool isPaused;
 
     public void StartNewGame()
@@ -51,7 +52,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isPauseAllowed && Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
         }
@@ -90,9 +91,14 @@ public class GameFlowManager : MonoBehaviour
 
         Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameStarted });
 
+        TextOutput textOutput = TextOutput.GetInstance();
+        textOutput.ShowText("Hello");
+        yield return new WaitWhile(() => textOutput.IsActive());
+
         FadingManager.GetInstance().FadeToNormal(3.0f);
         yield return new WaitForSeconds(1.0f);
 
         ResumeGame();
+        isPauseAllowed = true;
     }
 }
