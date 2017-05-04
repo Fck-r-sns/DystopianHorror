@@ -4812,7 +4812,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cfe79e72f33d54b8ef8190e26a28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: School
   worldState: {fileID: 1154527652}
   loadPrologue: 1
   prologueSceneName: Prologue
