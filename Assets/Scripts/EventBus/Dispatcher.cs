@@ -61,14 +61,17 @@ namespace EventBus
             }
         }
 
-        // Use this for initialization
-        void Start()
+        private void Awake()
         {
-
+            AddressProvider.Reset();
+            subscribers.Clear();
+            foreach (var queue in queues)
+            {
+                queue.Clear();
+            }
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             Queue<EBEvent> queue = activeQueue;
             swapQueues();

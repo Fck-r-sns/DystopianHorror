@@ -46,6 +46,14 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
         }
     }
 
+    private void Awake()
+    {
+        if (triggered)
+        {
+            triggered = false;
+        }
+    }
+
     private void Start()
     {
         if (mode == Mode.Primary)

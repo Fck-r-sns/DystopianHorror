@@ -30,6 +30,10 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
     private void Start()
     {
         Dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
+        if (isTriggered)
+        {
+            isTriggered = false; // reset triggers on scene loading
+        }
     }
 
     private void OnDestroy()

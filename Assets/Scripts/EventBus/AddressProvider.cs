@@ -12,5 +12,10 @@ namespace EventBus
         {
             return nextAddress++;
         }
+
+        public static void Reset()
+        {
+            nextAddress = Defines.FIRST_FREE_ADDRESS;
+        }
     }
 }

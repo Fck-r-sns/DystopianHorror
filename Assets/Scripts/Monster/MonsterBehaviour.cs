@@ -45,7 +45,7 @@ public class MonsterBehaviour : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask = -1;
 
-    private static float WAYPOINT_PASS_DISTANCE = 0.1f;
+    private const float WAYPOINT_PASS_DISTANCE = 0.1f;
 
     private NavMeshAgent navMeshAgent;
     private CameraVisibilityChecker visibilityChecker;
