@@ -31,6 +31,7 @@ public class GameSettings : MonoBehaviour
         set {
             _brightness = value;
             RenderSettings.ambientLight = new Color(_brightness, _brightness, _brightness);
+            PlayerPrefs.SetFloat("brightness", _brightness);
         }
     }
 
@@ -44,6 +45,7 @@ public class GameSettings : MonoBehaviour
             {
                 ao.enabled = _ambientOcclusionEnabled;
             }
+            PlayerPrefs.SetInt("ao", _ambientOcclusionEnabled ? 1 : 0);
         }
     }
 
@@ -54,6 +56,7 @@ public class GameSettings : MonoBehaviour
         set {
             _volume = value;
             AudioListener.volume = _volume;
+            PlayerPrefs.SetFloat("volume", _volume);
         }
     }
 
@@ -64,15 +67,21 @@ public class GameSettings : MonoBehaviour
         set {
             _mouseSensitivity = value;
             controller.SetMouseSensitivity(_mouseSensitivity);
+            PlayerPrefs.SetFloat("sensitivity", _mouseSensitivity);
         }
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.Save();
     }
 
     private void Start()
     {
-        brightness = brightness;
-        ambientOcclusionEnabled = ambientOcclusionEnabled;
-        volume = volume;
-        mouseSensitivity = mouseSensitivity;
+        brightness = PlayerPrefs.GetFloat("brightness", brightness);
+        ambientOcclusionEnabled = PlayerPrefs.GetInt("ao", ambientOcclusionEnabled ? 1 : 0) > 0;
+        volume = PlayerPrefs.GetFloat("volume", volume);
+        mouseSensitivity = PlayerPrefs.GetFloat("sensitivity", mouseSensitivity);
     }
 
 }

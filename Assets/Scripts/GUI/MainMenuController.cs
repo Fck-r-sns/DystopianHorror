@@ -124,6 +124,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         {
             settingsMenu.SetActive(false);
             mainMenu.SetActive(true);
+            gameSettings.Save();
         }
     }
 
