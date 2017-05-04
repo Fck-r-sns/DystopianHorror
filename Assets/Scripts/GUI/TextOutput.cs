@@ -38,8 +38,8 @@ public class TextOutput : MonoBehaviour
         background = transform.Find("Canvas/TextOutput/Background").gameObject.GetComponent<Image>();
         tip = transform.Find("Canvas/TextOutput/Tip").gameObject.GetComponent<Text>();
 
-        int width = Screen.width / 2;
-        int height = Screen.height / 2;
+        float width = Screen.width / 1.5f;
+        float height = Screen.height / 1.5f;
         
         background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(width + 40, height + 40);
 
