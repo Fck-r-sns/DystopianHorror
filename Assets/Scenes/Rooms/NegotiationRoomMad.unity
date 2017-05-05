@@ -373,7 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32251bd597a76f429e214ac05e9bc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomsManagerId: School
   roomScene: {fileID: 1681505985}
 --- !u!1001 &565281402
 Prefab:
@@ -1657,7 +1656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7764d45b936bc8d4fbaf13b0bd3dd05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerBound: 1
+  lowerBound: 0
   upperBound: 2147483647
 --- !u!1001 &1707035662
 Prefab:
