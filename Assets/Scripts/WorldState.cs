@@ -19,10 +19,11 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     public const int MEDIUM_MADNESS_THRESHOLD = 30;
     public const int HIGH_MADNESS_THRESHOLD = 70;
     public const int NORMAL_TO_MAD_BOUNDARY = 50;
-    public const int ENDING_MADNESS_THRESHOLD = 80;
-    public const int MADNESS_PER_ROOM_VISIT = +10;
-    public const int MADNESS_PER_BOOK_COLLECTED = -20;
-    public const int MADNESS_PER_MONSTER_CAUGHT = +50;
+    public const int ENDING_MADNESS_THRESHOLD = 81;
+    public const int ENDING_COLLECTIBLES_FOUND_THRESHOLD = 5;
+    public const int MADNESS_PER_ROOM_VISIT = +20;
+    public const int MADNESS_PER_BOOK_COLLECTED = -30;
+    public const int MADNESS_PER_MONSTER_CAUGHT = +60;
     public const float BOOK_SPAWN_TURNS = 7;
     public const float KEY_SPAWN_TURNS = 6;
 
@@ -156,7 +157,10 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     private void ProcessHallMoveinTriggerEnteredEvent(HallMovingTriggerEnteredEvent e)
     {
         ++roomsVisited_;
-        AddMadness(MADNESS_PER_ROOM_VISIT);
+        if (!keyFound_)
+        {
+            AddMadness(MADNESS_PER_ROOM_VISIT);
+        }
     }
 
     private void ProcessCaughtByMonsterEvent(EBEvent e)

@@ -1,8 +1,12 @@
-﻿
+﻿using UnityEngine;
+
 public class GoodEndingPredicate : Predicate
 {
+    [SerializeField]
+    private EndingPredicate endingPredicate;
+
     public override bool Check(WorldState world)
     {
-        return (world.keyFound == true) && (world.timesCaughtByMonster == 0) && (world.madness < WorldState.ENDING_MADNESS_THRESHOLD);
+        return (world.keyFound == true) && endingPredicate.Check(world);
     }
 }

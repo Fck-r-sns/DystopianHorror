@@ -45,6 +45,7 @@ public class ItemsManager : MonoBehaviour
         }
 
         chance = GetBookChance();
+        Debug.Log("Chance = " + chance);
         if (Random.value <= chance)
         {
             bookSpawnTries = 0;
@@ -86,6 +87,6 @@ public class ItemsManager : MonoBehaviour
         {
             return 1.0f; // first room always has book
         }
-        return Mathf.Clamp01(worldState.madness / 200.0f + bookSpawnTries * 0.05f); 
+        return Mathf.Clamp01(worldState.madness / (float)WorldState.MAX_MADNESS * 0.6f + bookSpawnTries * 0.04f); 
     }
 }

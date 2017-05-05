@@ -30,7 +30,7 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
                 ItemCollectedEvent ice = e as ItemCollectedEvent;
                 if ((ice.item.GetItemType() == CollectibleItem.Type.Key) && (ice.item.GetRoomScene() == roomScene))
                 {
-                    TranslateRoom();
+                    TranslateRoom(); // translate to ending scene
                 }
                 break;
         }
