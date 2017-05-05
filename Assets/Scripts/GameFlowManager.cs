@@ -13,12 +13,25 @@ public class GameFlowManager : MonoBehaviour
     private FirstPersonController controller;
 
     private bool isPauseAllowed = false;
+    private bool keepMouseLock = false;
     private bool isPaused;
 
     private bool isMouseLookEnabled = true;
     private bool isHeadBobEnabled = true;
     private bool isCursorLocked = true;
     private bool isControllerEnabled = true;
+
+    // hack
+    public void SetPauseAllowed(bool value)
+    {
+        isPauseAllowed = value;
+    }
+
+    // hack
+    public void SetKeepMouseLock(bool value)
+    {
+        keepMouseLock = value;
+    }
 
     public void StartNewGame()
     {
@@ -30,22 +43,34 @@ public class GameFlowManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PauseGame()
+    public void PauseGame(bool sendEvent = true)
     {
         isPaused = true;
         ApplyPause();
+        if (sendEvent)
+        {
+            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GamePaused });
+        }
     }
 
-    public void ResumeGame()
+    public void ResumeGame(bool sendEvent = true)
     {
         isPaused = false;
         ApplyPause();
+        if (sendEvent)
+        {
+            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameResumed });
+        }
     }
 
-    public void TogglePause()
+    public void TogglePause(bool sendEvent = true)
     {
         isPaused = !isPaused;
         ApplyPause();
+        if (sendEvent)
+        {
+            Dispatcher.SendEvent(new EBEvent() { type = (isPaused ? EBEventType.GamePaused : EBEventType.GameResumed) });
+        }
     }
 
     private void Start()
@@ -76,7 +101,10 @@ public class GameFlowManager : MonoBehaviour
 
             controller.SetMouseLookEnabled(false);
             controller.SetHeadBobEnabled(false);
-            controller.SetCursorLock(false);
+            if (!keepMouseLock)
+            {
+                controller.SetCursorLock(false);
+            }
             controller.enabled = false;
         }
         else
@@ -87,8 +115,6 @@ public class GameFlowManager : MonoBehaviour
             controller.SetCursorLock(isCursorLocked);
             controller.enabled = isControllerEnabled;
         }
-
-        Dispatcher.SendEvent(new EBEvent() { type = (isPaused ? EBEventType.GamePaused : EBEventType.GameResumed) });
     }
 
     private IEnumerator StartGame_impl()
