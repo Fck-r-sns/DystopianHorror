@@ -103,7 +103,7 @@ public class GameFlowManager : MonoBehaviour
         Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameStarted });
 
         TextOutput textOutput = TextOutput.GetInstance();
-        textOutput.ShowText(TextManager.GetIntroText());
+        textOutput.ShowText(TextManager.GetIntroText(), TextOutput.TextAreaSize.Big);
         yield return new WaitWhile(() => textOutput.IsActive());
 
         FadingManager.GetInstance().FadeToNormal(3.0f);

@@ -105,7 +105,7 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
         yield return FadeOutMonsterSounds(5);
 
         TextOutput textOutput = TextOutput.GetInstance();
-        textOutput.ShowText(TextManager.GetBadEndingText());
+        textOutput.ShowText(TextManager.GetBadEndingText(), TextOutput.TextAreaSize.Small);
         yield return new WaitWhile(() => textOutput.IsActive());
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");

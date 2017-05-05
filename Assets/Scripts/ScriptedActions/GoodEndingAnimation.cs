@@ -83,7 +83,7 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
         yield return new WaitForSeconds(1.0f);
 
         TextOutput textOutput = TextOutput.GetInstance();
-        textOutput.ShowText(TextManager.GetGoodEndingText());
+        textOutput.ShowText(TextManager.GetGoodEndingText(), TextOutput.TextAreaSize.Small);
         yield return new WaitWhile(() => textOutput.IsActive());
 
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");

@@ -4,6 +4,12 @@ using UnityEngine.UI;
 public class TextOutput : MonoBehaviour
 {
 
+    public enum TextAreaSize
+    {
+        Small,
+        Big
+    }
+
     private static TextOutput instance;
     private GameObject textOutput;
     private Text text;
@@ -15,8 +21,12 @@ public class TextOutput : MonoBehaviour
         return instance;
     }
 
-    public void ShowText(string text)
+    public void ShowText(string text, TextAreaSize size)
     {
+        this.text.resizeTextForBestFit = (size == TextAreaSize.Big);
+        textOutput.SetActive(false);
+        this.text.text = null;
+        Resize(size);
         this.text.text = text;
         textOutput.SetActive(true);
     }
@@ -29,6 +39,7 @@ public class TextOutput : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        TextManager.Reset();
     }
 
     private void Start()
@@ -37,10 +48,22 @@ public class TextOutput : MonoBehaviour
         text = transform.Find("Canvas/TextOutput/Text").gameObject.GetComponent<Text>();
         background = transform.Find("Canvas/TextOutput/Background").gameObject.GetComponent<Image>();
         tip = transform.Find("Canvas/TextOutput/Tip").gameObject.GetComponent<Text>();
+    }
 
-        float width = Screen.width / 1.5f;
-        float height = Screen.height / 1.5f;
-        
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            textOutput.SetActive(false);
+        }
+    }
+
+    private void Resize(TextAreaSize size)
+    {
+        float coef = (size == TextAreaSize.Big) ? 1.5f : 2.0f;
+        float width = Screen.width / coef;
+        float height = Screen.height / coef;
+
         background.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(width + 40, height + 40);
 
         RectTransform textRect = text.gameObject.GetComponent<RectTransform>();
@@ -50,13 +73,5 @@ public class TextOutput : MonoBehaviour
         RectTransform tipRect = tip.gameObject.GetComponent<RectTransform>();
         tipRect.sizeDelta = new Vector2(width, 50);
         tipRect.localPosition = new Vector3(0, -height / 2 + 10, 0);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            textOutput.SetActive(false);
-        }
     }
 }
