@@ -23,6 +23,11 @@ public class WaypointDrawer : MonoBehaviour, IEventSubscriber
         dispatcher.Subscribe(EBEventType.NewWaypointCreated, address, gameObject);
     }
 
+    private void OnDestroy()
+    {
+        dispatcher.Unsubscribe(EBEventType.NewWaypointCreated, address);
+    }
+
     private void DrawWaypoint(Vector3 position)
     {
         Debug.DrawRay(position, Vector3.up, Color.black, 10.0f);

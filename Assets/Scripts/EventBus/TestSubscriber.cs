@@ -5,6 +5,7 @@ using EventBus;
 public class TestSubscriber : MonoBehaviour, IEventSubscriber
 {
 
+    private Dispatcher dispatcher;
     private int address;
 
     public void OnReceived(EBEvent e)
@@ -15,13 +16,14 @@ public class TestSubscriber : MonoBehaviour, IEventSubscriber
     // Use this for initialization
     void Start()
     {
-        address = Dispatcher.GetInstance().GetFreeAddress();
-        Dispatcher.GetInstance().Subscribe(EBEventType.TestEvent, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.TestEvent, address, gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-
+        dispatcher.Unsubscribe(EBEventType.TestEvent, address);
     }
+
 }

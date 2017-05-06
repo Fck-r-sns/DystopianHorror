@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 using EventBus;
-using System;
 
 public class DoorTrigger_Receiver : MonoBehaviour, IEventSubscriber {
 
@@ -32,5 +28,11 @@ public class DoorTrigger_Receiver : MonoBehaviour, IEventSubscriber {
         address = dispatcher.GetFreeAddress();
         dispatcher.Subscribe(EBEventType.TestDoorTriggerEntered, address, gameObject);
         dispatcher.Subscribe(EBEventType.TestDoorTriggerExited, address, gameObject);
+    }
+
+    void OnDestroy()
+    {
+        dispatcher.Unsubscribe(EBEventType.TestDoorTriggerEntered, address);
+        dispatcher.Unsubscribe(EBEventType.TestDoorTriggerExited, address);
     }
 }
