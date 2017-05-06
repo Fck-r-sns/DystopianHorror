@@ -27,9 +27,11 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     private Slider mouseSensitivitySlider;
     private Text mouseSensitivityText;
 
+    private bool isBlockedUntilGameIsLoaded;
+    private bool isBlockedForDoubleClicksProtection;
+
     private Dispatcher dispatcher;
     private int address;
-    private bool isBlocked = false;
 
     private void Start()
     {
@@ -51,10 +53,16 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
+        isBlockedUntilGameIsLoaded = true;
+        isBlockedForDoubleClicksProtection = false;
+
+        newGameButton.GetComponent<Button>().enabled = false;
+        continueGameButton.GetComponent<Button>().enabled = false;
 
         dispatcher = Dispatcher.GetInstance();
         address = dispatcher.GetFreeAddress();
 
+        dispatcher.Subscribe(EBEventType.GameLoaded, address, gameObject);
         dispatcher.Subscribe(EBEventType.GameStarted, address, gameObject);
         dispatcher.Subscribe(EBEventType.GamePaused, address, gameObject);
         dispatcher.Subscribe(EBEventType.GameResumed, address, gameObject);
@@ -62,6 +70,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     private void OnDestroy()
     {
+        dispatcher.Unsubscribe(EBEventType.GameLoaded, address);
         dispatcher.Unsubscribe(EBEventType.GameStarted, address);
         dispatcher.Unsubscribe(EBEventType.GamePaused, address);
         dispatcher.Unsubscribe(EBEventType.GameResumed, address);
@@ -71,6 +80,12 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     {
         switch (e.type)
         {
+            case EBEventType.GameLoaded:
+                newGameButton.GetComponent<Button>().enabled = true;
+                continueGameButton.GetComponent<Button>().enabled = true;
+                isBlockedUntilGameIsLoaded = false;
+                break;
+
             case EBEventType.GameStarted:
                 SetMenuVisible(false);
                 newGameButton.SetActive(false);
@@ -89,16 +104,16 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     public void NewGame()
     {
-        if (!isBlocked)
+        if (!isBlockedForDoubleClicksProtection && !isBlockedUntilGameIsLoaded)
         {
-            isBlocked = true;
+            isBlockedForDoubleClicksProtection = true;
             gameFlowManager.StartNewGame();
         }
     }
 
     public void ContinueGame()
     {
-        if (!isBlocked)
+        if (!isBlockedForDoubleClicksProtection && !isBlockedUntilGameIsLoaded)
         {
             gameFlowManager.ResumeGame();
         }
@@ -106,7 +121,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     public void OpenSettings()
     {
-        if (!isBlocked)
+        if (!isBlockedForDoubleClicksProtection)
         {
             mainMenu.SetActive(false);
             settingsMenu.SetActive(true);
@@ -116,7 +131,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     public void Exit()
     {
-        if (!isBlocked)
+        if (!isBlockedForDoubleClicksProtection)
         {
             gameFlowManager.QuitGame();
         }
@@ -124,7 +139,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
 
     public void BackFromSettings()
     {
-        if (!isBlocked)
+        if (!isBlockedForDoubleClicksProtection)
         {
             settingsMenu.SetActive(false);
             mainMenu.SetActive(true);
@@ -135,7 +150,7 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     private void SetMenuVisible(bool isVisible)
     {
         menu.SetActive(isVisible);
-        isBlocked = !isVisible;
+        isBlockedForDoubleClicksProtection = !isVisible;
     }
 
     private void InitSettingsGUI()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 using EventBus;
 
@@ -120,7 +121,8 @@ public class GameFlowManager : MonoBehaviour
         FadingManager.GetInstance().SetFadedToBlack();
         PauseGame();
         Time.timeScale = 1.0f;
-        yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Prologue").isLoaded && UnityEngine.SceneManagement.SceneManager.GetSceneByName("Hall").isLoaded);
+        yield return new WaitUntil(() => SceneManager.GetSceneByName("Prologue").isLoaded && SceneManager.GetSceneByName("Hall").isLoaded);
+        Dispatcher.GetInstance().SendEvent(new EBEvent() { type = EBEventType.GameLoaded });
         FadingManager.GetInstance().FadeToNormal(4.0f);
     }
 

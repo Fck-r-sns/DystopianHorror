@@ -28,6 +28,7 @@ namespace EventBus
         InteractionWithDoor,
         ChangeStateToNormalRequest,
         ChangeStateToMadRequest,
+        GameLoaded,
         GameStarted,
         GamePaused,
         GameResumed
