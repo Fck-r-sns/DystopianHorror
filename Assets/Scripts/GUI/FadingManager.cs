@@ -34,6 +34,13 @@ public class FadingManager : MonoBehaviour
         return state;
     }
 
+    public void SetFadedToBlack()
+    {
+        currentFading = blackFading;
+        state = State.Faded;
+        alpha = 1.0f;
+    }
+
     public void FadeToBlack(float fadingTime)
     {
         this.fadingTime = fadingTime;

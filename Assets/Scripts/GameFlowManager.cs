@@ -75,9 +75,7 @@ public class GameFlowManager : MonoBehaviour
 
     private void Start()
     {
-        PauseGame();
-        Time.timeScale = 1.0f;
-        FadingManager.GetInstance().FadeToNormal(4.0f);
+        StartCoroutine(GameLoading_impl());
     }
 
     private void Update()
@@ -115,6 +113,15 @@ public class GameFlowManager : MonoBehaviour
             controller.SetCursorLock(isCursorLocked);
             controller.enabled = isControllerEnabled;
         }
+    }
+
+    private IEnumerator GameLoading_impl()
+    {
+        FadingManager.GetInstance().SetFadedToBlack();
+        PauseGame();
+        Time.timeScale = 1.0f;
+        yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetSceneByName("Prologue").isLoaded && UnityEngine.SceneManagement.SceneManager.GetSceneByName("Hall").isLoaded);
+        FadingManager.GetInstance().FadeToNormal(4.0f);
     }
 
     private IEnumerator StartGame_impl()
