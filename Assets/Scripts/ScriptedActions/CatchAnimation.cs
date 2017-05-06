@@ -18,7 +18,8 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private float fadeToNormalTime = 4.0f;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private Camera camera;
     private FadingManager cameraFading;
     private FirstPersonController controller;
@@ -43,12 +44,14 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
     }
 
     private IEnumerator AnimateCatch()
@@ -98,7 +101,7 @@ public class CatchAnimation : MonoBehaviour, IEventSubscriber
         cameraFading.FadeToNormal(fadeToNormalTime);
         controller.enabled = true;
 
-        Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ApplyMadnessAfterMonsterCaught });
+        dispatcher.SendEvent(new EBEvent() { type = EBEventType.ApplyMadnessAfterMonsterCaught });
     }
 
     private IEnumerator AnimateRestoration()

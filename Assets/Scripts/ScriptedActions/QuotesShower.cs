@@ -11,7 +11,8 @@ public class QuotesShower : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private TextOutput textOutput;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
 
     public void OnReceived(EBEvent e)
     {
@@ -27,12 +28,14 @@ public class QuotesShower : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
     }
 
     private IEnumerator ShowQuote()

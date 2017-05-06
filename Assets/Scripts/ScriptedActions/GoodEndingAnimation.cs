@@ -26,7 +26,8 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private AudioSource birds;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private Camera camera;
     private FirstPersonController controller;
     private bool isTriggered = false;
@@ -44,19 +45,23 @@ public class GoodEndingAnimation : MonoBehaviour, IEventSubscriber
     }
 
     // Use this for initialization
-    private void Start () {
-        Dispatcher.Subscribe(EBEventType.InteractionWithDoor, address, gameObject);
-	}
+    private void Start()
+    {
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.InteractionWithDoor, address, gameObject);
+    }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.InteractionWithDoor, address);
+        dispatcher.Unsubscribe(EBEventType.InteractionWithDoor, address);
     }
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {

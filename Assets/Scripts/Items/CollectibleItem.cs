@@ -51,7 +51,7 @@ public class CollectibleItem : MonoBehaviour, Controllable
     public void OnAcquire(Vector3 from)
     {
         gameObject.SetActive(false);
-        Dispatcher.SendEvent(new ItemCollectedEvent(this));
+        Dispatcher.GetInstance().SendEvent(new ItemCollectedEvent(this));
     }
 
     public void OnRelease(Vector3 from)

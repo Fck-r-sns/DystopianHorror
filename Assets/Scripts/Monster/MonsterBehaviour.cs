@@ -120,7 +120,7 @@ public class MonsterBehaviour : MonoBehaviour
         if (inPlainSight != newSightState)
         {
             inPlainSight = newSightState;
-            Dispatcher.SendEvent(new EBEvent() { type = inPlainSight ? EBEventType.MonsterInPlainSight : EBEventType.MonsterOutOfPlainSight });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = inPlainSight ? EBEventType.MonsterInPlainSight : EBEventType.MonsterOutOfPlainSight });
         }
     }
 

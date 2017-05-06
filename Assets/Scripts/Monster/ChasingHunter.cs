@@ -16,7 +16,8 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private float standingDistance = 0.2f;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private Queue<Waypoint> waypointsQueue = new Queue<Waypoint>();
     private float lastMoveTime = 0.0f;
     private bool active = true;
@@ -41,13 +42,15 @@ public class ChasingHunter : MonoBehaviour, IEventSubscriber
 
     void Start()
     {
-        Dispatcher.Subscribe(EBEventType.NewWaypointCreated, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.NewWaypointCreated, address, gameObject);
         lastMoveTime = Time.time;
     }
 
     void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.NewWaypointCreated, address);
+        dispatcher.Unsubscribe(EBEventType.NewWaypointCreated, address);
     }
 
     void Update()

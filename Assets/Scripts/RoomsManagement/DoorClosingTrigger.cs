@@ -14,12 +14,12 @@ public class DoorClosingTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Dispatcher.SendEvent(new DoorClosingTriggerEvent(id, TriggerAction.Enter));
+        Dispatcher.GetInstance().SendEvent(new DoorClosingTriggerEvent(id, TriggerAction.Enter));
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Dispatcher.SendEvent(new DoorClosingTriggerEvent(id, TriggerAction.Exit));
+        Dispatcher.GetInstance().SendEvent(new DoorClosingTriggerEvent(id, TriggerAction.Exit));
     }
 
 }

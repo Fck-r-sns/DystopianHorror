@@ -27,7 +27,8 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     public const float BOOK_SPAWN_TURNS = 7;
     public const float KEY_SPAWN_TURNS = 6;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private Location location_;
     private int roomsVisited_ = 0;
     private int madness_ = 0;
@@ -110,33 +111,37 @@ public class WorldState : MonoBehaviour, IEventSubscriber
                 break;
         }
 
-        Dispatcher.SendEvent(new WorldStateChangedEvent(this));
+        dispatcher.SendEvent(new WorldStateChangedEvent(this));
+
+        throw new System.Exception(Time.time + ": message: " + e.type);
     }
 
     private void Start()
     {
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
         // subscribe
-        Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.PrologueEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.HallEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.PositiveEpilogueEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.NegativeEpilogueEntered, address, gameObject);
+        dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
+        dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
+        dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
+        dispatcher.Subscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address, gameObject);
+        dispatcher.Subscribe(EBEventType.PrologueEntered, address, gameObject);
+        dispatcher.Subscribe(EBEventType.HallEntered, address, gameObject);
+        dispatcher.Subscribe(EBEventType.PositiveEpilogueEntered, address, gameObject);
+        dispatcher.Subscribe(EBEventType.NegativeEpilogueEntered, address, gameObject);
     }
 
     private void OnDestroy()
     {
         // unsubscribe
-        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
-        Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
-        Dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
-        Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
+        dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
+        dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
+        dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
+        dispatcher.Unsubscribe(EBEventType.HallEntered, address);
+        dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
+        dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
     }
 
     private void ProcessItemCollectedEvent(ItemCollectedEvent e)
@@ -182,13 +187,13 @@ public class WorldState : MonoBehaviour, IEventSubscriber
     private IEnumerator ProcessEnding()
     {
         yield return null;
-        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
-        Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
-        Dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
-        Dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.HallEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
-        Dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
+        dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
+        dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
+        dispatcher.Unsubscribe(EBEventType.PrologueEntered, address);
+        dispatcher.Unsubscribe(EBEventType.HallEntered, address);
+        dispatcher.Unsubscribe(EBEventType.PositiveEpilogueEntered, address);
+        dispatcher.Unsubscribe(EBEventType.NegativeEpilogueEntered, address);
     }
 }

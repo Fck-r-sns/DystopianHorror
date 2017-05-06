@@ -53,7 +53,8 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
     private AudioClip grabKeySound;
 
     private AudioSource[] sources = new AudioSource[2];
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private int currentSourceIndex = 0;
 
     public void OnReceived(EBEvent e)
@@ -77,16 +78,19 @@ public class AudioManager : MonoBehaviour, IEventSubscriber
         sources[0] = musicSource1;
         sources[1] = musicSource2;
 
-        Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+
+        dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
+        dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
 
         ChangeAudio(mainMenuMusic);
     }
 
     void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
-        Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
+        dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
     }
 
     void ChangeAudio(AudioClip clip)

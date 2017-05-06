@@ -49,7 +49,7 @@ public class GameFlowManager : MonoBehaviour
         ApplyPause();
         if (sendEvent)
         {
-            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GamePaused });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = EBEventType.GamePaused });
         }
     }
 
@@ -59,7 +59,7 @@ public class GameFlowManager : MonoBehaviour
         ApplyPause();
         if (sendEvent)
         {
-            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameResumed });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = EBEventType.GameResumed });
         }
     }
 
@@ -69,7 +69,7 @@ public class GameFlowManager : MonoBehaviour
         ApplyPause();
         if (sendEvent)
         {
-            Dispatcher.SendEvent(new EBEvent() { type = (isPaused ? EBEventType.GamePaused : EBEventType.GameResumed) });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = (isPaused ? EBEventType.GamePaused : EBEventType.GameResumed) });
         }
     }
 
@@ -133,7 +133,7 @@ public class GameFlowManager : MonoBehaviour
         controller.gameObject.SetActive(true);
         controller.SetCursorLock(true);
 
-        Dispatcher.SendEvent(new EBEvent() { type = EBEventType.GameStarted });
+        Dispatcher.GetInstance().SendEvent(new EBEvent() { type = EBEventType.GameStarted });
 
         TextOutput textOutput = TextOutput.GetInstance();
         textOutput.ShowText(TextManager.GetIntroText(), TextOutput.TextAreaSize.Big);

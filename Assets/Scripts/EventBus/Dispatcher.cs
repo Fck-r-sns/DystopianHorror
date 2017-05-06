@@ -8,21 +8,41 @@ namespace EventBus
 
     public class Dispatcher : MonoBehaviour
     {
-        private static Dictionary<EBEventType, Dictionary<int, GameObject>> subscribers = new Dictionary<EBEventType, Dictionary<int, GameObject>>();
-        private static int activeQueueIndex = 0;
-        private static Queue<EBEvent>[] queues = { new Queue<EBEvent>(), new Queue<EBEvent>() };
-        private static Queue<EBEvent> activeQueue = queues[activeQueueIndex]; // double buffer, protection from infinite event loops
 
-        public static void Subscribe(EBEventType eventType, int address, GameObject subscriber)
+        [SerializeField]
+        private AddressProvider addressProvider;
+
+        private static Dispatcher instance;
+        private Dictionary<EBEventType, Dictionary<int, GameObject>> subscribers;
+        private int activeQueueIndex = 0;
+        private Queue<EBEvent>[] queues;
+        private Queue<EBEvent> activeQueue; // double buffer, protection from infinite event loops
+
+        public static Dispatcher GetInstance()
+        {
+            return instance;
+        }
+
+        public int GetFreeAddress()
+        {
+            return addressProvider.GetFreeAddress();
+        }
+
+        public void Subscribe(EBEventType eventType, int address, GameObject subscriber)
         {
             if (!subscribers.ContainsKey(eventType))
             {
                 subscribers.Add(eventType, new Dictionary<int, GameObject>());
             }
+            if (subscribers[eventType].ContainsKey(address))
+            {
+                subscribers[eventType][address] = subscriber;
+                throw new System.Exception(Time.time + ": subscriber for " + eventType + " with address " + address + " already exists");
+            }
             subscribers[eventType][address] = subscriber;
         }
 
-        public static void Unsubscribe(EBEventType eventType, int address)
+        public void Unsubscribe(EBEventType eventType, int address)
         {
             if (subscribers.ContainsKey(eventType))
             {
@@ -30,12 +50,12 @@ namespace EventBus
             }
         }
 
-        public static void SendEvent(EBEvent e)
+        public void SendEvent(EBEvent e)
         {
             activeQueue.Enqueue(e);
         }
 
-        public static void DispatchEvent(EBEvent e)
+        private void DispatchEvent(EBEvent e)
         {
             if (!subscribers.ContainsKey(e.type))
             {
@@ -63,7 +83,10 @@ namespace EventBus
 
         private void Awake()
         {
-            AddressProvider.Reset();
+            instance = this;
+            subscribers = new Dictionary<EBEventType, Dictionary<int, GameObject>>();
+            queues = new Queue<EBEvent>[] { new Queue<EBEvent>(), new Queue<EBEvent>() };
+            activeQueue = queues[activeQueueIndex];
             subscribers.Clear();
             foreach (var queue in queues)
             {
@@ -74,7 +97,7 @@ namespace EventBus
         private void Update()
         {
             Queue<EBEvent> queue = activeQueue;
-            swapQueues();
+            SwapQueues();
             foreach(EBEvent e in queue)
             {
                 DispatchEvent(e);
@@ -82,7 +105,7 @@ namespace EventBus
             queue.Clear();
         }
 
-        private void swapQueues()
+        private void SwapQueues()
         {
             activeQueueIndex = 1 - activeQueueIndex;
             activeQueue = queues[activeQueueIndex];

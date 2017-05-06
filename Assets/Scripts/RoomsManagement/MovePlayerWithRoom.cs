@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 using EventBus;
@@ -7,7 +6,8 @@ using EventBus;
 public class MovePlayerWithRoom : MonoBehaviour, IEventSubscriber
 {
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
 
     public void OnReceived(EBEvent e)
     {
@@ -20,7 +20,14 @@ public class MovePlayerWithRoom : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
     }
 
     private IEnumerator MoveOnNextUpdate(HallMovingTriggerEnteredEvent hmtee)

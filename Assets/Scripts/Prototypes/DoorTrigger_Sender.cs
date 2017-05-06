@@ -8,11 +8,11 @@ public class DoorTrigger_Sender : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Dispatcher.SendEvent(new EBEvent { type = EBEventType.TestDoorTriggerEntered });
+        Dispatcher.GetInstance().SendEvent(new EBEvent { type = EBEventType.TestDoorTriggerEntered });
     }
 
     void OnTriggerExit(Collider other)
     {
-        Dispatcher.SendEvent(new EBEvent { type = EBEventType.TestDoorTriggerExited });
+        Dispatcher.GetInstance().SendEvent(new EBEvent { type = EBEventType.TestDoorTriggerExited });
     }
 }

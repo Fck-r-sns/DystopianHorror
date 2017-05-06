@@ -4,7 +4,8 @@ using EventBus;
 public class MaterialChangerGlobal : MonoBehaviour, IEventSubscriber
 {
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private bool isMad = false;
 
     public void OnReceived(EBEvent e)
@@ -17,7 +18,7 @@ public class MaterialChangerGlobal : MonoBehaviour, IEventSubscriber
                 if (!isMad)
                 {
                     isMad = true;
-                    Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeStateToMadRequest });
+                    dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeStateToMadRequest });
                 }
             }
             else
@@ -25,7 +26,7 @@ public class MaterialChangerGlobal : MonoBehaviour, IEventSubscriber
                 if (isMad)
                 {
                     isMad = false;
-                    Dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeStateToNormalRequest });
+                    dispatcher.SendEvent(new EBEvent() { type = EBEventType.ChangeStateToNormalRequest });
                 }
             }
         }
@@ -33,11 +34,13 @@ public class MaterialChangerGlobal : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
+        dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
     }
 }

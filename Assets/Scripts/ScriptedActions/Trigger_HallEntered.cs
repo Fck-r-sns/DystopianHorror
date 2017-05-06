@@ -27,7 +27,8 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private CatchAnimation catchAnimation;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private static bool triggered = false;
     
     public void OnReceived(EBEvent e)
@@ -56,9 +57,11 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
         if (mode == Mode.Primary)
         {
-            Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
+            dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
         }
     }
 
@@ -66,7 +69,7 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
     {
         if (mode == Mode.Primary)
         {
-            Dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
+            dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
         }
     }
 
@@ -75,7 +78,7 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
         if (!triggered)
         {
             triggered = true;
-            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.HallEntered });
+            dispatcher.SendEvent(new EBEvent() { type = EBEventType.HallEntered });
             door.Close();
             door.Lock();
             if (other.gameObject.tag.Equals("Player"))
@@ -98,7 +101,7 @@ public class Trigger_HallEntered : MonoBehaviour, IEventSubscriber
     private IEnumerator UnsubscribeOnNextUpdate()
     {
         yield return null;
-        Dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
+        dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
     }
 
 }

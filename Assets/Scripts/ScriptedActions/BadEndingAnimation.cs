@@ -23,7 +23,8 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private GameObject monster;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private Camera camera;
     private FirstPersonController controller;
     private bool isInited = false;
@@ -45,8 +46,8 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
                         NoiseEffectsManager noiseEffectsManager = controller.gameObject.GetComponentInChildren<NoiseEffectsManager>();
                         noiseEffectsManager.SetMonster(monster.transform);
                         noiseEffectsManager.enabled = true;
-                        Dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
-                        Dispatcher.Subscribe(EBEventType.MonsterInFrustum, address, gameObject);
+                        dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
+                        dispatcher.Subscribe(EBEventType.MonsterInFrustum, address, gameObject);
                     }
                 }
                 break;
@@ -66,14 +67,16 @@ public class BadEndingAnimation : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.InteractionWithDoor, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.InteractionWithDoor, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.InteractionWithDoor, address);
-        Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
-        Dispatcher.Unsubscribe(EBEventType.MonsterInFrustum, address);
+        dispatcher.Unsubscribe(EBEventType.InteractionWithDoor, address);
+        dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        dispatcher.Unsubscribe(EBEventType.MonsterInFrustum, address);
     }
 
     private void OnTriggerEnter(Collider other)

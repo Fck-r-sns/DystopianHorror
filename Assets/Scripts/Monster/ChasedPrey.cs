@@ -25,6 +25,6 @@ public class ChasedPrey : MonoBehaviour {
 
     private void CreateWaypoint()
     {
-        Dispatcher.SendEvent(new NewWaypointEvent(new Waypoint(transform.position, Time.time)));
+        Dispatcher.GetInstance().SendEvent(new NewWaypointEvent(new Waypoint(transform.position, Time.time)));
     }
 }

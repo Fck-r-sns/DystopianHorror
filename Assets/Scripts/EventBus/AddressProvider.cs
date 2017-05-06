@@ -1,21 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace EventBus
 {
-    public static class AddressProvider
+    public class AddressProvider : MonoBehaviour
     {
-        private static int nextAddress = Defines.FIRST_FREE_ADDRESS;
+        private int nextAddress = Defines.FIRST_FREE_ADDRESS;
 
-        public static int GetFreeAddress()
+        public int GetFreeAddress()
         {
             return nextAddress++;
-        }
-
-        public static void Reset()
-        {
-            nextAddress = Defines.FIRST_FREE_ADDRESS;
         }
     }
 }

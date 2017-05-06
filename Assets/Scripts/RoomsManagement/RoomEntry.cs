@@ -19,7 +19,8 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private CompositePredicate compositePredicate;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private RoomScene lastScene;
     private RoomsManager roomsManager;
     private ItemsManager itemsManager;
@@ -113,16 +114,18 @@ public class RoomEntry : MonoBehaviour, IEventSubscriber
         roomsManager.RegisterRoomEntry(this);
         itemsManager = ItemsManager.GetInstance();
         door = GetComponentInChildren<Door>();
-        Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.DoorClosingTrigger, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
+        dispatcher.Subscribe(EBEventType.DoorClosingTrigger, address, gameObject);
+        dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
-        Dispatcher.Unsubscribe(EBEventType.DoorClosingTrigger, address);
-        Dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
+        dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
+        dispatcher.Unsubscribe(EBEventType.DoorClosingTrigger, address);
+        dispatcher.Unsubscribe(EBEventType.HallMovingTriggerEntered, address);
     }
 
     public void CloseDoor()

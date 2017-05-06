@@ -12,7 +12,7 @@ public class Trigger_PrologueEntered : MonoBehaviour
         if (!triggered)
         {
             triggered = true;
-            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.PrologueEntered });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = EBEventType.PrologueEntered });
         }
     }
 }

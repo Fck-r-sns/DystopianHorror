@@ -10,7 +10,8 @@ public class MaterialChanger : MonoBehaviour, IEventSubscriber
     [SerializeField]
     private Material madMaterial;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
 
     public void OnReceived(EBEvent e)
     {
@@ -27,14 +28,16 @@ public class MaterialChanger : MonoBehaviour, IEventSubscriber
     }
 
     private void Start () {
-        Dispatcher.Subscribe(EBEventType.ChangeStateToNormalRequest, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.ChangeStateToMadRequest, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.ChangeStateToNormalRequest, address, gameObject);
+        dispatcher.Subscribe(EBEventType.ChangeStateToMadRequest, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.ChangeStateToNormalRequest, address);
-        Dispatcher.Unsubscribe(EBEventType.ChangeStateToMadRequest, address);
+        dispatcher.Unsubscribe(EBEventType.ChangeStateToNormalRequest, address);
+        dispatcher.Unsubscribe(EBEventType.ChangeStateToMadRequest, address);
     }
 
 }

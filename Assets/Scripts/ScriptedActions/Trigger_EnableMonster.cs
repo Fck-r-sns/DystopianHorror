@@ -15,7 +15,8 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
     private const int ROOMS_VISITED_BEFORE_MONSTER_APPEARS = 1;
 
     private static bool isTriggered;
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private int roomsVisited = 0;
 
     public void OnReceived(EBEvent e)
@@ -29,7 +30,9 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.WorldStateChanged, address, gameObject);
         if (isTriggered)
         {
             isTriggered = false; // reset triggers on scene loading
@@ -38,7 +41,7 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
+        dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,7 +55,7 @@ public class Trigger_EnableMonster : MonoBehaviour, IEventSubscriber
 
     private IEnumerator ReleaseTheKraken(Transform player)
     {
-        Dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
+        dispatcher.Unsubscribe(EBEventType.WorldStateChanged, address);
 
         RoomsManager roomsManager = RoomsManager.GetManager();
         roomsManager.LockAllDoors();

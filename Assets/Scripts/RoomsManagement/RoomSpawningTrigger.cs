@@ -14,12 +14,12 @@ public class RoomSpawningTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Dispatcher.SendEvent(new RoomSpawningTriggerEvent(id, TriggerAction.Enter));
+        Dispatcher.GetInstance().SendEvent(new RoomSpawningTriggerEvent(id, TriggerAction.Enter));
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Dispatcher.SendEvent(new RoomSpawningTriggerEvent(id, TriggerAction.Exit));
+        Dispatcher.GetInstance().SendEvent(new RoomSpawningTriggerEvent(id, TriggerAction.Exit));
     }
 
 }

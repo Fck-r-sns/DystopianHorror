@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 using EventBus;
 
@@ -16,7 +14,7 @@ public class TestPublisher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Dispatcher.SendEvent(
+        Dispatcher.GetInstance().SendEvent(
             new EBEvent
             {
                 type = EBEventType.TestEvent,

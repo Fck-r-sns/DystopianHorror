@@ -9,7 +9,8 @@ using System;
 public class DoorTrigger_Receiver : MonoBehaviour, IEventSubscriber {
 
     private Door door;
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
 
     public void OnReceived(EBEvent e)
     {
@@ -27,7 +28,9 @@ public class DoorTrigger_Receiver : MonoBehaviour, IEventSubscriber {
     // Use this for initialization
     void Start () {
         door = GetComponent<Door>();
-        Dispatcher.Subscribe(EBEventType.TestDoorTriggerEntered, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.TestDoorTriggerExited, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.TestDoorTriggerEntered, address, gameObject);
+        dispatcher.Subscribe(EBEventType.TestDoorTriggerExited, address, gameObject);
     }
 }

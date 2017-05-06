@@ -5,7 +5,8 @@ using EventBus;
 public class MonsterCatch : MonoBehaviour, IEventSubscriber
 {
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
 
     public void OnReceived(EBEvent e)
     {
@@ -23,21 +24,23 @@ public class MonsterCatch : MonoBehaviour, IEventSubscriber
 
     private void Start()
     {
-        Dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.CaughtByMonster, address, gameObject);
+        dispatcher.Subscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
-        Dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
+        dispatcher.Unsubscribe(EBEventType.CaughtByMonster, address);
+        dispatcher.Unsubscribe(EBEventType.ApplyMadnessAfterMonsterCaught, address);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
         {
-            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.CaughtByMonster });
+            dispatcher.SendEvent(new EBEvent() { type = EBEventType.CaughtByMonster });
         }
     }
 }

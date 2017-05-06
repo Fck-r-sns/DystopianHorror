@@ -27,7 +27,8 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
     private Slider mouseSensitivitySlider;
     private Text mouseSensitivityText;
 
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private bool isBlocked = false;
 
     private void Start()
@@ -51,16 +52,19 @@ public class MainMenuController : MonoBehaviour, IEventSubscriber
         continueGameButton.SetActive(false);
         SetMenuVisible(false);
 
-        Dispatcher.Subscribe(EBEventType.GameStarted, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.GamePaused, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.GameResumed, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+
+        dispatcher.Subscribe(EBEventType.GameStarted, address, gameObject);
+        dispatcher.Subscribe(EBEventType.GamePaused, address, gameObject);
+        dispatcher.Subscribe(EBEventType.GameResumed, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.GameStarted, address);
-        Dispatcher.Unsubscribe(EBEventType.GamePaused, address);
-        Dispatcher.Unsubscribe(EBEventType.GameResumed, address);
+        dispatcher.Unsubscribe(EBEventType.GameStarted, address);
+        dispatcher.Unsubscribe(EBEventType.GamePaused, address);
+        dispatcher.Unsubscribe(EBEventType.GameResumed, address);
     }
 
     public void OnReceived(EBEvent e)

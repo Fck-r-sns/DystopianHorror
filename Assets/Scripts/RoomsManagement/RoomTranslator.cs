@@ -11,7 +11,8 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
 
     private RoomsManager roomsManager;
     private RoomEntry attachedDoor;
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private bool translationEnabled = true;
     private int translationFrame = 0;
 
@@ -48,14 +49,16 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
     private void Start()
     {
         roomsManager = RoomsManager.GetManager();
-        Dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+        dispatcher.Subscribe(EBEventType.RoomSpawningTrigger, address, gameObject);
+        dispatcher.Subscribe(EBEventType.ItemCollected, address, gameObject);
     }
 
     private void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
-        Dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
+        dispatcher.Unsubscribe(EBEventType.RoomSpawningTrigger, address);
+        dispatcher.Unsubscribe(EBEventType.ItemCollected, address);
     }
 
     private void TranslateRoom()
@@ -67,7 +70,7 @@ public class RoomTranslator : MonoBehaviour, IEventSubscriber
         Vector3 oldRotation = root.transform.eulerAngles;
         translationFrame = Time.frameCount + 2;
         StartCoroutine(TranslateRoomOnNextUpdate(attachedDoor));
-        Dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
+        dispatcher.SendEvent(new HallMovingTriggerEnteredEvent(
             translationFrame,
             oldPosition,
             oldRotation,

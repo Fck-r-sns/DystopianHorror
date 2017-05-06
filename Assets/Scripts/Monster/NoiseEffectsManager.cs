@@ -45,7 +45,8 @@ public class NoiseEffectsManager : MonoBehaviour, IEventSubscriber
     private VideoGlitchShift shift;
     private VideoGlitchNoiseDigital noise;
     private VideoGlitchSpectrumOffset spectrumOffset;
-    private int address = AddressProvider.GetFreeAddress();
+    private Dispatcher dispatcher;
+    private int address;
     private bool monsterInFrustum = false;
     private bool monsterInPlainSight = false;
 
@@ -88,18 +89,21 @@ public class NoiseEffectsManager : MonoBehaviour, IEventSubscriber
 
         UpdateEffects();
 
-        Dispatcher.Subscribe(EBEventType.MonsterInFrustum, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.MonsterOutOfFrustum, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.MonsterInPlainSight, address, gameObject);
-        Dispatcher.Subscribe(EBEventType.MonsterOutOfPlainSight, address, gameObject);
+        dispatcher = Dispatcher.GetInstance();
+        address = dispatcher.GetFreeAddress();
+
+        dispatcher.Subscribe(EBEventType.MonsterInFrustum, address, gameObject);
+        dispatcher.Subscribe(EBEventType.MonsterOutOfFrustum, address, gameObject);
+        dispatcher.Subscribe(EBEventType.MonsterInPlainSight, address, gameObject);
+        dispatcher.Subscribe(EBEventType.MonsterOutOfPlainSight, address, gameObject);
     }
 
     void OnDestroy()
     {
-        Dispatcher.Unsubscribe(EBEventType.MonsterInFrustum, address);
-        Dispatcher.Unsubscribe(EBEventType.MonsterOutOfFrustum, address);
-        Dispatcher.Unsubscribe(EBEventType.MonsterInPlainSight, address);
-        Dispatcher.Unsubscribe(EBEventType.MonsterOutOfPlainSight, address);
+        dispatcher.Unsubscribe(EBEventType.MonsterInFrustum, address);
+        dispatcher.Unsubscribe(EBEventType.MonsterOutOfFrustum, address);
+        dispatcher.Unsubscribe(EBEventType.MonsterInPlainSight, address);
+        dispatcher.Unsubscribe(EBEventType.MonsterOutOfPlainSight, address);
     }
 
     void Update()

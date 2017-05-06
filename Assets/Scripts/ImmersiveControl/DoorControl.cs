@@ -46,7 +46,7 @@ namespace Immersive {
 
         public void OnAcquire(Vector3 from)
         {
-            Dispatcher.SendEvent(new DoorInteractionEvent(door, this));
+            Dispatcher.GetInstance().SendEvent(new DoorInteractionEvent(door, this));
             if (mode == Mode.Immersive)
             {
                 direction = Mathf.Sign(Vector3.Dot(transform.forward, from - transform.position));

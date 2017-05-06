@@ -33,7 +33,7 @@ public class CameraVisibilityChecker : MonoBehaviour {
         if (visible != newState)
         {
             visible = newState;
-            Dispatcher.SendEvent(new EBEvent() { type = visible ? EBEventType.MonsterInFrustum : EBEventType.MonsterOutOfFrustum });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = visible ? EBEventType.MonsterInFrustum : EBEventType.MonsterOutOfFrustum });
         }
 	}
 

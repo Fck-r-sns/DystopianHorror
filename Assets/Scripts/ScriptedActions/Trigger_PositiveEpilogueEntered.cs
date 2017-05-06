@@ -16,7 +16,7 @@ public class Trigger_PositiveEpilogueEntered : MonoBehaviour
             triggered = true;
             door.Close();
             door.Lock();
-            Dispatcher.SendEvent(new EBEvent() { type = EBEventType.PositiveEpilogueEntered });
+            Dispatcher.GetInstance().SendEvent(new EBEvent() { type = EBEventType.PositiveEpilogueEntered });
             NoiseEffectsManager noiseEffectManager = other.gameObject.GetComponentInChildren<NoiseEffectsManager>();
             noiseEffectManager.enabled = false;
             noiseEffectManager.SetMonster(null);
