@@ -52,7 +52,10 @@ public class RoomsManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
 
+    void Start()
+    {
         if (loadPrologue)
         {
             SceneManager.LoadSceneAsync(prologueSceneName, LoadSceneMode.Additive);

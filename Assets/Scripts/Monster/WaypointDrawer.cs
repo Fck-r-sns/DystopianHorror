@@ -15,7 +15,7 @@ public class WaypointDrawer : MonoBehaviour, IEventSubscriber
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         Dispatcher.Subscribe(EBEventType.NewWaypointCreated, address, gameObject);
     }

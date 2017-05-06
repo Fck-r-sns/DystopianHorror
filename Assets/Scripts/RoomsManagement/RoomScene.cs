@@ -89,15 +89,4 @@ public class RoomScene : MonoBehaviour
         return scene.IsValid();
     }
 
-    // Use this for initialization
-    void Awake()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

@@ -18,7 +18,7 @@ public class MovePlayerWithRoom : MonoBehaviour, IEventSubscriber
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         Dispatcher.Subscribe(EBEventType.HallMovingTriggerEntered, address, gameObject);
     }
