@@ -34,11 +34,6 @@ namespace EventBus
             {
                 subscribers.Add(eventType, new Dictionary<int, GameObject>());
             }
-            if (subscribers[eventType].ContainsKey(address))
-            {
-                subscribers[eventType][address] = subscriber;
-                throw new System.Exception(Time.time + ": subscriber for " + eventType + " with address " + address + " already exists");
-            }
             subscribers[eventType][address] = subscriber;
         }
 

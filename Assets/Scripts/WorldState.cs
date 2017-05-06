@@ -112,8 +112,6 @@ public class WorldState : MonoBehaviour, IEventSubscriber
         }
 
         dispatcher.SendEvent(new WorldStateChangedEvent(this));
-
-        throw new System.Exception(Time.time + ": message: " + e.type);
     }
 
     private void Start()
