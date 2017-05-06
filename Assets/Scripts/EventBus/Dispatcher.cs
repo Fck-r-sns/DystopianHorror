@@ -19,7 +19,7 @@ namespace EventBus
             {
                 subscribers.Add(eventType, new Dictionary<int, GameObject>());
             }
-            subscribers[eventType].Add(address, subscriber);
+            subscribers[eventType][address] = subscriber;
         }
 
         public static void Unsubscribe(EBEventType eventType, int address)
