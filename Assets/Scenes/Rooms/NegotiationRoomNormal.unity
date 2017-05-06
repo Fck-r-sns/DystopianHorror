@@ -1431,7 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7764d45b936bc8d4fbaf13b0bd3dd05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowerBound: 0
+  lowerBound: 1
   upperBound: 2147483647
 --- !u!1001 &1707035662
 Prefab:
