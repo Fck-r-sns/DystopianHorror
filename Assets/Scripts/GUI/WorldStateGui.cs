@@ -7,6 +7,7 @@ public class WorldStateGui : MonoBehaviour
     [SerializeField]
     private WorldState worldState;
 
+    private GameObject worldStateWidget;
     private Text location;
     private Text roomsVisited;
     private Text madness;
@@ -16,6 +17,7 @@ public class WorldStateGui : MonoBehaviour
     private Text fps;
 
     void Start () {
+        worldStateWidget = transform.Find("Canvas/WorldState").gameObject;
         location = transform.Find("Canvas/WorldState/LocationValue").gameObject.GetComponent<Text>();
         roomsVisited = transform.Find("Canvas/WorldState/RoomsValue").gameObject.GetComponent<Text>();
         madness = transform.Find("Canvas/WorldState/MadnessValue").gameObject.GetComponent<Text>();
@@ -26,6 +28,12 @@ public class WorldStateGui : MonoBehaviour
     }
 	
 	void Update () {
+
+        if (Input.GetKeyDown(KeyCode.F12))
+        {
+            worldStateWidget.SetActive(!worldStateWidget.activeSelf);
+        }
+
         location.text = worldState.location.ToString("F");
         roomsVisited.text = "" + worldState.roomsVisited;
         madness.text = "" + worldState.madness;
