@@ -1,4 +1,6 @@
-A horror game project for Wargaming Academy 2017-2018
+# Dystopian Horror
+
+A short horror game I developed in Wargaming Academy. Its main feature is that some pieces of the environment change when you don't look at them. E.g., if you enter a room, it moves to another place to confuse and scare the player. It was inspired by [Layers of Fear](https://youtu.be/CyDs5UJfvks).
 
 [![Dystopian Horror](http://img.youtube.com/vi/fAWWG4Pqa9o/0.jpg)](http://www.youtube.com/watch?v=fAWWG4Pqa9o "Dystopian Horror")
 
